@@ -1207,6 +1207,42 @@ body.tel17 #tel17{padding-bottom:110px}
 .tp-live{font-size:0!important}
 .tp-live i{font-size:0}
 .tp-live::after{content:"CANLI";font-size:10.5px;letter-spacing:.14em}
+/* ===================== v28 ===================== */
+/* sahne: alttaki şerit ve bant kalktı */
+#journey,.d-foot{display:none!important}
+/* telefon: perde anı (sahnedeki gibi) */
+#pc28,#cd28{position:fixed;inset:0;z-index:90;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;background:radial-gradient(120% 80% at 50% 40%,rgba(14,40,58,.97),rgba(2,9,14,.98) 70%);overflow:hidden}
+#pc28.on,#cd28.on{display:flex}
+#pc28 .rays,#cd28 .rays{position:absolute;left:50%;top:42%;width:900px;height:900px;margin:-450px 0 0 -450px;background:repeating-conic-gradient(from 0deg,rgba(232,194,122,.12) 0deg 6deg,transparent 6deg 18deg);-webkit-mask:radial-gradient(circle,#000 10%,transparent 62%);mask:radial-gradient(circle,#000 10%,transparent 62%);animation:spin 50s linear infinite}
+#pc28>*:not(.rays),#cd28>*:not(.rays){position:relative}
+#pc28 .rm{font-family:var(--serif);font-size:170px;font-weight:900;line-height:.8;background:var(--goldgrad);-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise 1s cubic-bezier(.2,.8,.2,1) both}
+#pc28 .pk{margin-top:14px;font-size:13px;font-weight:800;letter-spacing:.5em;color:var(--gold);animation:rise 1s .1s both}
+#pc28 .an{font-family:var(--serif);font-size:48px;font-weight:900;line-height:1.02;margin-top:10px;background:var(--goldgrad);-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise 1s .2s both}
+#pc28 .ad{margin-top:12px;font-size:15px;color:var(--mute);line-height:1.5;max-width:360px;animation:rise 1s .3s both}
+#pc28 .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+#pc28 .row span{width:58px;height:58px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid var(--line2);display:grid;place-items:center;animation:pop23 .5s cubic-bezier(.2,1.5,.4,1) both}
+#pc28 .row img,#pc28 .row svg{width:46px;height:46px;object-fit:contain}
+body.act28 #hero25{opacity:0}
+/* telefon: büyük ödül geri sayımı (sahnedeki gibi) */
+#cd28 .k{font-size:13px;font-weight:800;letter-spacing:.4em;color:var(--gold)}
+#cd28 .n{font-family:var(--serif);font-size:260px;font-weight:900;line-height:1;background:var(--goldgrad);-webkit-background-clip:text;background-clip:text;color:transparent}
+#cd28 .n.pop{animation:cpop 1s cubic-bezier(.2,.8,.2,1) both}
+/* kutu açıkken dokununca hediye zıplar; çekilişte ışıklar hızlanır */
+.hb4.open .prod.bump{animation:hbob 3s ease-in-out infinite,pb28 .3s ease}
+.hb4.open .prod.bump2{animation:hbob 3s ease-in-out infinite,pb28b .3s ease}
+@keyframes pb28{50%{scale:1.09}} @keyframes pb28b{50%{scale:1.09}}
+.hb4.hot28 .rays{animation-duration:6s!important;opacity:1!important}
+.hb4.hot28 .glow{opacity:1;animation:hg28 1s ease-in-out infinite}
+@keyframes hg28{50%{opacity:.55}}
+/* hane hane: sahnedeki altın davullar gibi */
+.dd{width:54px!important;height:78px!important;border-radius:14px!important;font:900 44px/1 var(--serif)!important;border:2.5px solid rgba(232,194,122,.6)!important;background:linear-gradient(180deg,#071722,#12324a 50%,#071722)!important;box-shadow:0 12px 30px rgba(0,0,0,.6),inset 0 0 18px rgba(0,0,0,.6)}
+.dd.ok{border-color:#ffe2a0!important;box-shadow:0 0 26px rgba(255,214,130,.55)!important}
+/* kazanma kartı: sahnedeki altın kart gibi dönen ışıklar */
+#win22::before{content:"";position:fixed;left:50%;top:30%;width:900px;height:900px;margin:-450px 0 0 -450px;background:repeating-conic-gradient(from 0deg,rgba(255,226,160,.16) 0deg 6deg,transparent 6deg 18deg);-webkit-mask:radial-gradient(circle,#000 8%,transparent 60%);mask:radial-gradient(circle,#000 8%,transparent 60%);animation:spin 40s linear infinite;pointer-events:none}
+#win22 .w-in{position:relative}
+/* 6 emoji sığsın */
+#rxbar{gap:6px!important;padding:6px!important}
+#rxbar button{width:46px!important;height:46px!important;font-size:24px!important}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head>
 <body>
@@ -2970,7 +3006,7 @@ init=function(){ __init26(); if(IS_TEL&&!IS_DESK){ const h=$('#hero25'); if(h&&!
    - sahne → telefonlar : "down" kanalından yayın
    claude.ai içinde açılırsa eskisi gibi claude.ai canlı odası kullanılır.
    ===================================================================== */
-CONFIG.storageKey='akkim-cekilis-v27';
+
 const SUPA={ url:'https://vhrcnmghqsuttiwpbnqi.supabase.co', key:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZocmNubWdocXN1dHRpd3BibnFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxMDU3MzcsImV4cCI6MjExMDY4MTczN30.AhriTJsiA164TuDXqvRRjm6FP6vjnfFwaVJZWNWvFZE', room:'akkim2027' };
 const USE_SUPA=!IN_FRAME&&location.protocol!=='file:'&&/^https?:/.test(SUPA.url);
 if(USE_SUPA){ try{ BCX&&BCX.close(); }catch(e){} }   /* aynı cihaz kısa yolu kapalı: tek yol Supabase (çift sayım olmasın) */
@@ -3007,6 +3043,66 @@ netText=function(role){ if(!USE_SUPA) return __nt27(role); const s=NET.status, c
   if(!NET.conn) return {c:'warn',t:'Bağlantı koptu, yeniden bağlanıyor…'};
   if(role==='stage') return {c:'ok',t:`Canlı bağlantı ✓ · ${fmt(L.phones.size)} telefon bağlı`};
   return NET.stageOn?{c:'ok',t:'Canlı bağlantı ✓ · yayın ekranı görüldü ✓'}:{c:'warn',t:'Canlı bağlantı ✓ ama yayın ekranı açık değil. Sunucu yayın ekranını açınca otomatik bağlanacaksın.'}; };
+
+/* =====================================================================
+   v28 · TELEFON SAHNEYLE AYNI DİLDE · BÜYÜK ÖDÜLDE 5'TEN GERİ SAYIM · 2 EMOJİ
+   · K = deneme: son bağlanan telefona büyük ödül (yalnızca demo listede)
+   ===================================================================== */
+CONFIG.storageKey='akkim-cekilis-v28';
+EMO.push('🥳','❤️');
+/* ---------------- sahne: büyük ödüllerde 5'ten ortak geri sayım ---------------- */
+countdown=function(){ return new Promise(async res=>{ const o=$('#ov-count'), nEl=$('#oc-n'); o.classList.add('on'); SND.duck(true);
+  for(const k of [5,4,3,2,1]){ nEl.textContent=k; nEl.classList.remove('pop'); void nEl.offsetWidth; nEl.classList.add('pop'); SND.play(k<=3?'heartbeat':'tick',k<=3?1:.7); dm({t:'cd',n:k}); await wait(1000); }
+  o.classList.remove('on'); dm({t:'cd',n:0}); res(); }); };
+const __dd28=drawDigits;
+drawDigits=async function(p,r,grand){ if(!grand){ $('#draw').classList.add('dark'); await countdown(); $('#draw').classList.remove('dark'); } return __dd28(p,r,grand); };
+/* ---------------- sahne: K = deneme kazandırma (yalnızca demo listede) ---------------- */
+const __pick28=pick;
+pick=function(n){ if(L.rig){ const ix=S.list.findIndex(x=>x.id===L.rig); const pos=S.pool.indexOf(ix); L.rig=null;
+    if(pos>=0){ S.pool.splice(pos,1); S.pool.unshift(ix); const r0=S.rng; let first=true; S.rng=()=>{ if(first){ first=false; return 0; } return r0(); }; try{ return __pick28(n); } finally{ S.rng=r0; } } }
+  return __pick28(n); };
+function rigTest(){ if(S.src!=='demo'){ toast('Deneme tuşu yalnızca demo listede çalışır'); return; }
+  const last=[...L.phones].sort((a,b)=>b[1]-a[1])[0]; if(!last){ toast('Bağlı telefon yok: önce telefondan katıl'); return; }
+  const p=S.list.find(x=>x.id===last[0]); const idx=buildSteps().findIndex(x=>x.t==='intro'&&PRIZES[x.pi].id==='i18m');
+  location.hash='test='+idx; setTimeout(()=>{ L.rig=last[0]; next(); },900); toast(`Deneme: ${p?p.name:last[0]} iPhone 18 Pro Max'ı kazanacak · BOŞLUK ile çekilişe geç`); }
+/* ---------------- telefon ---------------- */
+const ROMAN=['I','II','III','IV'];
+const __recv28=PH.recv.bind(PH);
+PH.recv=function(m){ if(m&&m.t==='cd'){ PH.cd(m.n); return; } return __recv28(m); };
+PH.cd=function(n){ const o=$('#cd28'); if(!o) return; if(!n){ o.classList.remove('on'); return; } o.classList.add('on'); const el=o.querySelector('.n'); el.textContent=n; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); this.vib(n===1?[200]:[70]); };
+/* kahraman kutu: "sıradaki hediye" anı sahnedeki gibi → düşer, sallanır, açılır; hediye görünür kalır */
+const __hr28=HERO.render.bind(HERO);
+HERO.render=function(st){ document.body.classList.toggle('act28',st.ph==='act');
+  if(st.ph==='tap'){ const p=PRIZES[st.pi]; if(!p) return __hr28(st); this.el.classList.add('on'); this.setTag(); const key='tap|'+st.pi+'|'+(st.k||'');
+    if(this.key===key){ this.e=st.e||0; this.applyE(); return; }
+    this.key=key; this.mode='tap'; this.prevPi=st.pi; this.setBox(p.act); this.setProd(p); this.state([]); this.b.classList.remove('hot28'); this.e=st.e||0; this.applyE(); this.drop();
+    clearTimeout(this.t1); clearTimeout(this.t2);
+    this.t1=setTimeout(()=>{ const b=this.b; b.classList.remove('shk','shk2'); void b.offsetWidth; b.classList.add('shk'); PH.vib(30); },750);
+    this.t2=setTimeout(()=>{ if(this.mode!=='tap') return; this.state(['open']); PH.vib([40,30,90]); const r=this.b.getBoundingClientRect(); PFX.burst(110,(r.left+r.width/2)/innerWidth,(r.top+r.height*.45)/innerHeight,.9,true); },1350);
+    return; }
+  if(st.ph==='draw'&&this.mode==='tap'){ this.key='draw|'+st.pi+'|'+(st.k||''); this.mode='draw'; this.state(['open']); this.b.classList.add('hot28'); this.e=1; this.applyE(); return; }
+  if(st.ph!=='draw') this.b.classList.remove('hot28');
+  return __hr28(st); };
+const __shake28=HERO.shake.bind(HERO);
+HERO.shake=function(){ if(!this.b.classList.contains('open')) return __shake28();
+  const pr=this.b.querySelector('.prod'); const a=pr.classList.contains('bump')?'bump2':'bump'; pr.classList.remove('bump','bump2'); pr.classList.add(a);
+  this.imp=Math.min(.5,this.imp+.06); this.applyE(); const t=PH.myT||0;
+  if(t%2===0||t%10===0){ if(!this.pc){ const r=pr.getBoundingClientRect(); this.pc=[(r.left+r.width/2)/innerWidth,(r.top+r.height/2+scrollY)]; } PFX.burst(t%10===0?44:8,this.pc[0],(this.pc[1]-scrollY)/innerHeight,t%10===0?1:.45,true); }
+  if(t%10===0&&t){ this.count('+'+t); PH.vib([30,40,60]); } };
+addEventListener('resize',()=>{ HERO.pc=null; });
+/* perde anı: sahnedeki gibi dev roma rakamı + dönen ışıklar */
+const __render28=PH.render.bind(PH);
+PH.render=function(){ __render28(); const st=this.st||{}; const o=$('#pc28'); if(!o) return;
+  if(st.ph==='act'&&st.act!=null){ const A=ACTS[st.act]; if(o.dataset.a!==String(st.act)){ o.dataset.a=st.act; o.querySelector('.rm').textContent=ROMAN[st.act]; o.querySelector('.an').textContent=A.name; o.querySelector('.ad').textContent=A.desc;
+      o.querySelector('.row').innerHTML=PRIZES.filter(x=>x.act===st.act).map((x,i)=>`<span style="animation-delay:${.5+i*.08}s">${art(x)}</span>`).join(''); o.classList.remove('on'); void o.offsetWidth; }
+    o.classList.add('on'); }
+  else { o.classList.remove('on'); o.dataset.a=''; } };
+function initPhone28(){ document.body.insertAdjacentHTML('beforeend',`<div id="pc28"><div class="rays"></div><div class="rm">I</div><div class="pk">PERDE</div><div class="an"></div><div class="ad"></div><div class="row"></div></div><div id="cd28"><div class="rays"></div><div class="k">İKİ ŞEHİR BİRLİKTE</div><div class="n">5</div></div>`);
+  const c=$('#tp-tap .tap-cta'); if(c) c.innerHTML='Dokun, <em>coştur!</em>'; }
+const __init28=init;
+init=function(){ __init28();
+  if(IS_TEL&&!IS_DESK) initPhone28();
+  else if(!IS_PANEL&&!IS_DESK){ const pl=$('#en17 span:nth-child(2)'); if(pl) pl.innerHTML='Telefonlardan <b class="gold">“Dokun, coştur”</b>'; document.addEventListener('keydown',e=>{ if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA') return; if(e.key==='k'||e.key==='K'){ e.preventDefault(); rigTest(); } },true); } };
 
 init();
 </script>
