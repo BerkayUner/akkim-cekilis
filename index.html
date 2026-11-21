@@ -1243,6 +1243,79 @@ body.act28 #hero25{opacity:0}
 /* 6 emoji sığsın */
 #rxbar{gap:6px!important;padding:6px!important}
 #rxbar button{width:46px!important;height:46px!important;font-size:24px!important}
+/* ===================== v29 ===================== */
+/* sahne: alt boşluk kalktı → çekiliş alanı ve panel 900 px */
+#sbox{height:900px!important}
+#panel{height:900px!important}
+#wall,#ptc{height:900px!important}
+/* dokun + tahmin: ekranın ortasından sağ panelin altına */
+#en17{left:1615px!important;top:auto!important;bottom:64px;width:450px;flex-wrap:wrap;justify-content:center;row-gap:10px;border-radius:22px!important;padding:14px 18px!important}
+#en17 .bar{width:250px}
+#poll20{left:1615px!important;top:auto!important;bottom:196px;width:450px!important;transform:translateX(-50%)}
+#draw:has(#en17:not(.on)) #poll20,body.notap29 #poll20{bottom:64px}
+#draw:has(#poll20.on) #panel,#draw:has(#en17.on) #panel{padding-bottom:300px}
+#draw:has(.ovl.on) #en17{top:auto!important;bottom:34px!important;left:960px!important;width:auto;flex-wrap:nowrap}
+#draw:has(.ovl.on) #poll20{top:auto!important;bottom:104px!important;left:960px!important;width:560px!important}
+body.notap29 #en17{opacity:0!important;pointer-events:none}
+/* final ışık şovu: tuval, numara altın */
+#ov-ls .lsbg{z-index:0}
+#ls29{position:absolute;inset:0;width:1920px;height:1080px;z-index:1;pointer-events:none}
+#ov-ls .k1,#ov-ls .lsn,#ov-ls .lsc{z-index:2}
+#ov-ls .lsn{background:linear-gradient(180deg,#fffaf0 8%,#f3d38f 46%,#b8863b 92%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 18px 40px rgba(0,0,0,.65)) drop-shadow(0 0 28px rgba(255,214,140,.35))}
+#ov-ls.fin .lsn{background:none;color:#2a1a02;-webkit-text-fill-color:#2a1a02;filter:none}
+#ov-ls .lsn.pop{animation:lsp29 .75s cubic-bezier(.2,1.35,.4,1)}
+@keyframes lsp29{0%{transform:scale(1.7);opacity:0;filter:blur(10px)}60%{opacity:1}100%{transform:scale(1);filter:drop-shadow(0 18px 40px rgba(0,0,0,.65))}}
+#ov-ls .lsc{font-size:34px;letter-spacing:.02em}
+
+/* telefon: gerçekçi ampul dizisi */
+#tp-gar{height:auto!important;overflow:visible;position:relative;z-index:3}
+#tp-gar svg{width:100%;height:auto;display:block;overflow:visible}
+#tp-gar .b29{animation:b29 3.4s ease-in-out infinite;transform-box:fill-box}
+#tp-gar .b29 .h{mix-blend-mode:screen}
+@keyframes b29{0%,100%{opacity:1}40%{opacity:.92}48%{opacity:.5}52%{opacity:.85}58%{opacity:.62}66%{opacity:1}}
+/* telefon: dokunma yalnızca tur başında ve 4. turda */
+.tw29{display:none;margin:10px auto 0;font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--gold)}
+body.notap29 #tp-tap .tap-cta,body.notap29 #tp-tap .en,body.notap29 #tp-tap .tap-c,body.notap29 #tp-tap .tp-note{display:none!important}
+body.notap29 .tw29{display:block}
+/* telefon: iWallet ipucu finalden önce yok */
+#tp-res .tp-note{display:none!important}
+/* tahmin sonucu: kısa görünür, sonra kaybolur */
+#tp-res .vres{animation:vr29 6s ease forwards;overflow:hidden}
+@keyframes vr29{0%,80%{opacity:1;max-height:60px}100%{opacity:0;max-height:0;margin:0;padding:0}}
+/* telefon: final geri sayımı */
+#ls20{background:#02070c!important;overflow:hidden;--cc:#f28e00}
+#ls20 .bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 44%,var(--cc),transparent 62%);opacity:.22;transition:opacity .1s}
+#ls20.flash .bg{opacity:1}
+#ls20 .rays{position:absolute;left:50%;top:44%;width:1300px;height:1300px;margin:-650px 0 0 -650px;background:repeating-conic-gradient(from 0deg,color-mix(in srgb,var(--cc) 45%,transparent) 0 7deg,transparent 7deg 20deg);-webkit-mask:radial-gradient(circle,#000 6%,transparent 58%);mask:radial-gradient(circle,#000 6%,transparent 58%);animation:spin 16s linear infinite;opacity:.45;transition:opacity .1s}
+#ls20.flash .rays{opacity:1}
+#ls20.fin3 .bg{background:radial-gradient(circle at 50% 44%,#fff7dc,#e8c27a 38%,transparent 72%)}
+#ls20.fin3 .rays{background:repeating-conic-gradient(from 0deg,rgba(255,240,200,.55) 0 6deg,transparent 6deg 15deg);animation-duration:3s}
+#ls20.intro .bg{opacity:.5;animation:lsi29 1s ease-in-out infinite alternate}
+@keyframes lsi29{to{opacity:.15}}
+#ls20 .w{position:relative;width:300px;height:300px;display:grid;place-items:center;margin-top:-40px}
+#ls20 .ring{position:absolute;inset:0;width:300px;height:300px}
+#ls20 .ring .tr{fill:none;stroke:rgba(255,255,255,.1);stroke-width:4}
+#ls20 .ring .pr{fill:none;stroke:#ffe2a0;stroke-width:5;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:0;transform:rotate(-90deg);transform-origin:150px 150px;filter:drop-shadow(0 0 6px #ffd98a)}
+#ls20 .ring .lb{fill:#fff6dc;filter:drop-shadow(0 0 7px #ffd98a);transition:fill .3s}
+#ls20 .ring .lb.off{fill:rgba(255,255,255,.12);filter:none}
+#ls20 .n{position:relative;font-size:150px!important;background:linear-gradient(180deg,#fffaf0 8%,#f3d38f 46%,#b8863b 92%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none!important;filter:drop-shadow(0 10px 24px rgba(0,0,0,.6))}
+#ls20.intro .n{font-size:110px!important;color:#fff;background:none;-webkit-text-fill-color:initial}
+#ls20 .n.pop{animation:lsp29p .6s cubic-bezier(.2,1.4,.4,1)}
+@keyframes lsp29p{0%{transform:scale(1.8);opacity:0}100%{transform:scale(1);opacity:1}}
+#ls20 .c{position:relative;margin-top:26px!important;font-size:30px!important;letter-spacing:.08em}
+#ls20 .c span{font-size:17px;font-weight:700;letter-spacing:.04em;opacity:.65}
+#ls20.fin3 .c{color:#2a1a02;text-shadow:none!important}
+#ls20.fin{background:radial-gradient(circle,#fff3d1,#e8c27a 45%,#8a5a12)!important}
+#ls20.fin .bg,#ls20.fin .rays,#ls20.fin .ring{display:none}
+#ls20.fin .n{background:none;color:#2a1a02;-webkit-text-fill-color:#2a1a02;font-size:120px!important}
+#ls20.fin .c{color:#2a1a02}
+#ls20.fin3 .bg{opacity:.5}
+#ls20.fin3.flash .bg{opacity:1}
+#ls20.fin3 .c{color:#fff;text-shadow:0 3px 14px rgba(0,0,0,.7)!important}
+#ls20.fin3.flash .c{color:#2a1a02;text-shadow:none!important}
+#ov-ls .lsc{color:#fff;text-shadow:0 3px 18px rgba(0,0,0,.85)}
+#d-act2{white-space:nowrap}
+#pc28{background:radial-gradient(120% 80% at 50% 40%,#0e283a,#02090e 70%)!important}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head>
 <body>
@@ -1292,7 +1365,7 @@ body.act28 #hero25{opacity:0}
     <div class="beam l"></div><div class="beam r"></div>
     <div class="d-top">
       <div class="bug"><div class="logo-slot" data-h="40"></div><div class="livebug"><i></i><b>CANLI</b><span id="clock">00:00:00</span></div><div class="route"><span class="city-y">YALOVA</span> ⟷ <span class="city-n">NAZİLLİ</span></div></div>
-      <div class="d-act"><div class="a1" id="d-act1">I. PERDE</div><div class="a2" id="d-act2">Isınma Turları</div></div>
+      <div class="d-act"><div class="a1" id="d-act1">I. TUR</div><div class="a2" id="d-act2">Isınma Turları</div></div>
       <div class="counters"><div class="cnt" id="c-people"><b>950</b><span>HAVUZDA KALAN</span></div><div class="cnt" id="c-gifts"><b>200</b><span>KALAN ÖZEL HEDİYE</span></div></div>
     </div>
     <div id="sbox">
@@ -1316,7 +1389,7 @@ body.act28 #hero25{opacity:0}
       <div class="sealbar glass"><span class="cap">MÜHÜR · DOĞRULANABİLİR ÇEKİLİŞ</span><code id="sealtxt">—</code><span class="integ" id="integ">✓ MÜKERRER KAZANAN: 0</span></div>
     </div>
 
-    <div class="ovl" id="ov-act"><div class="rays"></div><div class="roman k4" id="oa-r">I</div><div class="k1" id="oa-1" style="margin-top:20px">PERDE</div><div class="k2 gold" id="oa-2" style="font-size:120px;margin:16px 0">Isınma Turları</div><div class="k3" id="oa-3"></div><div class="hintline"><span class="kbd">BOŞLUK</span> devam</div></div>
+    <div class="ovl" id="ov-act"><div class="rays"></div><div class="roman k4" id="oa-r">I</div><div class="k1" id="oa-1" style="margin-top:20px">TUR</div><div class="k2 gold" id="oa-2" style="font-size:120px;margin:16px 0">Isınma Turları</div><div class="k3" id="oa-3"></div><div class="hintline"><span class="kbd">BOŞLUK</span> devam</div></div>
     <div class="ovl" id="ov-intro"><div class="rays"></div><div class="k1">SIRADAKİ HEDİYE</div><div class="gift" id="gift"><div class="g-prod art" id="oi-img"></div><div class="g-box"><div class="g-rib"></div></div><div class="g-lid"><div class="g-rib"></div><div class="g-bow"><i></i><i></i></div></div></div><div class="k2" id="oi-name">—</div><div class="qty-big k3"><b id="oi-q">5</b><span id="oi-qt">talihli kazanacak</span></div><div class="mode-pill k3" id="oi-mode">İSİM DUVARI</div><div class="hintline"><span class="kbd">BOŞLUK</span> çekilişe geç</div></div>
     <div class="ovl" id="ov-count"><div class="k1">İKİ ŞEHİR BİRLİKTE</div><div class="num" id="oc-n">3</div></div>
     <div class="ovl" id="ov-grand"><div class="rays"></div>
@@ -1485,33 +1558,33 @@ const CONFIG = {
 };
 /* mode: batch = toplu (altın küçükler) · wall = isim duvarı (tek tek) · digits = hane hane (tek tek) · grand = geri sayım + hane hane (tek tek) */
 const PRIZES = [
-  {id:'g05', act:0, mode:'batch', batch:10, name:'0,5 Gram Altın', sub:'24 ayar', qty:20, art:'bar', lbl:'0,5', cat:'altin'},
-  {id:'g1',  act:0, mode:'batch', batch:10, name:'Gram Altın', sub:'24 ayar · 1 gr', qty:50, art:'bar', lbl:'1', cat:'altin'},
-  {id:'cyr', act:0, mode:'batch', batch:10, name:'Çeyrek Altın', sub:'22 ayar', qty:20, art:'coin', lbl:'ÇEYREK', cat:'altin'},
-  {id:'yrm', act:0, mode:'batch', batch:10, name:'Yarım Altın', sub:'22 ayar', qty:9, art:'coin', lbl:'YARIM', cat:'altin'},
-  {id:'utu', act:1, mode:'batch', batch:10, name:'Philips Buharlı El Ütüsü', sub:'STH5030/20', qty:8, img:'utu', cat:'ev'},
-  {id:'bln', act:1, mode:'batch', batch:10, name:'Philips 5000 Blender Seti', sub:'5000 Serisi', qty:8, img:'blender', cat:'ev'},
-  {id:'gs',  act:1, mode:'batch', batch:10, name:'Gurme Şef Çok Amaçlı Pişirici', sub:'Çok amaçlı pişirici', qty:8, img:'gurme-sef', cat:'ev'},
-  {id:'tfl', act:1, mode:'batch', batch:10, name:'Tefal Clean IT', sub:'IZ5020 · ıslak/kuru temizleyici', qty:6, img:'tefal', cat:'ev'},
-  {id:'rbt', act:1, mode:'batch', batch:10, name:'Xiaomi Robot Süpürge S20', sub:'S20', qty:6, img:'robot', cat:'ev'},
-  {id:'ltg', act:1, mode:'batch', batch:10, name:'Philips LatteGo Kahve Makinesi', sub:'EP4446', qty:6, img:'lattego', cat:'ev'},
-  {id:'apd', act:2, mode:'batch', batch:10, name:'AirPods 5', sub:'Apple', qty:12, img:'airpods', cat:'tek'},
-  {id:'aw',  act:2, mode:'batch', batch:10, name:'Apple Watch 12', sub:'GPS · 42 mm', qty:8, img:'apple-watch', cat:'tek'},
-  {id:'hp',  act:2, mode:'batch', batch:10, name:'HP 250 G10 Dizüstü', sub:'15,6 inç', qty:5, img:'laptop', cat:'tek'},
-  {id:'tv',  act:2, mode:'batch', batch:10, name:'Philips 50 inç TV', sub:'50PUS7800/62', qty:5, img:'tv', cat:'tek'},
-  {id:'ps5', act:2, mode:'batch', batch:10, name:'PlayStation 5', sub:'1 TB', qty:5, img:'ps5', cat:'tek'},
-  {id:'ipd', act:2, mode:'batch', batch:10, name:'13 inç iPad Air', sub:'256 GB · Wi-Fi', qty:5, img:'ipad-air', cat:'tek'},
-  {id:'cmh', act:3, mode:'digits', name:'Cumhuriyet Altını', sub:'22 ayar · tam', qty:5, art:'coin', lbl:'CUMHURİYET', big:true, cat:'altin'},
-  {id:'v15', act:3, mode:'digits', name:'Dyson V15', sub:'Kablosuz süpürge', qty:4, img:'v15', cat:'ev'},
-  {id:'awr', act:3, mode:'digits', name:'Dyson Airwrap', sub:'Saç şekillendirici', qty:5, img:'airwrap', cat:'ev'},
-  {id:'i18', act:3, mode:'grand', name:'iPhone 18 Pro', sub:'256 GB', qty:3, img:'iphone-18-pro', cat:'tek'},
-  {id:'i18m',act:3, mode:'grand', name:'iPhone 18 Pro Max', sub:'256 GB · Büyük Ödül', qty:2, img:'iphone-18-pro-max', cat:'tek'}
+  {id:'g05', act:0, mode:'batch', batch:10, name:'0,5 Gram Altın', sub:'24 ayar · külçe', qty:20, img:'altin-05', cat:'altin', price:3300},
+  {id:'utu', act:0, mode:'batch', batch:10, name:'Philips Buharlı El Ütüsü', sub:'STH5030/20', qty:8, img:'utu', cat:'ev', price:3500},
+  {id:'bln', act:0, mode:'batch', batch:10, name:'Philips 5000 Blender Seti', sub:'5000 Serisi', qty:8, img:'blender', cat:'ev', price:4500},
+  {id:'g1',  act:1, mode:'batch', batch:10, name:'Gram Altın', sub:'24 ayar · 1 gr külçe', qty:50, img:'altin-gram', cat:'altin', price:6500},
+  {id:'gs',  act:1, mode:'batch', batch:10, name:'Gurme Şef Çok Amaçlı Pişirici', sub:'Çok amaçlı pişirici', qty:8, img:'gurme-sef', cat:'ev', price:9000},
+  {id:'apd', act:1, mode:'batch', batch:10, name:'AirPods 5', sub:'Apple', qty:12, img:'airpods', cat:'tek', price:9000},
+  {id:'tfl', act:1, mode:'batch', batch:10, name:'Tefal Clean IT', sub:'IZ5020 · ıslak/kuru temizleyici', qty:6, img:'tefal', cat:'ev', price:9500},
+  {id:'cyr', act:1, mode:'batch', batch:10, name:'Çeyrek Altın', sub:'22 ayar', qty:20, img:'altin-ceyrek', cat:'altin', price:10500},
+  {id:'rbt', act:1, mode:'batch', batch:10, name:'Xiaomi Robot Süpürge S20', sub:'S20', qty:6, img:'robot', cat:'ev', price:11000},
+  {id:'yrm', act:2, mode:'batch', batch:10, name:'Yarım Altın', sub:'22 ayar', qty:9, img:'altin-yarim', cat:'altin', price:21000},
+  {id:'aw',  act:2, mode:'batch', batch:10, name:'Apple Watch 12', sub:'GPS · 42 mm', qty:8, img:'apple-watch', cat:'tek', price:22000},
+  {id:'tv',  act:2, mode:'batch', batch:10, name:'Philips 50 inç TV', sub:'50PUS7800/62', qty:5, img:'tv', cat:'tek', price:25000},
+  {id:'hp',  act:2, mode:'batch', batch:10, name:'HP 250 G10 Dizüstü', sub:'15,6 inç', qty:5, img:'laptop', cat:'tek', price:28000},
+  {id:'ltg', act:2, mode:'batch', batch:10, name:'Philips LatteGo Kahve Makinesi', sub:'EP4446', qty:6, img:'lattego', cat:'ev', price:28000},
+  {id:'ps5', act:2, mode:'batch', batch:10, name:'PlayStation 5', sub:'1 TB', qty:5, img:'ps5', cat:'tek', price:30000},
+  {id:'awr', act:2, mode:'batch', batch:10, name:'Dyson Airwrap', sub:'Saç şekillendirici', qty:5, img:'airwrap', cat:'ev', price:33000},
+  {id:'v15', act:3, mode:'digits', name:'Dyson V15', sub:'Kablosuz süpürge', qty:4, img:'v15', cat:'ev', price:38000},
+  {id:'cmh', act:3, mode:'digits', name:'Cumhuriyet Altını', sub:'22 ayar · tam', qty:5, img:'altin-cumhuriyet', big:true, cat:'altin', price:42000},
+  {id:'ipd', act:3, mode:'digits', name:'13 inç iPad Air', sub:'256 GB · Wi-Fi', qty:5, img:'ipad-air', cat:'tek', price:45000},
+  {id:'i18', act:3, mode:'grand', name:'iPhone 18 Pro', sub:'256 GB', qty:3, img:'iphone-18-pro', cat:'tek', price:95000},
+  {id:'i18m',act:3, mode:'grand', name:'iPhone 18 Pro Max', sub:'256 GB · Büyük Ödül', qty:2, img:'iphone-18-pro-max', cat:'tek', price:110000}
 ];
 const ACTS = [
-  {r:'I',   name:'Altın Saati',    desc:'Dört çeşit altın, 99 talihli: 0,5 gramdan yarım altına, 10’arlı kart turlarında.'},
-  {r:'II',  name:'Ev & Yaşam',     desc:'Hayatı kolaylaştıranlar: Philips ütü ve blender, Gurme Şef, Tefal Clean IT, Xiaomi robot süpürge ve LatteGo.'},
-  {r:'III', name:'Teknoloji',      desc:'AirPods 5, Apple Watch 12, HP dizüstü, Philips TV, PlayStation 5 ve iPad Air.'},
-  {r:'IV',  name:'Büyük Ödüller',  desc:'Cumhuriyet altını, Dyson V15, Dyson Airwrap, iPhone 18 Pro ve Pro Max. Her biri tek tek, sicil hane hane açılır.'}
+  {r:'I',   name:'Sıcak Başlangıç', desc:'0,5 gram altın, Philips ütü ve blender: 36 talihli, 10’arlı kart turlarında.'},
+  {r:'II',  name:'Bereket',         desc:'Gram altın, Gurme Şef, AirPods, Tefal, çeyrek altın ve Xiaomi robot süpürge: 102 talihli.'},
+  {r:'III', name:'Işıltı',          desc:'Yarım altın, Apple Watch, Philips TV, HP dizüstü, LatteGo, PlayStation 5 ve Dyson Airwrap: 43 talihli.'},
+  {r:'IV',  name:'Büyük Ödüller',   desc:'Dyson V15, Cumhuriyet altını, iPad Air, iPhone 18 Pro ve Pro Max. Her biri tek tek, sicil hane hane açılır.'}
 ];
 const MODE_TR = {batch:'10’ARLI KART TURU', wall:'İSİM DUVARI · TEK TEK', digits:'HANE HANE · TEK TEK', grand:'BÜYÜK FİNAL · TEK TEK'};
 const TOTAL_SPECIAL = PRIZES.reduce((a,p)=>a+p.qty,0);
@@ -1686,7 +1759,7 @@ function buildDeck(){
   const cat=c=>PRIZES.filter(p=>p.cat===c).reduce((a,p)=>a+p.qty,0);
   const ico={list:'<svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>',dice:'<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.2"/><circle cx="16" cy="16" r="1.2"/><circle cx="12" cy="12" r="1.2"/></svg>',seal:'<svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="6"/><path d="M8.5 15 7 22l5-3 5 3-1.5-7"/></svg>',eye:'<svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>'};
   const TL=[['00:00','Açılış: geri sayım videosu + DJ','İki salon aynı anda geri sayar',5],['00:05','Yönetim mesajı','Yalova sahnesi + Nazilli canlı bağlantı',10],['00:15','Kurallar, şans sayıları, mühür','Her şehirden bir çalışan sayısını söyler',5],
-    ['','I. Perde · '+ACTS[0].name,'',est[0]],['','II. Perde · '+ACTS[1].name,'',est[1]],['','Altın Dakika (ara)','Şehirler arası hızlı yarışma',5],['','III. Perde · '+ACTS[2].name,'',est[2]],['','IV. Perde · '+ACTS[3].name,'3-2-1 ritüeli',est[3]],['','Final: 750 hediye çeki + kapanış','Toplu fotoğraf',7]];
+    ['','I. Tur · '+ACTS[0].name,'',est[0]],['','II. Tur · '+ACTS[1].name,'',est[1]],['','Altın Dakika (ara)','Şehirler arası hızlı yarışma',5],['','III. Tur · '+ACTS[2].name,'',est[2]],['','IV. Tur · '+ACTS[3].name,'3-2-1 ritüeli',est[3]],['','Final: 750 hediye çeki + kapanış','Toplu fotoğraf',7]];
   [0,1,2,3].forEach(a=>{ const ps=PRIZES.filter(p=>p.act===a); TL[[3,4,6,7][a]][2]=(TL[[3,4,6,7][a]][2]?TL[[3,4,6,7][a]][2]+' · ':'')+ps.reduce((x,p)=>x+p.qty,0)+' hediye'; });
   let t=20; TL.forEach((r,i)=>{ if(i>=3){ r[0]=String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0'); t+=r[3]; } });
   const total=TL.reduce((a,r)=>a+r[3],0), maxM=Math.max(...TL.map(r=>r[3]));
@@ -1761,16 +1834,16 @@ function buildDeck(){
        <div class="fl-row rv" style="--d:2"><div class="n gold">${S.list.length-TOTAL_SPECIAL}</div><div><b>Hediye çeki</b><span>Çekiliş gerekmez: özel hediye çıkmayan herkes finalde tek ekranda</span></div><div class="t">≈ 1 dk</div></div>
        <div class="fl-row rv" style="--d:3"><div class="n gold">${mCnt('batch')}</div><div><b>10'arlı kart turları</b><span>${mRounds('batch')} turda; altınlar, mutfak, teknoloji, Dyson, PS5, iPad</span></div><div class="t">≈ ${mMin('batch')} dk</div></div>
        <div class="fl-row rv" style="--d:4"><div class="n gold">${mCnt('grand')}</div><div><b>Grand Final</b><span>Cumhuriyet altınları ve iPhone 18 serisi, her biri tek tek</span></div><div class="t">≈ ${mMin('grand')} dk</div></div>
-       <div class="fl-row rv" style="--d:5"><div class="n gold">21</div><div><b>Hediye tanıtımı + 4 perde geçişi</b><span>Hediye kutusu açılışları, perde kartları</span></div><div class="t">≈ ${Math.max(1,drawMin-mMin('batch')-mMin('grand'))} dk</div></div>
-       <div class="small rv" style="--d:6">Toplam çekiliş ≈ ${drawMin} dk; açılış, yönetim mesajı ve final ile tüm yayın ≈ ${Math.round(total/5)*5} dk. "Otomatik akış" ile ilk perdeler sunucu müdahalesi olmadan akar.</div></div>
+       <div class="fl-row rv" style="--d:5"><div class="n gold">21</div><div><b>Hediye tanıtımı + 4 tur geçişi</b><span>Hediye kutusu açılışları, tur kartları</span></div><div class="t">≈ ${Math.max(1,drawMin-mMin('batch')-mMin('grand'))} dk</div></div>
+       <div class="small rv" style="--d:6">Toplam çekiliş ≈ ${drawMin} dk; açılış, yönetim mesajı ve final ile tüm yayın ≈ ${Math.round(total/5)*5} dk. "Otomatik akış" ile ilk turlar sunucu müdahalesi olmadan akar.</div></div>
       <div class="chk glass rv" style="--d:4"><h4>Kimse iki kez <em class="gold">kazanamaz</em></h4>
        <div class="c"><i>✓</i><div><b>Çekilen kişi anında havuzdan silinir.</b> Sonraki çekiliş yalnızca kalanlar arasında yapılır; kazanan duvarda sönmüş görünür.</div></div>
        <div class="c"><i>✓</i><div><b>Her çekilişten sonra otomatik kontrol.</b> Yayın ekranında sürekli "Mükerrer kazanan: 0" göstergesi yanar.</div></div>
        <div class="c"><i>✓</i><div><b>Listede aynı sicil iki kez olamaz.</b> Mükerrer sicil içeren liste yüklenirken reddedilir.</div></div>
        <div class="c"><i>✓</i><div><b>Geçersiz sayılan kişi geri dönmez.</b> Hediyesi yeniden çekilir, kendisi havuza girmez.</div></div>
        <div class="proof">Canlı test: ${ST.n} farklı tohumla ${ST.n} tam çekiliş · ${fmt(ST.wins)} kazanan · ${ST.voids} geçersiz sayma · mükerrer kazanan: <b style="color:#fff">${ST.bad?'HATA':'0'}</b> (${ST.ms} ms)</div></div></div></div>`,
-  `<div class="slide"><div class="s-head" style="margin-bottom:34px"><div><div class="eyebrow rv">Çekiliş kurgusu</div><div class="s-title rv" style="--d:1;margin-top:14px">Küçükten büyüğe, <em class="gold">dört perde</em></div></div><div class="s-num">06</div></div>
-     <div class="acts">${ACTS.map((a,ai)=>{ const ps=PRIZES.filter(p=>p.act===ai); return `<div class="act glass rv ${ai===3?'grand':''}" style="--d:${2+ai}"><div class="no">${a.r}. Perde</div><h3>${a.name}</h3><div class="meta"><span class="chip">${ps.reduce((x,p)=>x+p.qty,0)} hediye</span><span class="chip">≈ ${est[ai]} dk</span></div>
+  `<div class="slide"><div class="s-head" style="margin-bottom:34px"><div><div class="eyebrow rv">Çekiliş kurgusu</div><div class="s-title rv" style="--d:1;margin-top:14px">Küçükten büyüğe, <em class="gold">dört tur</em></div></div><div class="s-num">06</div></div>
+     <div class="acts">${ACTS.map((a,ai)=>{ const ps=PRIZES.filter(p=>p.act===ai); return `<div class="act glass rv ${ai===3?'grand':''}" style="--d:${2+ai}"><div class="no">${a.r}. Tur</div><h3>${a.name}</h3><div class="meta"><span class="chip">${ps.reduce((x,p)=>x+p.qty,0)} hediye</span><span class="chip">≈ ${est[ai]} dk</span></div>
        <ul>${ps.map(p=>`<li><span>${p.name}<small>${p.mode==='batch'?'toplu':'tek tek'}</small></span><span>×${p.qty}</span></li>`).join('')}</ul><div class="foot">${a.desc}</div></div>`;}).join('')}</div></div>`,
   `<div class="slide"><div class="s-head"><div><div class="eyebrow rv">Şeffaflık</div><div class="s-title rv" style="--d:1;margin-top:14px">Adil, denetlenebilir, <em class="gold">tekrarlanabilir</em></div></div><div class="s-num">07</div></div>
      <div class="steps">
@@ -1800,7 +1873,7 @@ function buildDeck(){
   `<div class="slide" style="padding-top:78px"><div class="s-head" style="margin-bottom:28px"><div><div class="eyebrow rv">Akış ve süre</div><div class="s-title rv" style="--d:1;margin-top:12px;font-size:70px">Dakika dakika <em class="gold">akış</em></div></div><div class="s-num">10</div></div>
      <div class="ros"><div class="tl">${TL.map((r,i)=>`<div class="tl-row rv ${[3,4,6,7].includes(i)?'hl':''}" style="--d:${2+i*.5}"><div class="t">${r[0]}</div><div><div class="w">${r[1]}<small>${r[2]}</small></div><div class="bar" style="width:${Math.max(4,r[3]/maxM*100)}%"></div></div><div class="m">${r[3]} dk</div></div>`).join('')}</div>
        <div class="ros-sum glass rv" style="--d:4"><div><div class="eyebrow">Toplam yayın</div><div class="big gold">≈ ${Math.round(total/5)*5}<span style="font-size:46px"> dk</span></div></div>
-         <p>Çekilişin kendisi yaklaşık <b style="color:#fff">${drawMin} dakika</b>: 200 özel hediye ${nDraw} turda dağıtılır, ${nSingle} tanesi tek tek. Sunucu isterse ilk perdede "otomatik akış" açılır, tempo düşmez.</p>
+         <p>Çekilişin kendisi yaklaşık <b style="color:#fff">${drawMin} dakika</b>: 200 özel hediye ${nDraw} turda dağıtılır, ${nSingle} tanesi tek tek. Sunucu isterse ilk turda "otomatik akış" açılır, tempo düşmez.</p>
          <div class="assume"><div><b>${CONFIG.time.wall} sn</b>isim duvarı turu</div><div><b>${CONFIG.time.digits} sn</b>hane hane turu</div><div><b>${CONFIG.time.grand} sn</b>büyük final turu</div><div><b>${CONFIG.time.batch} sn</b>toplu tur</div></div>
          <p style="font-size:15.5px">Süreler sistemde ayarlanabilir, prova sonrası netleşir. Yayın öncesi 60 dk teknik hazırlık bu süreye dahil değildir.</p></div></div></div>`,
   `<div class="slide"><div class="s-head"><div><div class="eyebrow rv">Kayıt altına alma</div><div class="s-title rv" style="--d:1;margin-top:14px">Her an <em class="gold">belgeli</em></div></div><div class="s-num">11</div></div>
@@ -1817,10 +1890,10 @@ function buildDeck(){
        <div class="fc glass rv" style="--d:3"><div class="tag">SAHNEDE</div><div class="em">🎲</div><h4>Şans Sayıları</h4><p>İki şehirden birer çalışan sahneye çıkıp sayısını söyler; çekilişi çalışanlar başlatır.</p></div>
        <div class="fc glass rv" style="--d:4"><div class="tag">FİNALDE</div><div class="em">⏳</div><h4>3-2-1 Ritüeli</h4><p>Büyük ödüllerden önce ışıklar kararır, iki salon birlikte geri sayar, davulla birlikte haneler düşer.</p></div>
        <div class="fc glass rv" style="--d:5"><div class="tag">CANLI</div><div class="em">🎥</div><h4>Sevinç Kamerası</h4><p>Kazanan kameraya gelir, iki şehir birlikte alkışlar. Nazilli'deki sevinç Yalova'nın dev ekranına düşer.</p></div>
-       <div class="fc glass rv" style="--d:6"><div class="tag">ARA</div><div class="em">⚡</div><h4>Altın Dakika</h4><p>Perde arasında 60 saniyelik şirket kültürü yarışması (Teams anketi / Slido). Kazanan şehre bonus hediye.</p></div>
+       <div class="fc glass rv" style="--d:6"><div class="tag">ARA</div><div class="em">⚡</div><h4>Altın Dakika</h4><p>Tur arasında 60 saniyelik şirket kültürü yarışması (Teams anketi / Slido). Kazanan şehre bonus hediye.</p></div>
        <div class="fc glass rv" style="--d:7"><div class="tag">TELEFONDA</div><div class="em">📱</div><h4>Dijital Kazı-Kazan</h4><p>Herkes sicil numarasıyla hediyesini telefonundan kazıyarak açar, kazanan kartını indirip paylaşır.</p></div>
        <div class="fc glass rv" style="--d:8"><div class="tag">TAHMİN</div><div class="em">🔮</div><h4>iPhone Hangi Şehre?</h4><p>Yayın başında anket: büyük ödül hangi şehre gidecek? Doğru tahmin edenlere sürpriz.</p></div>
-       <div class="fc glass rv" style="--d:9"><div class="tag">ATMOSFER</div><div class="em">✨</div><h4>${CONFIG.year} Dilek Duvarı</h4><p>QR ile gönderilen yeni yıl dilekleri perde aralarında ekranda akar; DJ, jingle ve ışık geçişleri.</p></div></div></div>`,
+       <div class="fc glass rv" style="--d:9"><div class="tag">ATMOSFER</div><div class="em">✨</div><h4>${CONFIG.year} Dilek Duvarı</h4><p>QR ile gönderilen yeni yıl dilekleri tur aralarında ekranda akar; DJ, jingle ve ışık geçişleri.</p></div></div></div>`,
   `<div class="slide">${baubles([[260,140,'#885987',54],[380,240,'#ce3087',42],[1540,200,'#f28e00',46],[1660,120,'#e73029',56]])}<div class="cta"><div class="rv">${logoSVG(68)}</div><div class="eyebrow rv" style="--d:1;margin-top:46px">Şimdi canlı deneyelim</div><div class="s-title rv" style="--d:2;margin-top:16px">Çekiliş <em class="gold">başlasın</em></div>
      <div class="s-lead rv" style="--d:3;text-align:center">950 kişilik örnek listeyle tam çekiliş baştan sona oynar. <span class="kbd">H</span> prova hızı · <span class="kbd">A</span> otomatik akış · <span class="kbd">P</span> sunucu paneli</div>
      <div class="cta-btns rv" style="--d:4"><button class="btn primary" data-go="setup">Canlı demoya geç →</button><button class="btn ghost" data-go="lookup">Çalışan sorgu ekranı</button></div></div></div>`
@@ -1866,7 +1939,7 @@ function parseCSV(txt){ const L=[]; txt.split(/\r?\n/).forEach((ln,i)=>{ const c
    YAYIN EKRANI
    ================================================================= */
 const W={tiles:[],w:0,h:0,base:''};
-function buildWall(){ const wall=$('#wall'), n=S.list.length, AW=1200, AH=560;
+function buildWall(){ const wall=$('#wall'), n=S.list.length, AW=1200, AH=800;
   const cols=Math.ceil(Math.sqrt(n*AW/AH)), rows=Math.ceil(n/cols), tw=Math.floor(AW/cols)-3, th=Math.floor(AH/rows)-3;
   wall.style.gridTemplateColumns=`repeat(${cols},${tw}px)`; wall.style.gridAutoRows=th+'px';
   wall.innerHTML=S.list.map((x,i)=>`<div class="wt ${x.city==='Y'?'y':'n'}">${x.id.slice(-3)}</div>`).join('');
@@ -1894,7 +1967,7 @@ function stopDrum(d,slow){ d.anim.cancel(); d.strip.style.transform='translateY(
   setTimeout(()=>{ d.el.classList.remove('spin'); d.el.classList.add('done'); },(slow?900:420)); }
 
 function setPrize(pi){ const p=PRIZES[pi], a=ACTS[p.act];
-  $('#d-act1').textContent=a.r+'. PERDE'; $('#d-act2').textContent=a.name;
+  $('#d-act1').textContent=a.r+'. TUR'; $('#d-act2').textContent=a.name;
   $('#pn-img').innerHTML=art(p); $('#pn-name').textContent=p.name; $('#pn-sub').textContent=(p.sub||'')+' · '+p.qty+' adet'; $('#pn-mode').textContent=MODE_TR[p.mode];
   renderSlots(pi); renderJourney(pi); }
 function renderSlots(pi,fresh=[]){ const p=PRIZES[pi], ws=S.results.filter(r=>r.pi===pi), vs=S.voids.filter(v=>v.pi===pi);
@@ -2077,7 +2150,7 @@ async function downloadCard(){ if(!LK) return; const cv=document.createElement('
 let BC=null; try{ BC=new BroadcastChannel('akkim-cekilis'); }catch(e){}
 function broadcast(){ if(!BC||IS_PANEL) return; const st=S.steps[S.si]; const last=S.results[S.results.length-1];
   const upcoming=[]; for(let i=S.si;i<S.steps.length&&upcoming.length<8;i++){ const s=S.steps[i]; if(s.t==='intro') upcoming.push(PRIZES[s.pi].name+' ×'+PRIZES[s.pi].qty); }
-  BC.postMessage({type:'state',screen:SCREEN,now:st?(st.t==='draw'?`${PRIZES[st.pi].name} · ${st.from+1}${st.n>1?'–'+(st.from+st.n):''}/${PRIZES[st.pi].qty}`:({act:'Perde açılışı',intro:'Hediye tanıtımı: '+(st.pi!=null?PRIZES[st.pi].name:''),final:'750 hediye çeki finali',done:'Sonuçlar'})[st.t]):'Bitti',
+  BC.postMessage({type:'state',screen:SCREEN,now:st?(st.t==='draw'?`${PRIZES[st.pi].name} · ${st.from+1}${st.n>1?'–'+(st.from+st.n):''}/${PRIZES[st.pi].qty}`:({act:'Tur açılışı',intro:'Hediye tanıtımı: '+(st.pi!=null?PRIZES[st.pi].name:''),final:'750 hediye çeki finali',done:'Sonuçlar'})[st.t]):'Bitti',
     step:`Adım ${S.si+1}/${S.steps.length} · ${S.results.length}/${TOTAL_SPECIAL} hediye`, last:last?shortName(S.list[last.ix].name)+' · #'+S.list[last.ix].id:'—', last2:last?PRIZES[last.pi].name:'', upcoming, auto:AUTO,
     note:st&&st.t==='draw'?(PRIZES[st.pi].mode==='grand'?'Işıklar kararacak: iki şehirle birlikte 3-2-1 sayın. Kazananı Nazilli kamerasından teyit edin.':'Kazanan salondaysa sahneye/kameraya davet edin. Şart taşımıyorsa "geçersiz say".'):(st&&st.t==='intro'?'Hediyeyi tanıtın, kaç kişinin kazanacağını söyleyin.':'Sunucu metni: hoş geldiniz, iki şehrin selamı.')}); }
 const IS_PANEL=/[?&]panel/.test(location.search);
@@ -2205,12 +2278,12 @@ function onMsg(m){ if(!m||typeof m!=='object') return;
    SİCİL DUVARI · tek canvas
    ===================================================================== */
 DUST.init=function(){};
-const WC={ cv:null,c:null,Q:1,base:null,bc:null,dirty:true,lastBase:0,pops:[],popAt:{},wins:new Map(),comets:[],cam:{x:640,y:330,s:1,tx:640,ty:330,ts:1},flags:[],pos:[],grid:null,fr:0 };
+const WC={ cv:null,c:null,Q:1,base:null,bc:null,dirty:true,lastBase:0,pops:[],popAt:{},wins:new Map(),comets:[],cam:{x:640,y:450,s:1,tx:640,ty:450,ts:1},flags:[],pos:[],grid:null,fr:0 };
 function rrect(g,x,y,w,h,r){ g.beginPath(); g.moveTo(x+r,y); g.arcTo(x+w,y,x+w,y+h,r); g.arcTo(x+w,y+h,x,y+h,r); g.arcTo(x,y+h,x,y,r); g.arcTo(x,y,x+w,y,r); g.closePath(); }
 function glowSprite(col,R){ glowSprite.c=glowSprite.c||{}; const k=col+R+'|'+WC.Q; if(glowSprite.c[k]) return glowSprite.c[k]; const s=Math.ceil(R*4*WC.Q), cv=document.createElement('canvas'); cv.width=cv.height=s; const g=cv.getContext('2d'), m=s/2;
   const gr=g.createRadialGradient(m,m,0,m,m,m); gr.addColorStop(0,col+'cc'); gr.addColorStop(.35,col+'55'); gr.addColorStop(1,col+'00'); g.fillStyle=gr; g.fillRect(0,0,s,s); return glowSprite.c[k]=cv; }
-function layoutWall(){ const n=S.list.length, AW=1200, AH=560; const cols=Math.ceil(Math.sqrt(n*AW/AH)), rows=Math.ceil(n/cols), tw=Math.floor(AW/cols)-3, th=Math.floor(AH/rows)-3;
-  const Wd=cols*(tw+3)-3, Hd=rows*(th+3)-3, ox=(1280-Wd)/2, oy=(660-Hd)/2-6; WC.grid={cols,rows,tw,th};
+function layoutWall(){ const n=S.list.length, AW=1200, AH=800; const cols=Math.ceil(Math.sqrt(n*AW/AH)), rows=Math.ceil(n/cols), tw=Math.floor(AW/cols)-3, th=Math.floor(AH/rows)-3;
+  const Wd=cols*(tw+3)-3, Hd=rows*(th+3)-3, ox=(1280-Wd)/2, oy=(900-Hd)/2-6; WC.grid={cols,rows,tw,th};
   WC.pos=S.list.map((x,i)=>({x:ox+(i%cols)*(tw+3),y:oy+Math.floor(i/cols)*(th+3)})); }
 function drawTile(g,i,mode){ const p=WC.pos[i], {tw,th}=WC.grid, city=S.list[i].city, f=WC.flags[i];
   if(mode==='win'){ const gl=glowSprite('#ffd98a',tw*1.1); g.drawImage(gl,p.x+tw/2-gl.width/WC.Q/2,p.y+th/2-gl.height/WC.Q/2,gl.width/WC.Q,gl.height/WC.Q);
@@ -2222,7 +2295,7 @@ function drawTile(g,i,mode){ const p=WC.pos[i], {tw,th}=WC.grid, city=S.list[i].
   g.fillStyle=f.has('lit')?'rgba(255,255,255,.9)':'rgba(255,255,255,.33)'; g.font=`700 ${Math.max(6,Math.round(th*.32))}px "JetBrains Mono",monospace`; g.textAlign='center'; g.fillText(S.list[i].id.slice(-3),p.x+tw/2,p.y+th*.62);
   g.globalAlpha=1; }
 function drawScene(g){ const now=performance.now(); for(let i=0;i<WC.pos.length;i++){ const f=WC.flags[i]; if(f.has('win')||now-(WC.popAt[i]||0)<700) continue; drawTile(g,i); } }
-function renderBase(){ if(!WC.base){ WC.base=document.createElement('canvas'); WC.base.width=1280*WC.Q; WC.base.height=660*WC.Q; WC.bc=WC.base.getContext('2d'); }
+function renderBase(){ if(!WC.base){ WC.base=document.createElement('canvas'); WC.base.width=1280*WC.Q; WC.base.height=900*WC.Q; WC.bc=WC.base.getContext('2d'); }
   const g=WC.bc; g.setTransform(1,0,0,1,0,0); g.clearRect(0,0,WC.base.width,WC.base.height); g.setTransform(WC.Q,0,0,WC.Q,0,0); drawScene(g); WC.dirty=false; WC.lastBase=performance.now(); }
 function drawAnim(g,now){ const {tw,th}=WC.grid;
   const np=WC.pops.length; WC.pops=WC.pops.filter(o=>now-o.t<700); if(WC.pops.length!==np) WC.dirty=true;
@@ -2233,12 +2306,12 @@ function drawAnim(g,now){ const {tw,th}=WC.grid;
     const gl=glowSprite('#fff1cc',16); g.drawImage(gl,c.x-gl.width/WC.Q/2,c.y-gl.height/WC.Q/2,gl.width/WC.Q,gl.height/WC.Q); g.fillStyle='#fffaf0'; g.beginPath(); g.arc(c.x,c.y,4.5,0,7); g.fill(); } }
 function wallLoop(){ const now=performance.now(), cam=WC.cam, g=WC.c;
   cam.x+=(cam.tx-cam.x)*.08; cam.y+=(cam.ty-cam.y)*.08; cam.s+=(cam.ts-cam.s)*.08;
-  const zoomed=Math.abs(cam.s-1)>.004||Math.abs(cam.x-640)>.5||Math.abs(cam.y-330)>.5;
+  const zoomed=Math.abs(cam.s-1)>.004||Math.abs(cam.x-640)>.5||Math.abs(cam.y-450)>.5;
   const act=WC.dirty||zoomed||WC.comets.length||WC.pops.length||WC.wins.size; WC.fr++;
   if(!act&&WC.fr%6){ requestAnimationFrame(wallLoop); return; }
   if(!WC.base||(WC.dirty&&now-WC.lastBase>120)) renderBase();
   g.setTransform(1,0,0,1,0,0); g.clearRect(0,0,WC.cv.width,WC.cv.height);
-  if(zoomed){ g.setTransform(WC.Q*cam.s,0,0,WC.Q*cam.s,WC.Q*(640-cam.x*cam.s),WC.Q*(330-cam.y*cam.s)); drawScene(g); }
+  if(zoomed){ g.setTransform(WC.Q*cam.s,0,0,WC.Q*cam.s,WC.Q*(640-cam.x*cam.s),WC.Q*(450-cam.y*cam.s)); drawScene(g); }
   else { g.drawImage(WC.base,0,0); g.setTransform(WC.Q,0,0,WC.Q,0,0); }
   drawAnim(g,now); requestAnimationFrame(wallLoop); }
 function mkTile(i){ const f=WC.flags[i]=new Set(); const t={ get className(){ return 'wt '+(S.list[i].city==='Y'?'y':'n')+(f.size?' '+[...f].join(' '):''); },
@@ -2249,12 +2322,12 @@ function mkTile(i){ const f=WC.flags[i]=new Set(); const t={ get className(){ re
     get offsetLeft(){ return WC.pos[i].x; }, get offsetTop(){ return WC.pos[i].y; }, get offsetWidth(){ return WC.grid.tw; }, get offsetHeight(){ return WC.grid.th; } }; return t; }
 buildWall=function(){ const wall=$('#wall'); layoutWall(); WC.popAt={}; WC.wins=new Map(); WC.pops=[];
   const sc=Math.min(innerWidth/1920,innerHeight/1080); WC.Q=Math.max(1,Math.min(2,Math.round(sc*(devicePixelRatio||1)*2)/2)); WC.base=null; glowSprite.c={};
-  wall.innerHTML='<canvas id="ptc"></canvas>'; WC.cv=$('#ptc'); WC.cv.width=1280*WC.Q; WC.cv.height=660*WC.Q; WC.c=WC.cv.getContext('2d');
+  wall.innerHTML='<canvas id="ptc"></canvas>'; WC.cv=$('#ptc'); WC.cv.width=1280*WC.Q; WC.cv.height=900*WC.Q; WC.c=WC.cv.getContext('2d');
   W.tiles=S.list.map((x,i)=>mkTile(i)); L.lit.forEach(i=>{ if(WC.flags[i]) WC.flags[i].add('lit'); });
-  W.w=1280; W.h=660; W.base='none'; wall.style.transform='none'; WC.dirty=true;
+  W.w=1280; W.h=900; W.base='none'; wall.style.transform='none'; WC.dirty=true;
   if(!WC.loop){ WC.loop=true; requestAnimationFrame(wallLoop); } if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ WC.dirty=true; }); };
 zoomTo=function(ix,s=6.5){ const p=WC.pos[ix]; if(!p) return; WC.cam.tx=p.x+WC.grid.tw/2; WC.cam.ty=p.y+WC.grid.th/2; WC.cam.ts=Math.min(4,s*.6); };
-zoomOut=function(){ WC.cam.tx=640; WC.cam.ty=330; WC.cam.ts=1; };
+zoomOut=function(){ WC.cam.tx=640; WC.cam.ty=450; WC.cam.ts=1; };
 wallRun=function(targets,dur){ return new Promise(res=>{ dur*=K(); const T0=performance.now(); const pool=S.pool.length?S.pool:targets; const {tw,th}=WC.grid;
   const ctr=ix=>{ const p=WC.pos[ix]; return {x:p.x+tw/2,y:p.y+th/2}; }; const rnd=()=>ctr(pool[(Math.random()*pool.length)|0]);
   const cs=targets.map((ix,k)=>{ const a=rnd(); return {ix,k,from:a,to:rnd(),t0:T0,x:a.x,y:a.y,trail:[],done:false,last:false}; }); WC.comets=cs; let lt=0;
@@ -2346,7 +2419,7 @@ const PH={ s:null,k:null,cid:Math.random().toString(36).slice(2,10),me:null,st:n
       const first=!this.me; this.pend=false; this.me=m; try{ localStorage.setItem('akkim-tel-v17',JSON.stringify({s:this.s,k:this.k})); }catch(e){}
       if(first){ this.vib([60,40,140]); PFX.burst(120,.5,.4); } this.rk=''; this.cur=null; this.render(); }
     else if(m.t==='st'){ this.st=m; this.render(); } },
-  render(){ if(!this.me){ this.show('tp-join'); return; } const st=this.st||{ph:'lobby',pi:0}; const p=PRIZES[st.pi]; const A=st.act!=null?ACTS[st.act]:null; const tk=A?`${A.r}. PERDE · ${TRU(A.name)}`:''; const myP=this.me.g!=null?PRIZES[this.me.g]:null;
+  render(){ if(!this.me){ this.show('tp-join'); return; } const st=this.st||{ph:'lobby',pi:0}; const p=PRIZES[st.pi]; const A=st.act!=null?ACTS[st.act]:null; const tk=A?`${A.r}. TUR · ${TRU(A.name)}`:''; const myP=this.me.g!=null?PRIZES[this.me.g]:null;
     if(st.ph==='tap'&&p){ const key='t'+st.pi+(st.k||''); if(this.rk!==key||this.cur!=='tp-tap'){ this.rk=key; this.vib([120,60,120]); this.myT=0; $('#tap-me').textContent='0';
         $('#tap-k').textContent=tk; $('#tap-n').textContent=p.name; $('#tap-q').textContent=p.mode==='batch'?`${st.k||Math.min(10,p.qty)} kişi kazanacak`:'tek kazanan · sicil hane hane'; $('#pg-tap').innerHTML=boxHTML({box:BOX[p.act],cls:'idle',tag:this.tag(),prod:art(p)}); this.show('tp-tap'); }
       $('#tap-all').textContent='%'+Math.round((st.e||0)*100); $('#tap-bar').style.width=((st.e||0)*100)+'%'; return; }
@@ -2360,7 +2433,7 @@ const PH={ s:null,k:null,cid:Math.random().toString(36).slice(2,10),me:null,st:n
       else if(myP){ R.innerHTML=`<div class="tp-k">${tk}</div><div class="pgw">${boxHTML({box:BOX[p.act],cls:'open',prod:art(p)})}</div><h2>${esc(p.name)}</h2><p>${st.w.length} kişiye çıktı. Senin hediyen zaten hazır:</p><span class="tp-pill"><span class="pi">${art(myP)}</span>${esc(myP.name)} ✓</span>`; }
       else { R.innerHTML=`<div class="tp-k">${tk}</div><div class="pgw">${boxHTML({box:BOX[p.act],cls:'dim',tag:this.tag()})}</div><h2>Bu tur ${st.w.length>1?st.w.length+' kişiye':'bir başkasına'} çıktı</h2><p>Kutun kapalı, şansın sürüyor. Sıradaki çekilişte yeniden sallayacaksın.</p><span class="tp-pill"><span class="pi">${art(p)}</span>${esc(p.name)}</span><p class="tp-note">Hediye çıkmazsa ${CONFIG.giftCardValue} iWallet senin.</p>`; }
       this.cur=null; this.show('tp-res'); return; }
-    if(st.ph==='act'&&A){ const key='a'+st.act; if(!(this.rk===key&&this.cur==='tp-act')){ this.rk=key; $('#tp-act').innerHTML=`<div class="tp-k">${A.r}. PERDE</div><h2 style="font-size:44px"><em>${esc(A.name)}</em></h2><div class="tp-row">${PRIZES.filter(x=>x.act===st.act).map(x=>`<div class="t">${art(x)}</div>`).join('')}</div><p>${esc(A.desc)}</p>`; this.vib(80); this.cur=null; this.show('tp-act'); } return; }
+    if(st.ph==='act'&&A){ const key='a'+st.act; if(!(this.rk===key&&this.cur==='tp-act')){ this.rk=key; $('#tp-act').innerHTML=`<div class="tp-k">${A.r}. TUR</div><h2 style="font-size:44px"><em>${esc(A.name)}</em></h2><div class="tp-row">${PRIZES.filter(x=>x.act===st.act).map(x=>`<div class="t">${art(x)}</div>`).join('')}</div><p>${esc(A.desc)}</p>`; this.vib(80); this.cur=null; this.show('tp-act'); } return; }
     if(st.ph==='final'||st.ph==='ak'){ const key='f'+st.ph+(myP?myP.id:''); if(this.rk===key&&this.cur==='tp-final') return; this.rk=key; const R=$('#tp-final');
       R.innerHTML=st.ph==='ak'?`<div class="tp-k">AKKİM · 1977 — 2027</div><div class="f50s gold">50</div><div class="tp-k" style="letter-spacing:.5em">YIL</div><h2>Mutlu yıllar <em>${CONFIG.year}</em></h2><p>Yalova ve Nazilli birlikte. İyi ki varsın.</p><span class="tp-pill"><span class="pi">${myP?art(myP):giftSVG()}</span>${myP?esc(myP.name):CONFIG.giftCardValue+' iWallet'} senin</span>`
         :`<div class="tp-k">VE HERKES KAZANDI</div><div class="pgw big">${boxHTML({cls:'gold',prod:myP?art(myP):giftSVG()})}</div><h2>${myP?esc(myP.name):CONFIG.giftCardValue+' <em>iWallet</em>'}</h2><p>${myP?'Hediyen kendi lokasyonunda, 7 iş günü içinde teslim edilecek.':'Çekilişte hediye çıkmayan herkese iWallet hediye çeki. Kodun ertesi gün SMS ile gelir.'}</p>`;
@@ -2371,7 +2444,7 @@ const PH={ s:null,k:null,cid:Math.random().toString(36).slice(2,10),me:null,st:n
     const r=this.me; $('#wait-k').textContent=myP?'HEDİYEN HAZIR':'KUTUN HAZIR'; $('#wait-h').textContent=`Hoş geldin, ${r.name.split(' ')[0]}.`;
     $('#wait-p').innerHTML=myP?`Kutundan <b>${esc(myP.name)}</b> çıktı. Kalan çekilişleri keyifle izle.`:`Kutun sahnedeki duvarda yandı${r.row?` (<b>${r.row}. sıra, ${r.col}. kutu</b>)`:''}. Çekiliş zamanı telefonun titrer: kutunu salla, hediye kutudan çıksın.`;
     $('#pg-wait').innerHTML=boxHTML({box:myP?null:BOX[p?p.act:1],cls:myP?'gold open':'idle',tag:myP?'':this.tag(),prod:myP?art(myP):''});
-    if(p){ $('#now-i').innerHTML=art(p); $('#now-k').textContent=st.ph==='lobby'?'İLK HEDİYE':'SIRADAKİ HEDİYE'; $('#now-b').textContent=p.name; $('#now-s').textContent=`${ACTS[p.act].r}. perde · ${ACTS[p.act].name} · ${p.qty} adet`; }
+    if(p){ $('#now-i').innerHTML=art(p); $('#now-k').textContent=st.ph==='lobby'?'İLK HEDİYE':'SIRADAKİ HEDİYE'; $('#now-b').textContent=p.name; $('#now-s').textContent=`${ACTS[p.act].r}. tur · ${ACTS[p.act].name} · ${p.qty} adet`; }
     this.cur=null; this.show('tp-wait'); },
   tap(){ if(!this.st||this.st.ph!=='tap') return; this.taps++; this.myT=(this.myT||0)+1; $('#tap-me').textContent=this.myT;
     const b=$('#pg-tap .pg'); if(b){ b.classList.remove('idle','shake'); void b.offsetWidth; b.classList.add('shake'); } this.vib(14); if(this.myT%3===0) PFX.burst(8,.5,.5,.5,true);
@@ -3097,12 +3170,114 @@ PH.render=function(){ __render28(); const st=this.st||{}; const o=$('#pc28'); if
       o.querySelector('.row').innerHTML=PRIZES.filter(x=>x.act===st.act).map((x,i)=>`<span style="animation-delay:${.5+i*.08}s">${art(x)}</span>`).join(''); o.classList.remove('on'); void o.offsetWidth; }
     o.classList.add('on'); }
   else { o.classList.remove('on'); o.dataset.a=''; } };
-function initPhone28(){ document.body.insertAdjacentHTML('beforeend',`<div id="pc28"><div class="rays"></div><div class="rm">I</div><div class="pk">PERDE</div><div class="an"></div><div class="ad"></div><div class="row"></div></div><div id="cd28"><div class="rays"></div><div class="k">İKİ ŞEHİR BİRLİKTE</div><div class="n">5</div></div>`);
+function initPhone28(){ document.body.insertAdjacentHTML('beforeend',`<div id="pc28"><div class="rays"></div><div class="rm">I</div><div class="pk">TUR</div><div class="an"></div><div class="ad"></div><div class="row"></div></div><div id="cd28"><div class="rays"></div><div class="k">İKİ ŞEHİR BİRLİKTE</div><div class="n">5</div></div>`);
   const c=$('#tp-tap .tap-cta'); if(c) c.innerHTML='Dokun, <em>coştur!</em>'; }
 const __init28=init;
 init=function(){ __init28();
   if(IS_TEL&&!IS_DESK) initPhone28();
   else if(!IS_PANEL&&!IS_DESK){ const pl=$('#en17 span:nth-child(2)'); if(pl) pl.innerHTML='Telefonlardan <b class="gold">“Dokun, coştur”</b>'; document.addEventListener('keydown',e=>{ if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA') return; if(e.key==='k'||e.key==='K'){ e.preventDefault(); rigTest(); } },true); } };
+
+/* =====================================================================
+   v29 · FİYATA GÖRE 4 TUR · GERÇEK ALTIN GÖRSELLERİ · TELEFONDA TUR EKRANI
+   · Dokunma yalnızca tur başında ve 4. turda (büyük ödüller)
+   · Telefonda ara anlarda "Hoş geldin" yerine doğru durum, final sonrası lobiye dönmez
+   · Hediye çıkmazsa iWallet ipucu finalden önce gösterilmez
+   · Sahne 900 px yüksekliğe büyüdü; tahmin ve dokun paneli sağ alta taşındı
+   · Final geri sayımı: ışık huzmeleri, ampul halkası, kıvılcımlar (sahne + telefon)
+   ===================================================================== */
+CONFIG.storageKey='akkim-cekilis-v29';
+const LAST_ACT=ACTS.length-1;
+/* ---------------- akış kuralları (sahne) ---------------- */
+function tapOK(){ const up=S.steps[S.si], d=S.steps[S.si-1], d2=S.steps[S.si-2]; if(!up||up.t!=='draw') return false; const p=PRIZES[up.pi]; if(!p) return false;
+  if(p.act===LAST_ACT) return true; return !!(d&&d.t==='intro'&&d2&&d2.t==='act'); }
+const __ph29=phaseX; phaseX=function(){ const d=S.steps[S.si-1]; if(S.started&&d&&d.t==='done') return 'ak'; return __ph29(); };
+const __st29=stateX; stateX=function(){ const st=__st29(); st.dn=S.results.length; if(!S.steps.slice(S.si).some(x=>x.pi!=null)) st.end=1; if(st.ph==='tap') st.tp=tapOK()?1:0; return st; };
+const __msg29=onMsg; onMsg=function(m){ if(m&&m.t==='tap'&&!tapOK()) return; return __msg29(m); };
+/* hane hane: yeni çekilişte bir önceki kazananın şehir rozeti kalmasın */
+const __dd29=drawDigits; drawDigits=async function(p,r,g){ const c=$('#dg-c'), n=$('#dg-n'); if(c) c.innerHTML=''; if(n) n.textContent=''; return __dd29(p,r,g); };
+
+/* ---------------- final ışık şovu (sahne) ---------------- */
+const LS29={ run:false, sp:[], wv:[], lastS:-1, fl:0, spr:{},
+  sprite(col){ if(this.spr[col]) return this.spr[col]; const c=document.createElement('canvas'); c.width=c.height=96; const g=c.getContext('2d'), gr=g.createRadialGradient(48,48,0,48,48,48);
+    gr.addColorStop(0,`rgba(${col},1)`); gr.addColorStop(.25,`rgba(${col},.55)`); gr.addColorStop(1,`rgba(${col},0)`); g.fillStyle=gr; g.fillRect(0,0,96,96); return this.spr[col]=c; },
+  start(){ const ov=$('#ov-ls'); if(!ov) return; if(!$('#ls29')) ov.insertAdjacentHTML('afterbegin','<canvas id="ls29" width="1920" height="1080"></canvas>');
+    this.cv=$('#ls29'); this.g=this.cv.getContext('2d'); this.t0=performance.now(); this.sp=[]; this.wv=[]; this.lastS=-1; this.fl=0; this.run=true; requestAnimationFrame(()=>this.frame()); },
+  stop(){ this.run=false; setTimeout(()=>{ if(this.g&&!this.run) this.g.clearRect(0,0,1920,1080); },400); },
+  beam(g,ox,oy,a,L,w,col,I){ const ex=ox+Math.cos(a)*L, ey=oy+Math.sin(a)*L, gr=g.createLinearGradient(ox,oy,ex,ey);
+    gr.addColorStop(0,`rgba(${col},${.75*I})`); gr.addColorStop(.55,`rgba(${col},${.2*I})`); gr.addColorStop(1,`rgba(${col},0)`); g.fillStyle=gr;
+    g.beginPath(); g.moveTo(ox,oy); g.lineTo(ox+Math.cos(a-w)*L,oy+Math.sin(a-w)*L); g.lineTo(ox+Math.cos(a+w)*L,oy+Math.sin(a+w)*L); g.closePath(); g.fill(); },
+  frame(){ if(!this.run) return; const g=this.g, now=performance.now(), el=now-this.t0, left=LS_T-el, t=el/1000, CX=960, CY=572;
+    const intro=el<LS_INTRO, last=left<=3000&&!intro, s=Math.max(0,Math.ceil(left/1000)), beat=Math.floor((el-LS_INTRO)/(last?250:500));
+    g.clearRect(0,0,1920,1080); g.globalCompositeOperation='lighter';
+    if(!intro&&s!==this.lastS&&s>0){ this.lastS=s; this.wv.push({t:now,col:last?'255,226,160':(s%2?'242,142,0':'63,170,144')}); if(last) this.fl=1;
+      for(let i=0;i<(last?110:46);i++){ const a=Math.random()*6.283, v=3+Math.random()*(last?13:8); this.sp.push({x:CX+Math.cos(a)*120,y:CY+Math.sin(a)*120,vx:Math.cos(a)*v,vy:Math.sin(a)*v-1.5,l:1,c:last?'255,226,160':(Math.random()<.4?'255,214,140':(Math.random()<.5?'242,142,0':'63,170,144'))}); } }
+    /* ışık huzmeleri: solda Yalova turuncusu, sağda Nazilli yeşili; son 3 saniyede hepsi altın, merkeze kilitlenir */
+    for(let i=0;i<8;i++){ const L=i<4, ox=L?110+i*175:1810-(i-4)*175, oy=1120; let a, col, I;
+      if(last){ a=Math.atan2(CY-oy,CX-ox)+Math.sin(t*10+i)*.04; col='255,236,190'; I=beat%2?.5:1; }
+      else { a=-Math.PI/2+(L?.32:-.32)+Math.sin(t*(1.05+i*.14)+i*1.9)*.42; col=intro?'232,194,122':(L?'242,142,0':'63,170,144'); I=intro?.25:(((beat%2===0)===L)?.85:.16); }
+      this.beam(g,ox,oy,a,1550,.075,col,I); }
+    /* ampul halkası: her saniye 6 ampul söner (60 → 0) */
+    const N=60, R=345, frac=intro?1:Math.max(0,left/(LS_T-LS_INTRO)), lit=Math.ceil(N*frac);
+    for(let i=0;i<N;i++){ const a=-Math.PI/2+i/N*Math.PI*2, x=CX+Math.cos(a)*R, y=CY+Math.sin(a)*R*.9;
+      if(i<lit){ const col=last?'255,226,160':(i%3===0?'242,142,0':i%3===1?'63,170,144':'255,214,140'), ch=.45+.55*Math.max(0,Math.sin(i*.55-t*8)); const sp=this.sprite(col), z=34+ch*22;
+        g.globalAlpha=.35+.65*ch; g.drawImage(sp,x-z/2,y-z/2,z,z); g.globalAlpha=1; g.fillStyle='rgba(255,250,235,.95)'; g.beginPath(); g.arc(x,y,4.2,0,7); g.fill(); }
+      else { g.fillStyle='rgba(255,255,255,.08)'; g.beginPath(); g.arc(x,y,3.6,0,7); g.fill(); } }
+    /* saniye dalgaları */
+    this.wv=this.wv.filter(w=>now-w.t<1200); for(const w of this.wv){ const k=(now-w.t)/1200; g.strokeStyle=`rgba(${w.col},${(1-k)*.6})`; g.lineWidth=8*(1-k)+1; g.beginPath(); g.ellipse(CX,CY,180+k*780,(180+k*780)*.9,0,0,7); g.stroke(); }
+    /* kıvılcımlar + yükselen zerreler */
+    if(Math.random()<.6) this.sp.push({x:Math.random()*1920,y:1090,vx:(Math.random()-.5)*.6,vy:-2-Math.random()*3,l:1,c:Math.random()<.5?'255,214,140':(Math.random()<.5?'242,142,0':'63,170,144'),a:1});
+    this.sp=this.sp.filter(p=>p.l>0&&p.y>-20); for(const p of this.sp){ p.x+=p.vx; p.y+=p.vy; if(!p.a){ p.vy+=.13; p.vx*=.985; } p.l-=p.a?.006:.017;
+      const sp=this.sprite(p.c); g.globalAlpha=Math.max(0,p.l); g.drawImage(sp,p.x-9,p.y-9,18,18); g.globalAlpha=1; }
+    g.globalCompositeOperation='source-over';
+    if(this.fl>0){ g.fillStyle=`rgba(255,244,214,${this.fl*.5})`; g.fillRect(0,0,1920,1080); this.fl*=.84; if(this.fl<.02) this.fl=0; }
+    requestAnimationFrame(()=>this.frame()); } };
+const __ls29=lightShow; lightShow=function(){ if(!IS_TEL) LS29.start(); return __ls29().then(r=>{ LS29.stop(); return r; }); };
+
+/* ---------------- telefon ---------------- */
+/* gerçekçi ampul dizisi */
+function shade29(h,k){ const n=parseInt(h.slice(1),16); const f=c=>Math.max(0,Math.round(c*k)); return '#'+[(n>>16)&255,(n>>8)&255,n&255].map(f).map(x=>x.toString(16).padStart(2,'0')).join(''); }
+function garland29(){ const el=$('#tp-gar'); if(!el) return; const cols=['#ff5848','#ffb43c','#fff0c4','#38d6a5','#ff4fa8','#b48cff'];
+  let defs='<linearGradient id="g29s" x1="0" x2="1"><stop offset="0" stop-color="#0d1410"/><stop offset=".5" stop-color="#3a4a3e"/><stop offset="1" stop-color="#0d1410"/></linearGradient>';
+  cols.forEach((c,i)=>{ defs+=`<radialGradient id="g29b${i}" cx=".4" cy=".34" r=".78"><stop offset="0" stop-color="#fffef6"/><stop offset=".22" stop-color="${c}"/><stop offset=".78" stop-color="${shade29(c,.62)}"/><stop offset="1" stop-color="${shade29(c,.38)}"/></radialGradient><radialGradient id="g29h${i}"><stop offset="0" stop-color="${c}" stop-opacity=".7"/><stop offset=".4" stop-color="${c}" stop-opacity=".22"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient>`; });
+  const W=400, segs=2, sw=W/segs, sag=30; let wire='M-6 3', bulbs='', k=0;
+  for(let s=0;s<segs;s++){ const x0=s*sw; wire+=` Q${x0+sw/2} ${3+sag*2} ${x0+sw} 3`;
+    for(let j=1;j<=5;j++){ const t=j/6, bx=x0+sw*t, by=3+2*(1-t)*t*sag*2, dy=2*sag*2*(1-2*t)/sw, ang=Math.atan(dy)*180/Math.PI*.35, ci=k%cols.length; k++;
+      bulbs+=`<g transform="translate(${bx.toFixed(1)} ${by.toFixed(1)}) rotate(${ang.toFixed(1)})"><g class="b29" style="animation-delay:${(-(k*.83)%3.4).toFixed(2)}s"><circle class="h" cx="0" cy="15" r="19" fill="url(#g29h${ci})"/><rect x="-2.9" y="-1.5" width="5.8" height="7.5" rx="1.4" fill="url(#g29s)"/><path d="M-3.7 5.6 C-7.6 9.6 -7.9 15.6 -4 20.6 C-2.1 23.2 2.1 23.2 4 20.6 C7.9 15.6 7.6 9.6 3.7 5.6 Z" fill="url(#g29b${ci})"/><ellipse cx="-1.7" cy="10.5" rx="1.1" ry="3.4" fill="#fff" opacity=".8"/></g></g>`; } }
+  el.innerHTML=`<svg viewBox="0 0 400 66" preserveAspectRatio="xMidYMin meet"><defs>${defs}</defs><path d="${wire}" fill="none" stroke="#070a08" stroke-width="2.2"/><path d="${wire}" fill="none" stroke="rgba(255,255,255,.12)" stroke-width=".7" transform="translate(0 -.6)"/>${bulbs}</svg>`; }
+/* tur ekranı en az 5,5 sn görünür (sahne hemen hediye tanıtımına geçse bile) */
+PH.actHold=0;
+const __r29=PH.render.bind(PH);
+PH.render=function(){ const st=this.st||{}; if(st.ph==='act'&&st.act!=null&&this.actKey!==st.act){ this.actKey=st.act; this.actHold=Date.now()+5500; }
+  document.body.classList.toggle('notap29',st.ph==='tap'&&st.tp===0);
+  __r29(); const o=$('#pc28');
+  if(o&&st.ph!=='act'&&Date.now()<this.actHold){ o.classList.add('on'); document.body.classList.add('act28'); clearTimeout(this.ahT); this.ahT=setTimeout(()=>{ this.actHold=0; o.classList.remove('on'); o.dataset.a=''; document.body.classList.remove('act28'); this.render(); },this.actHold-Date.now()); }
+  const myP=this.me&&this.me.g!=null;
+  if(this.cur==='tp-wait'&&this.me&&!myP&&(st.dn>0||st.end)){ const now=$('#tp-wait .tp-now');
+    if(st.end){ $('#wait-k').textContent='FİNAL YAKLAŞIYOR'; $('#wait-h').textContent='Tüm hediyeler çekildi.'; $('#wait-p').innerHTML='Birazdan ortak geri sayım başlıyor. Telefonunu hazır tut: ekranın salonun ışığı olacak.'; if(now) now.style.display='none'; }
+    else { $('#wait-k').textContent='ÇEKİLİŞ SÜRÜYOR'; $('#wait-h').textContent='Sıradaki hediye geliyor'; $('#wait-p').innerHTML='Kutun hâlâ oyunda. Sahne hazır olunca kutun yeniden açılacak.'; if(now) now.style.display=''; } }
+  else if(this.cur==='tp-wait'){ const now=$('#tp-wait .tp-now'); if(now) now.style.display=''; }
+  if(this.cur==='tp-res'){ $$('#tp-res p').forEach(p=>{ if(/sallayacaksın/.test(p.textContent)) p.textContent='Kutun kapalı, şansın sürüyor. Sıradaki hediyelerde yeniden şansın var.'; }); } };
+const __tap29=PH.tap.bind(PH); PH.tap=function(){ if(this.st&&this.st.ph==='tap'&&this.st.tp===0) return; return __tap29(); };
+/* final geri sayımı: telefon ekranı salonun ışığı */
+PH.lsStart=function(st){ const end=performance.now()+st.left; if(!this.lsRun||Math.abs(end-this.lsEnd)>350) this.lsEnd=end; if(this.lsRun) return; this.lsRun=true; try{ wakeLock(); }catch(e){}
+  const ov=$('#ls20'), city=this.me?this.me.city:'Y'; let bl=''; for(let i=0;i<10;i++){ const a=-Math.PI/2+i/10*Math.PI*2; bl+=`<circle class="lb" cx="${(150+Math.cos(a)*128).toFixed(1)}" cy="${(150+Math.sin(a)*128).toFixed(1)}" r="7"/>`; }
+  ov.innerHTML=`<div class="bg"></div><div class="rays"></div><div class="w"><svg class="ring" viewBox="0 0 300 300"><circle class="tr" cx="150" cy="150" r="128"/><circle class="pr" cx="150" cy="150" r="128" pathLength="100"/>${bl}</svg><div class="n">📱</div></div><div class="c"></div>`;
+  ov.style.setProperty('--cc',city==='Y'?'#f28e00':'#3faa90'); ov.className='on intro';
+  const num=ov.querySelector('.n'), cap=ov.querySelector('.c'), pr=ov.querySelector('.pr'), lb=[...ov.querySelectorAll('.lb')]; let lastS=-1, lastB=-1;
+  const f=()=>{ const left=this.lsEnd-performance.now(), el=LS_T-left;
+    if(left<=0){ ov.className='on fin'; num.textContent=CONFIG.year; cap.textContent='Mutlu yıllar!'; this.vib([300]); PFX.burst(240,.5,.42,1.3,true); PFX.rain(4);
+      setTimeout(()=>{ ov.className=''; ov.innerHTML=''; this.lsRun=false; this.rk=''; this.cur=null; this.render(); },2800); return; }
+    if(el<LS_INTRO){ cap.innerHTML='Telefonunu <b>havaya kaldır!</b><br><span>Ekranın salonun ışığı olacak</span>'; }
+    else { const s=Math.ceil(left/1000), last=left<=3000; pr.style.strokeDashoffset=String(100-Math.max(0,left)/(LS_T-LS_INTRO)*100);
+      if(s!==lastS){ lastS=s; ov.classList.remove('intro'); ov.classList.toggle('fin3',last); num.textContent=s; num.classList.remove('pop'); void num.offsetWidth; num.classList.add('pop'); lb.forEach((b,i)=>b.classList.toggle('off',i>=s));
+        PFX.burst(last?60:22,.5,.42,last?1.1:.7,true); this.vib(last?[120]:[35]); }
+      const beat=Math.floor((el-LS_INTRO)/(last?250:500)); if(beat!==lastB){ lastB=beat; const on=last?beat%2===0:((beat%2===0)===(city==='Y')); ov.classList.toggle('flash',on);
+        cap.innerHTML=last?'HEP BİRLİKTE!':(on?(city==='Y'?'YALOVA!':'NAZİLLİ!'):`<span>${city==='Y'?'Nazilli':'Yalova'} yanıyor…</span>`); } }
+    requestAnimationFrame(f); }; requestAnimationFrame(f); };
+const __init29=init;
+init=function(){ __init29(); if(IS_DESK) return;
+  if(IS_TEL){ garland29(); const c=$('#tp-tap .tap-cta'); if(c) c.insertAdjacentHTML('afterend','<div class="tw29">Kutun açıldı · çekiliş birazdan başlıyor</div>'); }
+  else if(!IS_PANEL){ setInterval(()=>{ document.body.classList.toggle('notap29',phaseX()==='tap'&&!tapOK()); },250); } };
 
 init();
 </script>
