@@ -1316,6 +1316,19 @@ body.notap29 .tw29{display:block}
 #ov-ls .lsc{color:#fff;text-shadow:0 3px 18px rgba(0,0,0,.85)}
 #d-act2{white-space:nowrap}
 #pc28{background:radial-gradient(120% 80% at 50% 40%,#0e283a,#02090e 70%)!important}
+/* ===================== v30 ===================== */
+/* sıradaki hediye telefonda gösterilmez */
+#tp-wait .tp-now,#tp-tap .tap-h small{display:none!important}
+/* tur ekranı: dokunarak kapat ipucu */
+#pc28::after{content:"Dokun ve başla";position:absolute;bottom:42px;left:0;right:0;font-size:13px;font-weight:800;letter-spacing:.3em;color:var(--gold);opacity:.75;animation:hint30 1.4s ease-in-out infinite alternate}
+@keyframes hint30{to{opacity:.25}}
+/* hero sınıf geçişlerinde yumuşak */
+#hero25{transition:opacity .35s ease}
+/* final ekranı: sakin altın ışıltı */
+#tp-final{position:relative}
+#tp-final::before{content:"";position:fixed;left:50%;top:32%;width:760px;height:760px;margin:-380px 0 0 -380px;background:repeating-conic-gradient(from 0deg,rgba(255,226,160,.10) 0 6deg,transparent 6deg 18deg);-webkit-mask:radial-gradient(circle,#000 10%,transparent 62%);mask:radial-gradient(circle,#000 10%,transparent 62%);animation:spin 60s linear infinite;pointer-events:none;z-index:-1}
+#tp-final .f50s{animation:glow30 3s ease-in-out infinite alternate}
+@keyframes glow30{from{filter:drop-shadow(0 0 0 rgba(255,214,140,0))}to{filter:drop-shadow(0 0 22px rgba(255,214,140,.55))}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head>
 <body>
@@ -3278,6 +3291,57 @@ const __init29=init;
 init=function(){ __init29(); if(IS_DESK) return;
   if(IS_TEL){ garland29(); const c=$('#tp-tap .tap-cta'); if(c) c.insertAdjacentHTML('afterend','<div class="tw29">Kutun açıldı · çekiliş birazdan başlıyor</div>'); }
   else if(!IS_PANEL){ setInterval(()=>{ document.body.classList.toggle('notap29',phaseX()==='tap'&&!tapOK()); },250); } };
+
+/* =====================================================================
+   v30 · SENKRON + SADE TELEFON
+   - Geri sayım: iPhone'larda 5'ten, 4. turun diğer hediyelerinde 3'ten
+   - Telefon tur değişimini her mesajdan yakalar (perde anı kaçsa bile tur ekranı gelir)
+   - Kısa "bekleme" sıçramaları yutulur → kutu kendi kendine gidip gelmez
+   - Sıradaki hediye telefonda gösterilmez; final ekranları tek sefer, sakin kutlama
+   ===================================================================== */
+CONFIG.storageKey='akkim-cekilis-v30';
+/* ---------------- sahne: geri sayım uzunluğu ---------------- */
+let CD_N=5;
+countdown=function(){ return new Promise(async res=>{ const o=$('#ov-count'), nEl=$('#oc-n'); o.classList.add('on'); SND.duck(true); const n=CD_N;
+  for(let k=n;k>=1;k--){ nEl.textContent=k; nEl.classList.remove('pop'); void nEl.offsetWidth; nEl.classList.add('pop'); SND.play(k<=3?'heartbeat':'tick',k<=3?1:.7); dm({t:'cd',n:k}); await wait(1000); }
+  o.classList.remove('on'); dm({t:'cd',n:0}); res(); }); };
+const __dd30=drawDigits; drawDigits=function(p,r,grand){ CD_N=grand?5:3; return __dd30(p,r,grand); };
+/* sahne durumu daha sık tazelensin (kaçan mesaj en geç 0,8 sn'de telafi) */
+if(!IS_TEL) setInterval(()=>{ try{ if(S.started) pushX(); }catch(e){} },800);
+
+/* ---------------- telefon ---------------- */
+PH.tur30=undefined;
+function showTur30(act){ const o=$('#pc28'), A=ACTS[act]; if(!o||!A) return;
+  o.dataset.a=act; o.querySelector('.rm').textContent=ROMAN[act]; o.querySelector('.an').textContent=A.name; o.querySelector('.ad').textContent=A.desc;
+  o.querySelector('.row').innerHTML=PRIZES.filter(x=>x.act===act).map((x,i)=>`<span style="animation-delay:${.4+i*.07}s">${art(x)}</span>`).join('');
+  o.classList.remove('on'); void o.offsetWidth; o.classList.add('on'); document.body.classList.add('act28'); PH.vib([60,40,120]); }
+const __recv30=PH.recv.bind(PH);
+PH.recv=function(m){
+  if(m&&m.t==='st'){
+    /* tur değişimi: perde anı kaçsa bile ilk tap/draw/act mesajında tur ekranı */
+    if(m.act!=null&&['act','tap','draw'].includes(m.ph)){
+      if(this.tur30===undefined) this.tur30=m.act;
+      else if(m.act!==this.tur30){ this.tur30=m.act; this.actKey=m.act; this.actHold=Date.now()+3800; showTur30(m.act);
+        clearTimeout(this.ahT); this.ahT=setTimeout(()=>{ this.actHold=0; const o=$('#pc28'); if(o){ o.classList.remove('on'); o.dataset.a=''; } document.body.classList.remove('act28'); this.rk=''; this.render(); },3800); } }
+    /* kısa "bekleme" sıçramalarını yut */
+    const cur=this.st&&this.st.ph;
+    if(m.ph==='wait'&&cur&&cur!=='wait'&&cur!=='lobby'){ clearTimeout(this.wT); this.wT=setTimeout(()=>{ this.wT=null; __recv30(m); },900); return; }
+    if(this.wT){ clearTimeout(this.wT); this.wT=null; }
+    /* aynı durum tekrar gelirse (tazeleme) yeniden çizme */
+    if(this.st&&this.st.ph===m.ph&&this.st.pi===m.pi&&this.st.k===m.k&&this.st.act===m.act&&this.st.tp===m.tp&&m.ph!=='tap'&&m.ph!=='ls'&&m.ph!=='res'){ this.st=m; if(this.voteRender) this.voteRender(); return; } }
+  return __recv30(m); };
+/* tur ekranına dokununca kapanır (tur başı dokunma hemen başlasın) */
+function initPhone30(){ const o=$('#pc28'); if(o) o.addEventListener('pointerdown',()=>{ PH.actHold=0; clearTimeout(PH.ahT); o.classList.remove('on'); o.dataset.a=''; document.body.classList.remove('act28'); PH.rk=''; PH.render(); });
+  /* kutlama patlamaları: üst üste binmesin */
+  const b=PFX.burst.bind(PFX); let last=0; PFX.burst=function(n,...a){ const now=performance.now(), big=n>=100; if(big&&now-last<2600) return; if(big) last=now; return b(n,...a); };
+  const rn=PFX.rain&&PFX.rain.bind(PFX); let lastR=0; if(rn) PFX.rain=function(...a){ const now=performance.now(); if(now-lastR<6000) return; lastR=now; return rn(...a); }; }
+/* hero: tur ekranı açıkken gizli kalsın, sınıf titremesin */
+const __hr30=HERO.render.bind(HERO); HERO.render=function(st){ const r=__hr30(st); document.body.classList.toggle('act28',(st&&st.ph==='act')||Date.now()<(PH.actHold||0)); return r; };
+/* final ekranları tek sefer */
+const __r30=PH.render.bind(PH);
+PH.render=function(){ const st=this.st||{}; if((st.ph==='final'||st.ph==='ak')&&this.cur==='tp-final'&&this.fin30===st.ph+(this.me&&this.me.g!=null?this.me.g:'')) return; __r30();
+  if(this.cur==='tp-final') this.fin30=st.ph+(this.me&&this.me.g!=null?this.me.g:''); };
+const __init30=init; init=function(){ __init30(); if(IS_TEL&&!IS_DESK) initPhone30(); };
 
 init();
 </script>
