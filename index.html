@@ -1329,6 +1329,9 @@ body.notap29 .tw29{display:block}
 #tp-final::before{content:"";position:fixed;left:50%;top:32%;width:760px;height:760px;margin:-380px 0 0 -380px;background:repeating-conic-gradient(from 0deg,rgba(255,226,160,.10) 0 6deg,transparent 6deg 18deg);-webkit-mask:radial-gradient(circle,#000 10%,transparent 62%);mask:radial-gradient(circle,#000 10%,transparent 62%);animation:spin 60s linear infinite;pointer-events:none;z-index:-1}
 #tp-final .f50s{animation:glow30 3s ease-in-out infinite alternate}
 @keyframes glow30{from{filter:drop-shadow(0 0 0 rgba(255,214,140,0))}to{filter:drop-shadow(0 0 22px rgba(255,214,140,.55))}}
+/* telefon performansı: ağır bulanık katmanlar kapalı */
+.aur23{display:none!important}
+#tp-gar .b29 .h{mix-blend-mode:normal}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head>
 <body>
@@ -3342,6 +3345,12 @@ const __r30=PH.render.bind(PH);
 PH.render=function(){ const st=this.st||{}; if((st.ph==='final'||st.ph==='ak')&&this.cur==='tp-final'&&this.fin30===st.ph+(this.me&&this.me.g!=null?this.me.g:'')) return; __r30();
   if(this.cur==='tp-final') this.fin30=st.ph+(this.me&&this.me.g!=null?this.me.g:''); };
 const __init30=init; init=function(){ __init30(); if(IS_TEL&&!IS_DESK) initPhone30(); };
+/* ---------------- telefon performansı ---------------- */
+function perf30(){ try{ const cv=PFX.cv; if(cv){ const d=Math.min(devicePixelRatio||1,1.25); const rs=()=>{ cv.width=innerWidth*d; cv.height=innerHeight*d; PFX.w=cv.width; PFX.h=cv.height; }; rs(); addEventListener('resize',rs); } }catch(e){}
+  const g=PFX.go.bind(PFX); PFX.go=function(){ if(this.ps.length>220) this.ps.splice(0,this.ps.length-220); return g(); };
+  const bb=PFX.burst; PFX.burst=function(n,...a){ return bb.call(this,Math.ceil(n*.6),...a); };
+  try{ if(AMB&&AMB.ps&&AMB.ps.length>40) AMB.ps.length=Math.ceil(AMB.ps.length*.5); }catch(e){} }
+const __ip30=initPhone30; initPhone30=function(){ __ip30(); perf30(); };
 
 init();
 </script>
