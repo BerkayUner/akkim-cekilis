@@ -1,6 +1,6 @@
 # Akkim Yeni Yıl Büyük Çekilişi 2027 · ajans konsept demosu
 
-- Yayın ekranı: https://berkayuner.github.io/akkim-cekilis/
-- Telefon: https://berkayuner.github.io/akkim-cekilis/#tel
+- Telefon (QR): https://berkayuner.github.io/akkim-cekilis/
+- Yayın ekranı (sunucu): https://berkayuner.github.io/akkim-cekilis/#sahne
 
 İsimler örnektir (demo liste).
