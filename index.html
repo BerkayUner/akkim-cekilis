@@ -1391,6 +1391,31 @@ body.notap29 .tw29{display:block}
 body.win-open #glow34{transform:translateX(-50%) translateY(260%)!important}
 /* telefon içeriği butonun arkasında kalmasın */
 body.tel17 .tps{padding-bottom:150px}
+/* ===================== v35 ===================== */
+/* sahne: pano tam genişlik, bilgi paneli altta yatay şerit */
+#sbox{width:1800px!important;height:660px!important}
+#wall,#ptc{width:1800px!important;height:660px!important}
+#panel{left:60px!important;top:810px!important;width:1800px!important;height:240px!important;padding:18px 28px!important;display:grid!important;grid-template-columns:560px 1fr;grid-template-rows:auto auto 1fr;column-gap:36px;row-gap:0}
+#draw:has(#poll20.on) #panel,#draw:has(#en17.on) #panel{padding-bottom:20px!important}
+#panel .pn-head{grid-row:1/4;grid-column:1;grid-template-columns:160px 1fr!important;padding:0 32px 0 0!important;border-bottom:0!important;border-right:1px solid var(--line);align-self:stretch;align-items:center}
+#panel .pn-head .art{height:170px}
+#panel .pn-name{font-size:40px!important}
+#panel .pn-sub{font-size:17px!important}
+#panel .pn-k{font-size:13px!important}
+#panel .pn-prog{grid-column:2;grid-row:1;margin:4px 0 10px!important}
+#panel .pbar{grid-column:2;grid-row:2}
+#panel .slots{grid-column:2;grid-row:3;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));grid-auto-rows:48px;gap:9px!important;margin-top:12px;align-content:start}
+#panel .slot{height:48px!important;grid-template-columns:30px 1fr 12px!important;font-size:19px!important;padding:0 14px!important;border-radius:14px}
+#panel .slot .sn{font-size:13px}
+#panel .slot .sw{font-weight:800}
+.cd35{width:10px;height:10px;border-radius:50%;background:#f28e00;box-shadow:0 0 8px rgba(242,142,0,.7)}
+.cd35.n{background:#3faa90;box-shadow:0 0 8px rgba(63,170,144,.7)}
+/* "Dokun, coştur" ve tahmin: panonun üst köşelerinde (2027'nin üstünde) */
+#en17{left:335px!important;top:158px!important;bottom:auto!important;width:450px}
+#poll20{left:1585px!important;top:158px!important;bottom:auto!important;width:450px!important}
+#draw:has(#en17:not(.on)) #poll20,body.notap29 #poll20{bottom:auto!important}
+#panel .slot:not(.f):not(.vd){display:grid!important;opacity:.3}
+#panel .slot.f{opacity:1}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head>
 <body>
@@ -3649,6 +3674,126 @@ const __render34=PH.render.bind(PH); PH.render=function(){ const r=__render34();
 function initPhone34(){ document.body.insertAdjacentHTML('beforeend','<button id="glow34" type="button"><span class="ic"><i></i></span><span class="t">Işığımı yak</span><b class="bar"></b></button>');
   $('#glow34').addEventListener('pointerdown',e=>{ e.preventDefault(); PH.glow(); }); glowUI34(); }
 const __init34=init; init=function(){ __init34(); if(IS_TEL&&!IS_DESK) initPhone34(); };
+
+/* =====================================================================
+   v35 · 2027 IŞIK DİZİLERİYLE + PANEL ALTTA
+   · duvar tam genişlik (1800×660); bilgi paneli altta yatay şerit
+   · 2027 rakamları, sahnenin üstündeki süs dizisi gibi kabloya takılı, duylu, renkli ampullerle çizilir
+   · katılan ampul kendi renginde yanar; katılmayan sönük; kazanan sessizce ALTINA döner (patlama yok)
+   · "Işığımı yak": sadece daha parlak yanar (halka/saçılma yok)
+   ===================================================================== */
+CONFIG.storageKey='akkim-cekilis-v35';
+const WW=1800, WH=660;
+WC.cam={x:WW/2,y:WH/2,s:1,tx:WW/2,ty:WH/2,ts:1};
+/* altın sadece kazanana ait → normal ampullerde sarı/turuncu yok */
+const BCOL=['#e0408f','#9b6bd6','#e73029','#3faa90','#4f8ff0','#f4f1ff'];
+const hex2=h=>{ const n=parseInt(h.slice(1),16); return [(n>>16)&255,(n>>8)&255,n&255]; };
+const mix=(a,b,k)=>a.map((v,i)=>Math.round(v+(b[i]-v)*k));
+const rgba=(c,a)=>`rgba(${c[0]},${c[1]},${c[2]},${a})`;
+
+/* ---------------- yerleşim: rakam şekline yatay ampul dizileri ---------------- */
+layoutWall=function(){ const n=S.list.length, X0=40, Y0=122, AW=WW-80, AH=468, txt=String(CONFIG.year);
+  const cv=document.createElement('canvas'); cv.width=WW; cv.height=WH; const g=cv.getContext('2d');
+  const font=s=>`800 ${s}px Manrope, "Segoe UI", Arial, sans-serif`;
+  g.font=font(400); let mm=g.measureText(txt); let fs=400*AH/(mm.actualBoundingBoxAscent+mm.actualBoundingBoxDescent);
+  const lay=()=>{ g.font=font(fs); const ws=[...txt].map(ch=>{ const q=g.measureText(ch); return {ch,l:q.actualBoundingBoxLeft,w:q.actualBoundingBoxLeft+q.actualBoundingBoxRight}; }); const sum=ws.reduce((a,b)=>a+b.w,0); return {ws,sum}; };
+  let L_=lay(), gap=Math.max(40,Math.min(150,(AW-L_.sum)/3)); if(L_.sum+3*gap>AW){ fs*=AW/(L_.sum+3*gap); L_=lay(); gap=Math.max(30,Math.min(150,(AW-L_.sum)/3)); }
+  g.font=font(fs); mm=g.measureText(txt); const asc=mm.actualBoundingBoxAscent, dsc=mm.actualBoundingBoxDescent, hh=asc+dsc;
+  const total=L_.sum+3*gap, sx0=X0+(AW-total)/2, base=Y0+(AH-hh)/2+asc;
+  const glyph=(c,col)=>{ c.font=font(fs); c.fillStyle=col; c.textBaseline='alphabetic'; let x=sx0; L_.ws.forEach(o=>{ c.fillText(o.ch,x+o.l,base); x+=o.w+gap; }); };
+  glyph(g,'#fff');
+  const A=g.getImageData(0,0,WW,WH).data, on=(x,y)=>{ x|=0; y|=0; return x>=0&&y>=0&&x<WW&&y<WH&&A[(y*WW+x)*4+3]>127; };
+  let best=null;
+  for(let p=48;p>=10;p-=.25){ const bw=p*.56, bh=bw*1.42, sk=bw*.42, rh=bh+sk+p*.2, cells=[]; let row=0;
+    for(let y=Y0+(AH-hh)/2-sk*.5;y+sk+bh<=Y0+AH+bh;y+=rh,row++){ let col=0;
+      for(let x=X0+p/2;x<X0+AW;x+=p,col++){ const cy=y+sk+bh/2; if(on(x,cy)&&on(x-bw*.5,cy)&&on(x+bw*.5,cy)&&on(x,y+sk*.6)&&on(x,cy+bh*.48)) cells.push({x,y,cy,row,col}); } }
+    if(cells.length>=n){ best={p,bw,bh,sk,cells}; break; } }
+  if(!best) return;
+  const {p,bw,bh,sk,cells}=best;
+  /* kablo parçaları: aynı satırda yan yana ampuller tek dizi */
+  const wires=[]; let cur=null; cells.forEach(c=>{ if(cur&&cur.row===c.row&&c.col===cur.lastCol+1){ cur.xs.push(c.x); cur.lastCol=c.col; } else { cur={row:c.row,y:c.y,xs:[c.x],lastCol:c.col}; wires.push(cur); } });
+  cells.forEach(c=>{ c.ci=(c.row*2+c.col)%BCOL.length; });
+  const pickIx=new Set(); const persons=[]; for(let i=0;i<n;i++){ const k=Math.floor(i*cells.length/n); pickIx.add(k); persons.push(cells[k]); }
+  WC.decor=cells.filter((c,k)=>!pickIx.has(k));
+  WC.grid={cols:Math.round(AW/p),rows:0,tw:bw,th:bh,p,sk};
+  WC.pos=persons.map(c=>({x:c.x-bw/2,y:c.y+sk})); WC.cix=persons.map(c=>c.ci); WC.wires=wires;
+  const hl=document.createElement('canvas'); hl.width=WW; hl.height=WH; const hg=hl.getContext('2d');
+  hg.filter='blur(30px)'; hg.globalAlpha=.10; glyph(hg,'#fff1dc'); hg.filter='none'; WC.halo=hl; WC.spr={}; };
+
+/* ---------------- ampul görseli (süs dizisi gibi: duy + cam + parıltı) ---------------- */
+function bulb35(kind,ci){ const d=WC.grid, k=kind+'|'+ci+'|'+Math.round(d.tw*10)+'|'+WC.Q; WC.spr=WC.spr||{}; if(WC.spr[k]) return WC.spr[k];
+  const Q=WC.Q, bw=d.tw*Q, bh=d.th*Q, sk=d.sk*Q, W_=Math.ceil(bw*(kind==='dim'?1.4:(kind==='hi'||kind==='goldhi'?6:4))), H_=Math.ceil(bh*(kind==='dim'?2.2:(kind==='hi'||kind==='goldhi'?4.4:3.6)));
+  const c=document.createElement('canvas'); c.width=W_; c.height=H_; const g=c.getContext('2d'), mx=W_/2, my=H_/2;
+  let col=kind==='gold'||kind==='goldhi'?[255,196,64]:hex2(BCOL[ci]);
+  const glow=(cc,R,a)=>{ const gr=g.createRadialGradient(mx,my,0,mx,my,R); gr.addColorStop(0,rgba(cc,a)); gr.addColorStop(.4,rgba(cc,a*.35)); gr.addColorStop(1,rgba(cc,0)); g.fillStyle=gr; g.fillRect(0,0,W_,H_); };
+  if(kind==='on') glow(col,bw*1.5,.5);
+  if(kind==='gold') glow(col,bw*1.8,.75);
+  if(kind==='hi') glow(mix(col,[255,255,255],.3),bw*2.7,1);
+  if(kind==='goldhi') glow([255,214,120],bw*2.8,1);
+  if(kind==='hi'||kind==='goldhi'){ /* parlaklık katmanı: sadece ışık */ const gr=g.createRadialGradient(mx,my,0,mx,my,bw*.7); gr.addColorStop(0,'rgba(255,255,255,1)'); gr.addColorStop(1,'rgba(255,255,255,0)'); g.fillStyle=gr; g.beginPath(); g.ellipse(mx,my,bw*.62,bh*.6,0,0,7); g.fill(); return WC.spr[k]=c; }
+  /* duy */
+  const sg=g.createLinearGradient(mx-bw*.26,0,mx+bw*.26,0); sg.addColorStop(0,'#2e2716'); sg.addColorStop(.5,'#7a6740'); sg.addColorStop(1,'#2e2716');
+  g.fillStyle=sg; g.fillRect(mx-bw*.24,my-bh/2-sk,bw*.48,sk+bh*.08);
+  /* cam */
+  const dim=kind==='dim', c0=dim?mix(col,[20,24,30],.55):mix(col,[255,255,255],.55), c1=dim?mix(col,[10,14,20],.62):col, c2=dim?mix(col,[0,0,0],.78):mix(col,[0,0,0],.35);
+  const gr=g.createRadialGradient(mx-bw*.16,my-bh*.2,bw*.05,mx,my,bh*.58); gr.addColorStop(0,rgba(c0,dim?.8:1)); gr.addColorStop(.55,rgba(c1,dim?.85:1)); gr.addColorStop(1,rgba(c2,dim?.9:1));
+  g.fillStyle=gr; g.beginPath(); g.ellipse(mx,my,bw/2,bh/2,0,0,7); g.fill();
+  g.fillStyle=`rgba(255,255,255,${dim?.22:.75})`; g.beginPath(); g.ellipse(mx-bw*.16,my-bh*.16,bw*.1,bh*.16,0,0,7); g.fill();
+  return WC.spr[k]=c; }
+function putBulb35(g,cx,cy,kind,ci){ const sp=bulb35(kind,ci), w=sp.width/WC.Q, h=sp.height/WC.Q; g.drawImage(sp,cx-w/2,cy-h/2,w,h); }
+
+/* ---------------- çizim ---------------- */
+drawTile=function(g,i,mode){ const p=WC.pos[i]; if(!p) return; const d=WC.grid, cx=p.x+d.tw/2, cy=p.y+d.th/2, f=WC.flags[i], ci=WC.cix[i]||0;
+  if(mode==='win'||f.has('out')){ putBulb35(g,cx,cy,'gold',ci); return; }          /* kazanan: altın */
+  if(f.has('void')){ putBulb35(g,cx,cy,'dim',2); return; }
+  if(f.has('lit')||f.has('hot')){ putBulb35(g,cx,cy,'on',ci); if(WC.cam&&WC.cam.s>1.6){ g.strokeStyle=S.list[i].city==='Y'?'rgba(242,142,0,.9)':'rgba(63,170,144,.9)'; g.lineWidth=1.2; g.beginPath(); g.ellipse(cx,cy,d.tw*.62,d.th*.6,0,0,7); g.stroke(); } return; }
+  putBulb35(g,cx,cy,'dim',ci); };
+function wires35(g){ const d=WC.grid; if(!WC.wires) return; g.lineCap='round';
+  for(const w of WC.wires){ const y=w.y, xs=w.xs, a=xs[0]-d.p*.55, b=xs[xs.length-1]+d.p*.55; g.beginPath(); g.moveTo(a,y);
+    let px=a; for(const x of xs.concat([b])){ g.quadraticCurveTo((px+x)/2,y+d.p*.14,x,y); px=x; }
+    g.strokeStyle='rgba(8,10,8,.95)'; g.lineWidth=1.8; g.stroke(); g.strokeStyle='rgba(255,255,255,.07)'; g.lineWidth=.6; g.stroke(); } }
+drawScene=function(g){ const now=performance.now(), d=WC.grid; if(WC.halo) g.drawImage(WC.halo,0,0,WW,WH); wires35(g);
+  if(WC.decor) for(const c of WC.decor) putBulb35(g,c.x,c.cy,'dim',c.ci);
+  for(let i=0;i<WC.pos.length;i++){ const f=WC.flags[i]; if(f.has('win')||now-(WC.popAt[i]||0)<700) continue; drawTile(g,i); } };
+function boost35(g,i,a){ if(a<=0) return; const p=WC.pos[i]; if(!p) return; const d=WC.grid, f=WC.flags[i], gold=f.has('out')||f.has('win');
+  g.globalAlpha=Math.min(1,a); putBulb35(g,p.x+d.tw/2,p.y+d.th/2,gold?'goldhi':'hi',WC.cix[i]||0); g.globalAlpha=1; }
+WC.flares=WC.flares||new Map();
+drawAnim=function(g,now){ const np=WC.pops.length; WC.pops=WC.pops.filter(o=>now-o.t<700); if(WC.pops.length!==np) WC.dirty=true;
+  for(const o of WC.pops){ if(!WC.pos[o.i]) continue; drawTile(g,o.i); boost35(g,o.i,(1-(now-o.t)/700)*.7); }           /* katılım: yumuşak parlama */
+  for(const [i] of WC.wins){ if(!WC.pos[i]) continue; drawTile(g,i,'win'); }                                             /* kazanan: sessizce altın */
+  for(const c of WC.comets){ if(c.x==null) continue; for(let j=0;j<c.trail.length;j++){ const [x,y]=c.trail[j], k=j/c.trail.length; g.fillStyle=`rgba(255,${200+k*40|0},${130+k*90|0},${k*.6})`; g.beginPath(); g.arc(x,y,1.2+k*4,0,7); g.fill(); }
+    const gl=glowSprite('#fff1cc',16); g.drawImage(gl,c.x-gl.width/WC.Q/2,c.y-gl.height/WC.Q/2,gl.width/WC.Q,gl.height/WC.Q); g.fillStyle='#fffaf0'; g.beginPath(); g.arc(c.x,c.y,4.5,0,7); g.fill(); }
+  for(const [i,t0] of WC.flares){ const k=(now-t0)/1700; if(k>=1){ WC.flares.delete(i); WC.dirty=true; continue; } boost35(g,i,Math.sin(Math.PI*Math.min(1,k))*1.05); } };  /* ışığımı yak: sadece parlaklık */
+renderBase=function(){ if(!WC.base){ WC.base=document.createElement('canvas'); WC.base.width=WW*WC.Q; WC.base.height=WH*WC.Q; WC.bc=WC.base.getContext('2d'); }
+  const g=WC.bc; g.setTransform(1,0,0,1,0,0); g.clearRect(0,0,WC.base.width,WC.base.height); g.setTransform(WC.Q,0,0,WC.Q,0,0); drawScene(g); WC.dirty=false; WC.lastBase=performance.now(); };
+wallLoop=function(){ const now=performance.now(), cam=WC.cam, g=WC.c;
+  cam.x+=(cam.tx-cam.x)*.08; cam.y+=(cam.ty-cam.y)*.08; cam.s+=(cam.ts-cam.s)*.08;
+  const zoomed=Math.abs(cam.s-1)>.004||Math.abs(cam.x-WW/2)>.5||Math.abs(cam.y-WH/2)>.5;
+  const act=WC.dirty||zoomed||WC.comets.length||WC.pops.length||WC.wins.size||WC.flares.size; WC.fr++;
+  if(!act&&WC.fr%6){ requestAnimationFrame(wallLoop); return; }
+  if(!WC.base||(WC.dirty&&now-WC.lastBase>120)) renderBase();
+  g.setTransform(1,0,0,1,0,0); g.clearRect(0,0,WC.cv.width,WC.cv.height);
+  if(zoomed){ g.setTransform(WC.Q*cam.s,0,0,WC.Q*cam.s,WC.Q*(WW/2-cam.x*cam.s),WC.Q*(WH/2-cam.y*cam.s)); drawScene(g); }
+  else { g.drawImage(WC.base,0,0); g.setTransform(WC.Q,0,0,WC.Q,0,0); }
+  drawAnim(g,now); requestAnimationFrame(wallLoop); };
+zoomOut=function(){ WC.cam.tx=WW/2; WC.cam.ty=WH/2; WC.cam.ts=1; };
+zoomTo=function(ix,s=6.5){ const p=WC.pos[ix]; if(!p) return; WC.cam.tx=p.x+WC.grid.tw/2; WC.cam.ty=p.y+WC.grid.th/2; WC.cam.ts=Math.min(3.2,s*.5); };
+buildWall=function(){ const wall=$('#wall'); layoutWall(); WC.popAt={}; WC.wins=new Map(); WC.pops=[];
+  const sc=Math.min(innerWidth/1920,innerHeight/1080); WC.Q=Math.max(1,Math.min(2,Math.round(sc*(devicePixelRatio||1)*2)/2)); WC.base=null; WC.spr={}; glowSprite.c={};
+  wall.innerHTML='<canvas id="ptc"></canvas>'; WC.cv=$('#ptc'); WC.cv.width=WW*WC.Q; WC.cv.height=WH*WC.Q; WC.c=WC.cv.getContext('2d');
+  W.tiles=S.list.map((x,i)=>mkTile(i)); L.lit.forEach(i=>{ if(WC.flags[i]) WC.flags[i].add('lit'); });
+  try{ S.results.forEach(x=>{ if(WC.flags[x.ix]) WC.flags[x.ix].add('out'); }); (S.voids||[]).forEach(x=>{ if(WC.flags[x.ix]) WC.flags[x.ix].add('void'); }); }catch(e){}
+  W.w=WW; W.h=WH; W.base='none'; wall.style.transform='none'; WC.dirty=true;
+  if(!WC.loop){ WC.loop=true; requestAnimationFrame(wallLoop); } if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ WC.dirty=true; }); };
+
+/* ---------------- alt şerit: kazananlar (o anki 10'luk grup) ---------------- */
+renderSlots=function(pi,fresh=[]){ const p=PRIZES[pi]; if(!p) return; const ws=S.results.filter(r=>r.pi===pi), vs=S.voids.filter(v=>v.pi===pi);
+  let start=1; if(p.qty>10){ const ref=fresh.length?fresh[0].no:(ws.length?Math.max(...ws.map(r=>r.no)):1); start=Math.floor((ref-1)/10)*10+1; }
+  const end=Math.min(p.qty,start+9); let html='';
+  for(let i=start;i<=end;i++){ const r=ws.find(x=>x.no===i), w=r&&S.list[r.ix], nw=r&&fresh.includes(r);
+    html+=`<div class="slot ${r?'f':''} ${nw?'new':''}"><span class="sn">${String(i).padStart(2,'0')}</span>${w?`<span class="sw">${shortName(w.name)}</span><span class="cd35 ${w.city==='Y'?'y':'n'}"></span>`:`<span class="sw e">—</span>`}</div>`; }
+  const sl=$('#slots'); sl.className='slots'; sl.innerHTML=html;
+  $('#pn-cnt').textContent=`${ws.length} / ${p.qty}`+(vs.length?` · ${vs.length} geçersiz`:''); $('#pn-bar').style.width=(ws.length/p.qty*100)+'%'; };
 
 init();
 </script>
