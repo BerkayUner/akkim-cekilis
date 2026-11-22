@@ -1789,6 +1789,21 @@ body.tel54 .tp-h:has(#out54.on) .tp-live{margin-left:auto}
 #tp-final .tp-dlv.f55{max-width:380px;margin:26px auto 0;animation:f55 .7s .3s both cubic-bezier(.2,.9,.3,1.2)}
 @keyframes f55{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
 @media (max-width:360px){.dc55{gap:5px}.dc55 b{width:36px;height:50px;font-size:26px}}
+
+/* ===== v58 · isim rozeti ve profil kartı ===== */
+#out54.p58{gap:8px;height:36px;padding:0 11px 0 4px;letter-spacing:0;text-transform:none;font:700 13.5px var(--sans);color:#fff;max-width:190px}
+#out54.p58 i{flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:linear-gradient(160deg,#f6dc9c,#c9963e);color:#1a1206;font:800 13.5px/1 var(--sans);font-style:normal;box-shadow:0 0 0 2px rgba(4,16,26,.6),0 2px 8px rgba(232,194,122,.35)}
+#out54.p58 span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#out54.p58 svg{width:12px;height:12px;flex:none;color:#e8c27a;opacity:.9}
+.ox54-c.p58c{padding-top:0;overflow:visible;margin-top:44px}
+.p58-av{width:76px;height:76px;margin:-38px auto 12px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(160deg,#f6dc9c,#c9963e);color:#1a1206;font:800 32px/1 var(--serif);box-shadow:0 0 0 5px #0f2535,0 10px 30px rgba(0,0,0,.45),0 0 40px rgba(232,194,122,.25)}
+.p58c h3{margin:8px 0 14px}
+.p58-m{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+.p58-m div{min-width:92px;padding:9px 12px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);text-align:center}
+.p58-m small{display:block;font:800 9.5px var(--sans);letter-spacing:.22em;color:#e8c27a;margin-bottom:3px}
+.p58-m b{font:700 14.5px var(--sans);color:#fff;white-space:nowrap}
+.p58c p{font-size:13.5px;margin-bottom:18px}
+@media (max-width:360px){#out54.p58{max-width:150px}.p58-m div{min-width:80px;padding:8px 10px}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script><link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet"></head>
 <body>
@@ -5928,6 +5943,29 @@ const __form57=AUTH43.form43.bind(AUTH43);
 AUTH43.form43=function(){ const r=__form57(); try{ telAlan57(); }catch(e){} return r; };
 const __send57=AUTH43.sendCode.bind(AUTH43);
 AUTH43.sendCode=function(){ const t=$('#g43-t'); if(t){ t.value=telBicim57(t.value); if(t.value.replace(/\D/g,'').length!==11){ this.err('Telefon numaranı 11 hane olarak yaz: 05xx xxx xx xx'); return; } } return __send57(); };
+
+/* =====================================================================
+   v58 · telefon: isim rozeti + profil kartı
+   · sağ üstteki ÇIKIŞ yerine "(M) Mehmet Y. ▾" rozeti
+   · dokununca alttan profil kartı: ad soyad, sicil, lokasyon, kutu yeri + Çıkış yap
+   ===================================================================== */
+function kim58(){ const k=ls43.get('akkim-kisi-v43')||{}, me=PH.me||{};
+  const ad=String(me.name||k.ad||'').replace(/\s+/g,' ').trim();
+  const lok=me.city?(me.city==='Y'?'Yalova':'Nazilli'):String(k.lok||'');
+  const sira=Math.floor(+me.row)||0, kutu=Math.floor(+me.col)||0;
+  return { ad, kisa:ad?(w=>w.length>1?w[0]+' '+w[w.length-1].charAt(0).toLocaleUpperCase('tr')+'.':w[0])(ad.split(' ')):'Hesabım', ilk:(ad||'?').charAt(0).toLocaleUpperCase('tr'), sicil:String(PH.s||k.sicil||''), lok, yer:sira>0&&kutu>0?`${sira}. sıra, ${kutu}. kutu`:'' }; }
+function profil58(){ const ox=$('#ox54'); if(!ox) return; const c=ox.querySelector('.ox54-c'); if(!c) return; const p=kim58();
+  c.classList.add('p58c');
+  c.innerHTML=`<div class="p58-av" aria-hidden="true">${esc(p.ilk)}</div><div class="ox54-k">YENİ YIL ÇEKİLİŞİ 2027</div><h3 id="ox54-h">${esc(p.ad||'Katılımcı')}</h3>
+    <div class="p58-m">${p.sicil?`<div><small>SİCİL</small><b>#${esc(p.sicil)}</b></div>`:''}${p.lok?`<div><small>LOKASYON</small><b>${esc(p.lok)}</b></div>`:''}${p.yer?`<div><small>KUTUN</small><b>${esc(p.yer)}</b></div>`:''}</div>
+    <p>Çıkış yaparsan kutun sahnede yerinde kalır. Aynı numarayla yeniden girdiğinde kaldığın yerden devam edersin.</p>
+    <div class="ox54-b"><button type="button" class="no">Kapat</button><button type="button" class="yes">Çıkış yap</button></div>`;
+  c.querySelector('.no').onclick=()=>ox.classList.remove('on'); c.querySelector('.yes').onclick=()=>cikis54(); }
+const __out58=out54;
+out54=function(){ __out58(); const b=$('#out54'); if(!b) return; const p=kim58(), key=p.ilk+'|'+p.kisa;
+  if(!b.dataset.p58){ b.dataset.p58='1'; b.classList.add('p58'); b.onclick=()=>{ profil58(); const ox=$('#ox54'); if(ox) ox.classList.add('on'); }; }
+  if(b.dataset.k===key) return; b.dataset.k=key; b.setAttribute('aria-label',(p.ad||'Hesabım')+' · profil ve çıkış');
+  b.innerHTML=`<i aria-hidden="true">${esc(p.ilk)}</i><span>${esc(p.kisa)}</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`; };
 
 init();
 sahneAdres();
