@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="tr">
-<head><script>(function(){var h=location.hash||'';if(/sifirla/.test(h)){try{Object.keys(localStorage).filter(function(k){return /^akkim/.test(k);}).forEach(function(k){localStorage.removeItem(k);});}catch(e){}location.replace(location.pathname+'?t='+Date.now()+(/tel/.test(h)?'#tel':'#sahne'));return;}if(!/sahne|demo|teslim|test=|tel/.test(h)&&!/panel/.test(location.search)){location.replace(location.pathname+location.search+'#tel');}})();</script>
+<head><script>(function(){var h=location.hash||'';if(/sifirla/.test(h)){try{Object.keys(localStorage).filter(function(k){return /^akkim/.test(k);}).forEach(function(k){localStorage.removeItem(k);});}catch(e){}location.replace(location.pathname+'?t='+Date.now()+(/tel/.test(h)?'#tel':'#sahne'));return;}if(!/sahne|demo|teslim|test=|tel|masa/.test(h)&&!/panel/.test(location.search)){location.replace(location.pathname+location.search+'#tel');}})();</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Akkim · Yeni Yıl Büyük Çekilişi 2027</title>
@@ -1436,6 +1436,53 @@ body.tel17 .tps{padding-bottom:150px}
 /* ===================== v42 ===================== */
 #gl42{position:absolute;left:0;top:0;width:1800px;height:660px;pointer-events:none}
 #wall.dim~#gl42{opacity:0}
+/* ===================== v43 · güvenli giriş ===================== */
+#tp-join.sec43 #tp-s,#tp-join.sec43 #tp-k,#tp-join.sec43 #tp-go,#tp-join.sec43 .tp-demo,#tp-join.sec43 #demo25{display:none!important}
+#g43{margin-top:14px;text-align:left}
+#g43 .g43-s{display:none}#g43 .g43-s.on{display:block}
+#g43 label{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:700;margin:0 0 8px 4px}
+#g43 input{display:block;width:100%;height:58px;border-radius:16px;border:1px solid rgba(232,194,122,.35);background:rgba(255,255,255,.06);color:#fff;font-size:22px;font-weight:700;padding:0 18px;letter-spacing:.04em;outline:none}
+#g43 input:focus{border-color:#e8c27a;box-shadow:0 0 0 4px rgba(232,194,122,.18)}
+#g43 #g43-k{text-align:center;letter-spacing:.5em;font-size:28px}
+#g43 .g43-l{display:block;margin:14px auto 0;background:none;border:0;color:#e8c27a;font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+#g43 .g43-spin{width:34px;height:34px;margin:18px auto;border-radius:50%;border:3px solid rgba(232,194,122,.25);border-top-color:#e8c27a;animation:g43s .8s linear infinite}
+@keyframes g43s{to{transform:rotate(360deg)}}
+#tp-join.sec43 .tp-err{color:#ffd3a0;text-align:center}
+/* yetkili anahtar ekranı (sahne / teslim masası) */
+#a43{position:fixed;inset:0;z-index:9999;display:none;place-items:center;background:radial-gradient(120% 90% at 50% 20%,#14243a,#050b14 70%);color:#fff;font-family:Manrope,"Segoe UI",Arial,sans-serif}
+#a43.on{display:grid}
+#a43 .a43-c{width:min(440px,92vw);padding:34px;border-radius:24px;background:rgba(255,255,255,.05);border:1px solid rgba(232,194,122,.3);text-align:center}
+#a43 .a43-k{font-size:11px;letter-spacing:.22em;color:#e8c27a;font-weight:800}
+#a43 h2{font:800 30px/1.1 "Playfair Display",Georgia,serif;margin:12px 0 6px}
+#a43 p{color:#a9b4c4;margin:0 0 18px;font-size:14px}
+#a43 input{width:100%;height:52px;border-radius:14px;border:1px solid rgba(232,194,122,.35);background:rgba(0,0,0,.3);color:#fff;font-size:16px;padding:0 16px;outline:none}
+#a43 button{width:100%;height:52px;margin-top:12px;border:0;border-radius:99px;background:linear-gradient(180deg,#fff0c8,#e8c27a 55%,#c9963f);color:#2a1a02;font-weight:800;font-size:16px;cursor:pointer}
+#a43 .a43-e{min-height:20px;margin-top:12px;color:#ff9d96;font-size:14px;font-weight:600}
+/* karşılama masası sayfası */
+body.masa43>*:not(#m43):not(#toast){display:none!important}
+#m43{min-height:100vh;background:#07101b;color:#e9eef5;font-family:Manrope,"Segoe UI",Arial,sans-serif}
+#m43 header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:18px 24px;border-bottom:1px solid rgba(232,194,122,.25);background:#0b1726}
+#m43 header b{letter-spacing:.16em;font-size:13px;color:#e8c27a}#m43 header span{font-size:13px;color:#a9b4c4}
+#m43 main{max-width:760px;margin:0 auto;padding:20px 16px 60px}
+#m43 .m43-c{background:#0e1b2c;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:20px;margin-bottom:16px}
+#m43 h2{margin:0 0 10px;font:800 20px/1.2 "Playfair Display",Georgia,serif}
+#m43 p{color:#a9b4c4;font-size:14px;line-height:1.5;margin:0 0 12px}
+#m43 input:not([type=checkbox]):not([type=file]){flex:1;min-width:0;width:100%;height:48px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:#07101b;color:#fff;font-size:16px;padding:0 14px}
+#m43 button{height:48px;padding:0 20px;border:0;border-radius:12px;background:#e8c27a;color:#231503;font-weight:800;font-size:15px;cursor:pointer;white-space:nowrap}
+#m43 button:disabled{opacity:.4;cursor:default}
+#m43 .m43-x{background:transparent;border:1px solid rgba(255,255,255,.2);color:#cfd6e0}
+#m43 .m43-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+#m43 .m43-e,#m43 .m43-w{color:#ffb38a;font-size:14px;margin-top:10px}
+#m43 .m43-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+#m43 .m43-g div{background:#07101b;border-radius:12px;padding:14px}#m43 .m43-g b{display:block;font-size:28px;color:#fff}#m43 .m43-g small{color:#a9b4c4}
+#m43 .m43-p{margin-top:14px;padding:16px;border-radius:14px;background:#07101b}#m43 .m43-p>b{font-size:20px;display:block}#m43 .m43-p>span{color:#e8c27a;font-size:14px}
+#m43 .m43-p ul{margin:10px 0 0;padding-left:18px;color:#cfd6e0;font-size:14px;line-height:1.7}
+#m43 #m43-qrc{display:inline-block;padding:12px;background:#fff;border-radius:12px;margin-top:8px}
+#m43 code{background:#07101b;padding:2px 6px;border-radius:6px;font-size:13px}
+#m43 .m43-chk{display:flex;gap:8px;align-items:center;font-size:14px;color:#cfd6e0;margin-bottom:10px}
+#m43 pre{white-space:pre-wrap;font-size:12px;color:#ffb38a}
+#tp-join.sec43 #g43 input{display:block!important}
+#tp-join.sec43 #man25,body.sec43 .out25{display:none!important}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script><link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet"></head>
 <body>
@@ -3200,7 +3247,7 @@ init=function(){ __init26(); if(IS_TEL&&!IS_DESK){ const h=$('#hero25'); if(h&&!
    claude.ai içinde açılırsa eskisi gibi claude.ai canlı odası kullanılır.
    ===================================================================== */
 
-const SUPA={ url:'https://vhrcnmghqsuttiwpbnqi.supabase.co', key:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZocmNubWdocXN1dHRpd3BibnFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxMDU3MzcsImV4cCI6MjExMDY4MTczN30.AhriTJsiA164TuDXqvRRjm6FP6vjnfFwaVJZWNWvFZE', room:'akkim2027' };
+const SUPA={ url:'https://ntioprqsngrqjaayjzww.supabase.co', key:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50aW9wcnFzbmdycWphYXlqend3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUzNTEyODIsImV4cCI6MjExMDkyNzI4Mn0.BtGE1V4lvaXWCufBDpyq8xFNNfbl5JNLj3l3fVigLG4', room:'akkim2027' };
 const USE_SUPA=!IN_FRAME&&location.protocol!=='file:'&&/^https?:/.test(SUPA.url);
 if(USE_SUPA){ try{ BCX&&BCX.close(); }catch(e){} }   /* aynı cihaz kısa yolu kapalı: tek yol Supabase (çift sayım olmasın) */
 const __netInit27=NET.init.bind(NET), __netEmit27=NET.emit.bind(NET), __netPres27=NET.pres.bind(NET);
@@ -4293,6 +4340,190 @@ function gl42Loop(now){ requestAnimationFrame(gl42Loop); const c=GL42.cv; if(!c|
     g.restore(); g.fillStyle=`rgba(255,255,255,${a})`; g.beginPath(); g.arc(o.x,o.y,1.6,0,7); g.fill(); }
   g.globalCompositeOperation='source-over'; }
 const __init42=init; init=function(){ __init42(); if(!IS_TEL&&!IS_PANEL&&!IS_DESK) setTimeout(gl42Init,600); };
+
+/* =====================================================================
+   v43 · GÜVENLİ CANLI ALTYAPI
+   · telefon girişi: kişiye özel davet linki (tek telefona kilitli) ya da telefon numarası + SMS kodu
+   · sahne / teslim masası / karşılama masası: gizli anahtarla giriş
+   · canlı kanallar özel: telefonlara yalnız sahne yayın yapabilir, sahneye yalnız giriş yapan çalışan yazabilir
+   · katılım anahtarı sunucuda (sayfadan hesaplanamaz); çalışan listesi veritabanından
+   · trafik: sahne yalnız durum değişince yayın yapar, arada 3 sn'de bir canlılık mesajı
+   · sahnenin anlık durumu veritabanında; kopan/kilitlenen telefon geri gelince oradan yakalar
+   · kura sonuçları veritabanında denetim kaydı olarak tutulur
+   · karşılama masası sayfası: #masa
+   ===================================================================== */
+CONFIG.storageKey='akkim-cekilis-v43';
+const SEC43=USE_SUPA;
+const IS_MASA43=/[#?&]masa(?![a-z])/.test(location.hash+location.search);
+const FN43=SUPA.url+'/functions/v1/';
+const KEY43=new Map();
+const CIHAZ43=(()=>{ const mk=()=>{ const a=new Uint8Array(16); crypto.getRandomValues(a); return Array.from(a,b=>b.toString(16).padStart(2,'0')).join(''); };
+  try{ let c=localStorage.getItem('akkim-cihaz'); if(!c||!/^[a-f0-9]{32}$/.test(c)){ c=mk(); localStorage.setItem('akkim-cihaz',c); } return c; }catch(e){ return mk(); } })();
+const ls43={ get(k){ try{ return JSON.parse(localStorage.getItem(k)||'null'); }catch(e){ return null; } }, set(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }, del(k){ try{ localStorage.removeItem(k); }catch(e){} } };
+async function fn43(ad,body,jwt){ let r; try{ r=await fetch(FN43+ad,{method:'POST',headers:{'Content-Type':'application/json',apikey:SUPA.key,Authorization:'Bearer '+(jwt||SUPA.key)},body:JSON.stringify(body)}); }catch(e){ throw new Error('İnternet bağlantısı yok gibi görünüyor. Tekrar dene.'); }
+  let j={}; try{ j=await r.json(); }catch(e){} if(!r.ok||!j.ok){ const e=new Error(j.hata||('Bağlantı hatası ('+r.status+')')); e.code=r.status; throw e; } return j; }
+const SB43={};
+async function sb43(kind){ if(SB43[kind]) return SB43[kind];
+  for(let i=0;i<75&&!(window.supabase&&window.supabase.createClient);i++) await new Promise(r=>setTimeout(r,200));
+  if(!(window.supabase&&window.supabase.createClient)) return null;
+  return SB43[kind]=window.supabase.createClient(SUPA.url,SUPA.key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false,storageKey:'akkim-oturum-'+kind},realtime:{params:{eventsPerSecond:40}}}); }
+const kind43=role=>role==='stage'?'sahne':(IS_DESK||IS_MASA43)?'masa':'tel';
+function hashParam43(k){ const m=location.hash.match(new RegExp('[#&]'+k+'=([^&]+)')); return m?decodeURIComponent(m[1]):null; }
+function dropHashParam43(k){ const h=location.hash.replace(new RegExp('&?'+k+'=[^&]*'),'').replace(/#&/,'#'); try{ history.replaceState(null,'',location.pathname+location.search+h); }catch(e){} }
+
+/* ---------------- katılım anahtarı: sunucudaki listeden (sayfadan hesaplanamaz) ---------------- */
+const __jc43=joinCode;
+joinCode=function(s){ if(!SEC43) return __jc43(s); return KEY43.get(String(s))||'—'; };
+
+/* ---------------- canlı bağlantı (özel kanallar) ---------------- */
+const __netInit43=NET.init;
+NET.init=async function(role){ if(!SEC43) return __netInit43.call(this,role);
+  this.role=role; this.status='wait'; this.mode='supa'; this.code='';
+  const sb=await sb43(kind43(role)); if(!sb){ this.status='none'; this.code='kutuphane_yuklenemedi'; return; } this.sb=sb;
+  const { data:{ session } }=await sb.auth.getSession();
+  if(!session){ this.status='auth'; AUTH43.need(role); return; }
+  if(role==='stage'){ const ok=await sahneHazir43(sb); if(!ok) return; }
+  if(role!=='stage'&&!IS_DESK&&!ls43.get('akkim-kisi-v43')){ try{ await sb.auth.signOut(); }catch(e){} this.status='auth'; AUTH43.need(role); return; }
+  sb.realtime.setAuth(session.access_token);
+  if(this.up) try{ sb.removeChannel(this.up); }catch(e){} if(this.down) try{ sb.removeChannel(this.down); }catch(e){}
+  const up=sb.channel(SUPA.room+'-up',{config:{private:true,broadcast:{self:false}}}), down=sb.channel(SUPA.room+'-down',{config:{private:true,broadcast:{self:false}}});
+  this.up=up; this.down=down; this.room={supa:true};
+  const sub=st=>{ if(st==='SUBSCRIBED'){ this.status='ok'; this.conn=true; this.ever=true; if(role!=='stage'){ snap43(); if(PH.pend) PH.sendJoin(); } }
+    else if(st==='CHANNEL_ERROR'||st==='TIMED_OUT'){ this.conn=false; this.code=st==='CHANNEL_ERROR'?'yetki':st; if(!this.ever) this.status='none'; } else if(st==='CLOSED'){ this.conn=false; } };
+  if(role==='stage'){ up.on('broadcast',{event:'m'},({payload})=>{ try{ onMsg(payload); }catch(e){} }).subscribe(sub); down.subscribe(); }
+  else { down.on('broadcast',{event:'m'},({payload})=>{ this.lastStage=Date.now(); this.stageOn=true; try{ PH.recv(payload); }catch(e){} }).subscribe(sub); }
+  setTimeout(()=>{ if(!this.ever&&this.status!=='auth'){ this.status='none'; if(!this.code) this.code='zaman_asimi'; } },12000); };
+/* telefon → sahne: kanala katılmadan, oturum anahtarıyla doğrudan ÖZEL kanala (kütüphanenin HTTP gönderimi 'özel' bilgisini eklemiyor) */
+const __up43=NET.up1;
+NET.up1=function(m){ if(!SEC43||this.role==='stage') return __up43.call(this,m); const sb=this.sb; if(!sb) return;
+  sb.auth.getSession().then(({data})=>{ const t=data&&data.session&&data.session.access_token; if(!t) return;
+    return fetch(SUPA.url+'/realtime/v1/api/broadcast',{method:'POST',keepalive:true,headers:{apikey:SUPA.key,Authorization:'Bearer '+t,'Content-Type':'application/json'},body:JSON.stringify({messages:[{topic:SUPA.room+'-up',event:'m',payload:m,private:true}]})}); }).catch(()=>{}); };
+const __nt43=netText;
+netText=function(role){ if(SEC43&&NET.status==='auth') return {c:'mute',t:'Giriş bekleniyor'}; if(SEC43&&NET.status==='none'&&NET.code==='yetki') return {c:'warn',t:'Oturum süresi dolmuş olabilir. Sayfayı yenile.'}; return __nt43(role); };
+
+/* ---------------- telefon: geri gelince sahnenin son durumunu veritabanından al ---------------- */
+const ORD43={sid:'',v:-1};
+async function snap43(){ if(!SEC43||!NET.sb||NET.role==='stage') return;
+  try{ const { data }=await NET.sb.from('sahne_durumu').select('durum').eq('id',1).maybeSingle(); const st=data&&data.durum; if(st&&st.t==='st') PH.recv(st); }catch(e){} }
+const __phr43=PH.recv.bind(PH);
+PH.recv=function(m){ if(m&&m.t==='st'&&m.sid&&typeof m.v==='number'){ if(m.sid===ORD43.sid&&m.v<ORD43.v) return; ORD43.sid=m.sid; ORD43.v=m.v; } return __phr43(m); };
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible'&&SEC43&&NET.role&&NET.role!=='stage'){ snap43(); if(PH.me||PH.pend) wake43(); } });
+let WL43=null; async function wake43(){ try{ if(navigator.wakeLock&&document.visibilityState==='visible'&&!WL43){ WL43=await navigator.wakeLock.request('screen'); WL43.addEventListener('release',()=>{ WL43=null; }); } }catch(e){} }
+
+/* ---------------- sahne: yalnız değişince yayın + 3 sn canlılık; durum ve kura kaydı veritabanına ---------------- */
+const PX43={k:'',at:0,dbT:null,dbLast:null};
+pushX=function(){ const st=stateX(); const { v, ...rest }=st; const k=JSON.stringify(rest), now=Date.now();
+  if(SEC43&&k===PX43.k&&now-PX43.at<3000) return; PX43.k=k; PX43.at=now;
+  sendX(st); NET.emit('state',st);
+  if(SEC43&&NET.role==='stage'&&NET.sb){ PX43.dbLast=st; if(!PX43.dbT) PX43.dbT=setTimeout(()=>{ PX43.dbT=null; const d=PX43.dbLast; NET.sb.from('sahne_durumu').update({durum:d,guncel:new Date().toISOString()}).eq('id',1).then(()=>{},()=>{}); },700); } };
+let KK43=-1;
+setInterval(()=>{ if(!SEC43||NET.role!=='stage'||!NET.sb||NET.status!=='ok'||!S.started) return; const n=S.results.length; if(KK43<0){ KK43=ls43.get('akkim-kk43-'+S.seal)??0; }
+  if(n<=KK43) return; const yeni=S.results.slice(KK43).map(r=>{ const p=S.list[r.ix]||{}; return {sicil:p.id,ad:p.name,lok:p.city,hediye:PRIZES[r.pi]&&PRIZES[r.pi].name,pi:r.pi}; });
+  const bas=KK43; KK43=n; NET.sb.from('kura_kaydi').insert({kayit:{muhur:S.seal,sira:bas,kazananlar:yeni,zaman:new Date().toISOString()}}).then(({error})=>{ if(error){ KK43=bas; } else ls43.set('akkim-kk43-'+S.seal,n); }); },2500);
+
+/* ---------------- sahne: çalışan listesi ve katılım anahtarları veritabanından ---------------- */
+async function sahneHazir43(sb){
+  const { data:yon }=await sb.rpc('sahne_mi'); if(!yon){ NET.status='auth'; AUTH43.need('stage','Bu anahtar sahne yetkisi taşımıyor (karşılama masası anahtarı olabilir).'); return false; }
+  let rows=[]; for(let from=0;from<10000;from+=1000){ const { data,error }=await sb.from('calisanlar').select('sicil,ad_soyad,lokasyon,katilim_anahtari').order('sicil').range(from,from+999); if(error) break; rows=rows.concat(data||[]); if(!data||data.length<1000) break; }
+  KEY43.clear(); rows.forEach(r=>KEY43.set(String(r.sicil),String(r.katilim_anahtari)));
+  if(rows.length>=10){ const L=rows.map(r=>({id:String(r.sicil),name:r.ad_soyad,city:r.lokasyon}));
+    const h=sha256(L.map(x=>x.id+'|'+x.name+'|'+x.city).join('\n'));
+    if(h!==S.listHash){ if(S.started){ toast('Dikkat: kayıtlı çekiliş başka bir listeyle başlamış; liste değiştirilmedi.'); }
+      else { setList(L,'csv'); try{ persist(); }catch(e){} if(W.tiles&&W.tiles.length){ W.tiles=[]; try{ buildWall(); refreshWall(); }catch(e){} } toast(`Çalışan listesi yüklendi: ${L.length} kişi`); } } }
+  return true; }
+
+/* ---------------- giriş ekranları ---------------- */
+const AUTH43={
+  need(role,msg){ if(role==='stage'||IS_DESK) return this.admin(role,msg); return this.phone(msg); },
+  /* sahne ve teslim masası: gizli anahtar */
+  admin(role,msg){ const tok=hashParam43('anahtar'); if(tok&&!this.tried){ this.tried=true; dropHashParam43('anahtar'); return this.adminLogin(role,tok); }
+    let ov=$('#a43'); if(!ov){ document.body.insertAdjacentHTML('beforeend',`<div id="a43"><div class="a43-c"><div class="a43-k">AKKİM · YENİ YIL ÇEKİLİŞİ 2027</div><h2>${role==='stage'?'Sahne ekranı':'Teslim masası'}</h2><p>Bu ekran yalnızca yetkili anahtarla açılır.</p><input id="a43-t" type="password" autocomplete="off" placeholder="Gizli anahtar"><button id="a43-go">Aç</button><div class="a43-e" id="a43-e"></div></div></div>`); ov=$('#a43');
+      $('#a43-go').onclick=()=>{ const t=$('#a43-t').value.trim(); if(t) this.adminLogin(role,t); }; $('#a43-t').addEventListener('keydown',e=>{ if(e.key==='Enter') $('#a43-go').click(); }); }
+    ov.classList.add('on'); $('#a43-e').textContent=msg||''; },
+  async adminLogin(role,tok){ const e=$('#a43-e'); if(e) e.textContent='Kontrol ediliyor…';
+    try{ const r=await fn43('giris',{islem:'sahne',token:tok}); if(role==='stage'&&r.rol!=='sahne') throw new Error('Bu anahtar sahne yetkisi taşımıyor.');
+      const sb=await sb43(kind43(role)); const { error }=await sb.auth.signInWithPassword({email:r.email,password:r.sifre}); if(error) throw new Error('Oturum açılamadı: '+error.message);
+      const ov=$('#a43'); if(ov) ov.classList.remove('on'); NET.init(role); }
+    catch(err){ this.admin(role,err.message); } },
+  /* telefon: davet linki ya da telefon + SMS kodu */
+  phone(msg){ PH.pend=false; clearInterval(PH.rt); const tok=hashParam43('d'); this.form43(); if(tok&&!this.triedLink){ this.triedLink=true; dropHashParam43('d'); return this.linkLogin(tok); } this.err(msg||''); this.step('tel'); },
+  form43(){ if($('#g43')) return; const j=$('#tp-join'); if(!j) return; j.classList.add('sec43');
+    const p=j.querySelector('p'); if(p) p.textContent='Telefon numaranla giriş yap; kutun sahnedeki dev 2027’nin içinde yansın.';
+    $('#tp-err').insertAdjacentHTML('beforebegin',`<div id="g43"><div class="g43-s" id="g43-tel"><label for="g43-t">Telefon numaran</label><input id="g43-t" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xx xxx xx xx" maxlength="16"><button class="tp-btn" id="g43-kod">Kod gönder</button></div>
+      <div class="g43-s" id="g43-dog"><label for="g43-k">SMS ile gelen 6 haneli kod</label><input id="g43-k" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••"><button class="tp-btn" id="g43-gir">Giriş yap</button><button class="g43-l" id="g43-geri">Numarayı değiştir</button></div>
+      <div class="g43-s" id="g43-bek"><div class="g43-spin"></div></div></div>`);
+    const f=j.querySelector('.tp-foot'); if(f) f.innerHTML='Giriş yalnızca Akkim çalışan listesindeki telefon numaralarıyla yapılır. Bilgilerin yalnızca bu çekiliş için kullanılır.<br><b>yilbasi</b> sayfası dışında hiçbir yerde kod paylaşma.';
+    $('#g43-kod').onclick=()=>this.sendCode(); $('#g43-t').addEventListener('keydown',e=>{ if(e.key==='Enter') this.sendCode(); });
+    $('#g43-gir').onclick=()=>this.verify(); $('#g43-k').addEventListener('input',e=>{ if(e.target.value.replace(/\D/g,'').length===6) this.verify(); });
+    $('#g43-geri').onclick=()=>{ this.err(''); this.step('tel'); }; },
+  step(s){ ['tel','dog','bek'].forEach(x=>{ const el=$('#g43-'+x); if(el) el.classList.toggle('on',x===s); }); const g=$('#g43'); if(g) g.classList.toggle('done',s==='ok'); },
+  err(t){ const e=$('#tp-err'); if(e) e.textContent=t; },
+  async sendCode(){ const t=$('#g43-t').value; if(this.busy) return; this.busy=true; this.step('bek'); this.err('');
+    try{ const r=await fn43('giris',{islem:'kod',telefon:t,cihaz:CIHAZ43}); this.tel=t; this.step('dog'); this.err(''); const e=$('#tp-err'); if(e) e.textContent=r.mesaj||''; if(r.test_kod){ $('#g43-k').value=''; this.testKod=r.test_kod; e.textContent=(r.mesaj||'')+' (TEST MODU · kod: '+r.test_kod+')'; } setTimeout(()=>{ try{ $('#g43-k').focus(); }catch(_){} },50); }
+    catch(err){ this.step('tel'); this.err(err.message); } this.busy=false; },
+  async verify(){ const k=$('#g43-k').value.replace(/\D/g,''); if(this.busy||k.length!==6) return; this.busy=true; this.step('bek'); this.err('');
+    try{ const r=await fn43('giris',{islem:'dogrula',telefon:this.tel,kod:k,cihaz:CIHAZ43}); await this.done(r); }
+    catch(err){ this.step('dog'); this.err(err.message); $('#g43-k').value=''; } this.busy=false; },
+  async linkLogin(tok){ this.step('bek'); this.err('Davetin kontrol ediliyor…'); const h=$('#tp-join h1'); if(h) h.innerHTML='Davetin <em>hazır.</em>';
+    try{ const r=await fn43('giris',{islem:'link',token:tok,cihaz:CIHAZ43}); await this.done(r); }
+    catch(err){ this.step('tel'); this.err(err.message); } },
+  async done(r){ const sb=await sb43('tel'); const { error }=await sb.auth.signInWithPassword({email:r.email,password:r.sifre}); if(error) throw new Error('Oturum açılamadı. Tekrar dene.');
+    ls43.set('akkim-kisi-v43',r.kisi); this.step('ok'); this.err('Giriş başarılı. Kutun hazırlanıyor…'); wake43(); await NET.init('phone'); PH.join(); } };
+
+/* telefonda katılım: kimlik sunucudan (sicil + katılım anahtarı) */
+const __phj43=PH.join.bind(PH);
+PH.join=function(){ if(!SEC43) return __phj43(); const kisi=ls43.get('akkim-kisi-v43'); if(!kisi||!kisi.sicil){ if(NET.status!=='auth') AUTH43.phone(); return; }
+  if(NET.status==='auth'){ ls43.del('akkim-kisi-v43'); return AUTH43.phone('Oturumun kapanmış. Tekrar giriş yap.'); }
+  this.s=String(kisi.sicil); this.k=String(kisi.anahtar); this.pend=true; AUTH43.form43(); AUTH43.step('ok'); AUTH43.err('Kutun hazırlanıyor…'); this.sendJoin();
+  clearInterval(this.rt); this.rt=setInterval(()=>{ if(!this.pend) return clearInterval(this.rt); AUTH43.err('Yayın ekranı bekleniyor… sahne açılınca otomatik bağlanacaksın.'); this.sendJoin(); },3500); };
+
+/* ---------------- karşılama masası / yönetim sayfası (#masa) ---------------- */
+const MASA43={ sb:null, rol:'', jwt:'',
+  async start(){ document.body.classList.add('masa43'); document.body.insertAdjacentHTML('beforeend',`<div id="m43"><header><b>AKKİM · YENİ YIL ÇEKİLİŞİ 2027</b><span id="m43-r">Karşılama masası</span></header><main id="m43-b"></main></div>`);
+    if(!SEC43){ $('#m43-b').innerHTML='<p class="m43-w">Bu sayfa yalnızca yayın adresinden (https) çalışır.</p>'; return; }
+    this.sb=await sb43('masa'); const { data:{ session } }=await this.sb.auth.getSession(); const tok=hashParam43('anahtar'); if(tok) dropHashParam43('anahtar');
+    if(tok) return this.login(tok); if(!session) return this.loginForm(); this.ready(); },
+  loginForm(msg){ $('#m43-b').innerHTML=`<section class="m43-c"><h2>Yetkili girişi</h2><p>Karşılama masası ya da sahne anahtarını gir.</p><input id="m43-t" type="password" placeholder="Gizli anahtar"><button id="m43-go">Giriş</button><div class="m43-e">${msg?esc43(msg):''}</div></section>`;
+    $('#m43-go').onclick=()=>{ const t=$('#m43-t').value.trim(); if(t) this.login(t); }; $('#m43-t').addEventListener('keydown',e=>{ if(e.key==='Enter') $('#m43-go').click(); }); },
+  async login(tok){ try{ const r=await fn43('giris',{islem:'sahne',token:tok}); const { error }=await this.sb.auth.signInWithPassword({email:r.email,password:r.sifre}); if(error) throw error; this.ready(); } catch(e){ this.loginForm(e.message); } },
+  async api(b){ const { data:{ session } }=await this.sb.auth.getSession(); if(!session) throw new Error('Oturum kapanmış.'); return fn43('yonetim',b,session.access_token); },
+  async ready(){ const { data:sahne }=await this.sb.rpc('sahne_mi'); this.rol=sahne?'sahne':'masa'; $('#m43-r').textContent=sahne?'Yönetim (sahne yetkisi)':'Karşılama masası';
+    $('#m43-b').innerHTML=`<section class="m43-c"><h2>Kişi bul</h2><div class="m43-row"><input id="m43-a" inputmode="numeric" placeholder="Sicil ya da telefon (05xx…)"><button id="m43-ab">Bul</button></div><div id="m43-k"></div></section>
+      <section class="m43-c" id="m43-oz"><h2>Durum</h2><div id="m43-o">…</div></section>
+      ${sahne?`<section class="m43-c"><h2>İK listesi</h2><p>CSV: <code>sicil;ad soyad;lokasyon;telefon</code> (lokasyon: Yalova / Nazilli). Var olan siciller güncellenir; katılım anahtarları ve davet linkleri korunur.</p><label class="m43-chk"><input type="checkbox" id="m43-ts" checked> Önce test verisini sil</label><input type="file" id="m43-f" accept=".csv,.txt"><div id="m43-fy"></div></section>
+      <section class="m43-c"><h2>Davet linkleri</h2><p>Henüz linki olmayan herkes için kişiye özel link üretir ve SMS gönderim dosyasını indirir. Linkler yalnızca bu dosyada bulunur; sunucuda saklanmaz.</p><div class="m43-row"><input id="m43-tb" value="${esc43(String(PUBLIC_URL).split('#')[0])}"><button id="m43-lb">Üret ve indir</button></div><div id="m43-ly"></div></section>`:''}
+      <section class="m43-c"><button class="m43-x" id="m43-out">Çıkış yap</button></section>`;
+    $('#m43-ab').onclick=()=>this.find(); $('#m43-a').addEventListener('keydown',e=>{ if(e.key==='Enter') this.find(); }); $('#m43-out').onclick=async()=>{ await this.sb.auth.signOut(); this.loginForm(); };
+    if(sahne){ $('#m43-f').onchange=e=>this.upload(e.target.files[0]); $('#m43-lb').onclick=()=>this.links(); }
+    this.ozet(); clearInterval(this.oT); this.oT=setInterval(()=>this.ozet(),15000); },
+  async ozet(){ try{ const o=await this.api({islem:'ozet'}); $('#m43-o').innerHTML=`<div class="m43-g"><div><b>${o.toplam}</b><small>listede</small></div><div><b>${o.telefonlu}</b><small>telefonu kayıtlı</small></div><div><b>${o.linkli}</b><small>davet linki üretildi</small></div><div><b>${o.giris}</b><small>giriş yaptı</small></div></div>${o.test?`<p class="m43-w">${o.test} test kaydı var (gerçek liste yüklenince silinir).</p>`:''}`; }catch(e){ $('#m43-o').textContent=e.message; } },
+  async find(){ const a=$('#m43-a').value.trim(); if(!a) return; const box=$('#m43-k'); box.textContent='Aranıyor…';
+    try{ const r=await this.api({islem:'bul',ara:a}); const k=r.kisi; if(!k){ box.innerHTML='<p class="m43-w">Listede bulunamadı. İK yetkilisine yönlendir.</p>'; return; }
+      box.innerHTML=`<div class="m43-p"><b>${esc43(k.ad)}</b><span>#${esc43(k.sicil)} · ${k.lok==='Y'?'Yalova':'Nazilli'}</span><ul><li>Telefon: ${k.telefonVar?esc43(k.telefon):'<em>kayıtlı değil</em>'}</li><li>Giriş: ${k.giris?'yaptı ('+new Date(k.giris).toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})+')':'henüz yok'}</li><li>Telefon kilidi: ${k.kilitli?'bir telefona kilitli':'yok'}</li></ul>
+        <div class="m43-row"><button id="m43-ck" ${k.kilitli?'':'disabled'}>Telefon kilidini kaldır</button><button id="m43-ql">Bu masadan giriş QR'ı</button></div><div id="m43-qr"></div></div>`;
+      $('#m43-ck').onclick=async()=>{ try{ await this.api({islem:'cihaz',sicil:k.sicil}); toast('Kilit kaldırıldı. Kişi davet linkini yeni telefonunda açabilir ya da SMS koduyla girebilir.'); this.find(); }catch(e){ toast(e.message); } };
+      $('#m43-ql').onclick=async()=>{ try{ const r2=await this.api({islem:'tek-link',sicil:k.sicil,taban:String(PUBLIC_URL).split('#')[0]}); const q=$('#m43-qr'); q.innerHTML='<p>Kişi bu kodu kendi telefonuyla okutsun. Yeni QR, kişinin önceki davet linkini iptal eder.</p><div id="m43-qrc"></div>';
+          if(window.QRCode) new QRCode($('#m43-qrc'),{text:r2.link,width:260,height:260,colorDark:'#030d15',colorLight:'#ffffff'}); else q.insertAdjacentHTML('beforeend','<code>'+esc43(r2.link)+'</code>'); }catch(e){ toast(e.message); } }; }
+    catch(e){ box.textContent=e.message; } },
+  async upload(f){ if(!f) return; const out=$('#m43-fy'); out.textContent='Okunuyor…'; const txt=await f.text(); const rows=csv43(txt);
+    if(rows.length<1){ out.textContent='Dosyada satır bulunamadı.'; return; }
+    if(!confirm(`${rows.length} kişi yüklenecek${$('#m43-ts').checked?' ve test verisi silinecek':''}. Devam edilsin mi?`)) { out.textContent=''; return; }
+    try{ const r=await this.api({islem:'yukle',satirlar:rows,test_sil:$('#m43-ts').checked}); out.innerHTML=`<p><b>${r.yuklenen}</b> kişi yüklendi.</p>${r.uyarilar&&r.uyarilar.length?'<details><summary>'+r.uyarilar.length+' uyarı</summary><pre>'+esc43(r.uyarilar.join('\n'))+'</pre></details>':''}`; this.ozet(); }
+    catch(e){ out.textContent=e.message; } },
+  async links(){ const out=$('#m43-ly'); const taban=$('#m43-tb').value.trim(); if(!confirm('Linki olmayan herkes için davet linki üretilecek. Devam edilsin mi?')) return; out.textContent='Üretiliyor…';
+    try{ const r=await this.api({islem:'linkler',taban}); if(!r.adet){ out.textContent='Yeni link gereken kimse yok.'; return; }
+      const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"'; const lines=['sicil;ad_soyad;telefon;link;sms_metni'].concat(r.satirlar.map(x=>[x.sicil,x.ad_soyad,x.telefon,x.link,x.mesaj].map(q).join(';')));
+      const blob=new Blob(['﻿'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='akkim-davet-linkleri-'+new Date().toISOString().slice(0,10)+'.csv'; document.body.appendChild(a); a.click(); a.remove();
+      out.innerHTML=`<p><b>${r.adet}</b> link üretildi ve dosya indirildi. Bu dosyayı yalnızca SMS firmasına yükleyin; içindeki linkler kişiye özeldir.</p>`; this.ozet(); }
+    catch(e){ out.textContent=e.message; } } };
+function esc43(s){ return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function csv43(txt){ const lines=txt.replace(/\r/g,'').split('\n').filter(l=>l.trim()); if(!lines.length) return []; const sep=lines[0].includes(';')?';':(lines[0].includes('\t')?'\t':',');
+  const cell=l=>{ const o=[]; let c='',q=false; for(let i=0;i<l.length;i++){ const ch=l[i]; if(q){ if(ch==='"'&&l[i+1]==='"'){ c+='"'; i++; } else if(ch==='"') q=false; else c+=ch; } else if(ch==='"') q=true; else if(ch===sep){ o.push(c); c=''; } else c+=ch; } o.push(c); return o.map(x=>x.trim()); };
+  let rows=lines.map(cell); if(rows.length&&!/\d/.test(rows[0][0]||'')) rows=rows.slice(1);
+  return rows.filter(r=>r.length>=3).map(r=>({sicil:r[0],ad_soyad:r[1],lokasyon:r[2],telefon:r[3]||''})); }
+
+const __init43=init;
+init=function(){ if(IS_MASA43) return MASA43.start(); const r=__init43(); if(SEC43&&IS_TEL&&!IS_DESK){ document.body.classList.add('sec43'); AUTH43.form43(); if(!PH.pend&&!PH.me) AUTH43.step('bek'); } return r; };
 
 init();
 </script>
