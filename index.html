@@ -5914,6 +5914,21 @@ if(typeof ADM!=='undefined') Object.assign(ADM,{
         <ol class="a-steps"><li><b>1</b><div><span>Her çalışana kişiye özel link üretilir</span><small>Sunucuda yalnızca linkin parmak izi tutulur; tahmin edilemez</small></div></li><li><b>2</b><div><span>Çalışan linke dokunur, giriş kendiliğinden olur</span><small>Şifre ya da kod yazması gerekmez</small></div></li><li><b>3</b><div><span>Link ilk açıldığı telefona kilitlenir</span><small>Telefon değişirse Çalışanlar sayfasından kilit kaldırılır</small></div></li></ol></div></div>`; }
 });
 
+/* =====================================================================
+   v57 · telefon numarası alanı: en fazla 11 hane, 0555 000 00 00 biçiminde
+   ===================================================================== */
+function telBicim57(v){ let d=String(v||'').replace(/\D/g,'');
+  if(d.startsWith('90')&&d.length>=12) d='0'+d.slice(2);   /* +90 ile yapıştırma */
+  if(d.startsWith('5')) d='0'+d;                          /* başta 0 unutulduysa */
+  d=d.slice(0,11);
+  return [d.slice(0,4),d.slice(4,7),d.slice(7,9),d.slice(9,11)].filter(Boolean).join(' '); }
+function telAlan57(){ const t=$('#g43-t'); if(!t||t.dataset.v57) return; t.dataset.v57='1'; t.maxLength=20; t.placeholder='05xx xxx xx xx';
+  t.addEventListener('input',()=>{ const b=telBicim57(t.value); if(b!==t.value){ t.value=b; try{ t.setSelectionRange(b.length,b.length); }catch(e){} } }); }
+const __form57=AUTH43.form43.bind(AUTH43);
+AUTH43.form43=function(){ const r=__form57(); try{ telAlan57(); }catch(e){} return r; };
+const __send57=AUTH43.sendCode.bind(AUTH43);
+AUTH43.sendCode=function(){ const t=$('#g43-t'); if(t){ t.value=telBicim57(t.value); if(t.value.replace(/\D/g,'').length!==11){ this.err('Telefon numaranı 11 hane olarak yaz: 05xx xxx xx xx'); return; } } return __send57(); };
+
 init();
 sahneAdres();
 </script>
