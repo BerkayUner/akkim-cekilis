@@ -5835,7 +5835,7 @@ const set54=(sel,v,html)=>{ const el=$(sel); if(!el) return; if(html){ if(el.inn
 function bekle54(){ if(this.cur!=='tp-wait'||!this.me||this.me.g!=null) return; const st=this.st||{};
   if(st.dn>0||st.end) return;
   const r=this.me, ad=String(r.name||'').split(' ')[0], once=!st.ph||st.ph==='lobby';
-  const yer=r.row?` (<b>${r.row}. sıra, ${r.col}. kutu</b>)`:'';
+  const sira=Math.floor(+r.row)||0, kutu=Math.floor(+r.col)||0; const yer=sira>0&&kutu>0?` (<b>${sira}. sıra, ${kutu}. kutu</b>)`:'';
   set54('#wait-k',once?'BİRAZDAN BAŞLIYORUZ':'ÇEKİLİŞ BAŞLADI');
   set54('#wait-h',ad?`Hoş geldin, ${ad}.`:'Hoş geldin.');
   set54('#wait-p',once
