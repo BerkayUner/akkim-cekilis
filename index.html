@@ -2080,7 +2080,7 @@ function buildGarland(){ const g=$('#garland'); const cols=['#885987','#ce3087',
     bulbs+=`<g class="bulb" style="animation-delay:${(-Math.random()*2.4).toFixed(2)}s"><ellipse cx="${bx}" cy="${by+12}" rx="14" ry="16" fill="${c}" opacity=".2"/><rect x="${bx-3}" y="${by-1}" width="6" height="6" rx="1.5" fill="#6b5a36"/><ellipse cx="${bx}" cy="${by+12}" rx="5.5" ry="8" fill="${c}"/><ellipse cx="${bx-1.6}" cy="${by+9}" rx="1.6" ry="2.6" fill="#fff" opacity=".7"/></g>`; } }
   g.innerHTML=`<path d="${path}" stroke="rgba(20,16,8,.9)" stroke-width="2" fill="none"/>`+bulbs; }
 function baubles(list){ return list.map(([x,len,col,size],i)=>{ const u='bb'+(UID++); return `<div class="bauble" style="left:${x}px;animation-delay:${-i*1.3}s"><div class="str" style="height:${len}px"></div><svg width="${size}" height="${Math.round(size*1.18)}" viewBox="0 0 100 118" style="display:block;margin:-2px auto 0"><defs><radialGradient id="${u}" cx=".35" cy=".5" r=".75"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".2" stop-color="${col}"/><stop offset="1" stop-color="#160812"/></radialGradient></defs><rect x="38" y="0" width="24" height="17" rx="3" fill="#e8c27a"/><circle cx="50" cy="16" r="5" fill="none" stroke="#e8c27a" stroke-width="2.5"/><circle cx="50" cy="68" r="48" fill="url(#${u})"/><path d="M6 62 Q50 84 94 62" stroke="#f0cf8a" stroke-width="3" fill="none" opacity=".75"/><path d="M10 80 Q50 100 90 80" stroke="#f0cf8a" stroke-width="2" fill="none" opacity=".5"/></svg></div>`; }).join(''); }
-const imgSrc=p=>p.url||`img/p/${p.img}.png`;
+const imgSrc=p=>p.url||`img/p/${p.img}.webp`;
 const art=p=>p.img?`<img src="${imgSrc(p)}" alt="${p.name}" draggable="false">`:goldSVG(p);
 /* v47: gerçek Akkim logosu (139x50). Gömülü: tek dosya yayında ve yazdırma penceresinde de çalışır.
    Açık zeminde özgün logo, koyu zeminde yalnızca yazısı beyaz olan sürüm. */
@@ -5683,7 +5683,7 @@ Object.assign(ADM,{
       alt=`<div class="t52-k">${r.gorsel?`<img src="${esc43(r.gorsel)}" alt="">`:''}<div class="t52-b"><b>${esc43(r.ad)}</b><span>#${esc43(r.sicil)} · ${r.lok==='Y'?'Yalova':'Nazilli'}</span><strong>${esc43(r.hediye)}</strong></div>${t?`<span class="chip ok">Teslim edildi · ${saat46(t.at)}</span>`:'<button class="a-btn gold" id="t52-ver">Teslim et</button>'}</div>`; }
     return `<div class="a-card t52"><div class="a-ct">Hediye teslimi <span class="a-tag">${fmt46(n)} / ${fmt46(D.sonuc.length)} TESLİM</span></div>
       <div class="t52-f"><div class="a-fg"><label for="t52-c">TESLİM KODU</label><input id="t52-c" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="24" placeholder="Telefondaki 6 karakter" value="${esc43(T.c)}"></div>
-      <div class="a-fg"><label for="t52-s">SİCİL${this.rol==='sahne'?' (İSTEĞE BAĞLI)':''}</label><input id="t52-s" autocomplete="off" inputmode="numeric" maxlength="12" placeholder="Sicil numarası" value="${esc43(T.s)}"></div>
+      <div class="a-fg"><label for="t52-s">SİCİL (İSTEĞE BAĞLI)</label><input id="t52-s" autocomplete="off" inputmode="numeric" maxlength="12" placeholder="Sicil numarası" value="${esc43(T.s)}"></div>
       <button class="a-btn gold" id="t52-bak" ${T.bekle?'disabled':''}>Kodu doğrula</button></div>
       <div id="t52-r" role="status">${alt}</div></div>`; },
   teslimHucre(w){ const t=this.d.tes.get(String(w.sicil));
@@ -5764,6 +5764,26 @@ if(!IS_TEL&&!IS_PANEL&&!IS_DESK&&!IS_ADM46&&!IS_KUM50){
   fx40Loop=function(){ if(ortulu()){ requestAnimationFrame(fx40Loop); return; } return f0.apply(this,arguments); };
   gl42Loop=function(){ if(ortulu()){ requestAnimationFrame(gl42Loop); return; } return g0.apply(this,arguments); };
 }
+
+/* =====================================================================
+   v53 · GÜVENLİK VE SAĞLAMLAŞTIRMA
+   · teslim kodu artık sunucuda doğrulanır ve sunucu kaydeder (tarayıcıdan sahte teslim kaydı yazılamaz)
+     masa yetkisi için sahnenin açık olması gerekmez; sicil yalnızca aynı kod iki kişide çıkarsa istenir
+   ===================================================================== */
+Object.assign(ADM,{
+  async teslimBak(){ const T=this.tes, c=kod52(T.c), s=String(T.s||'').replace(/\D/g,''), sira=++T.n;
+    const bitir=r=>{ if(sira!==T.n) return; T.bekle=false; T.sonuc=r; if(this.page!=='sonuc') return; this.render(); const o=$('#t52-ver')||$('#t52-c'); if(o) o.focus({preventScroll:true}); };
+    if(c.length!==6) return bitir({hata:'6 karakterlik teslim kodunu gir.'});
+    T.bekle=true; T.sonuc=null; this.render();
+    try{ const r=await this.api({islem:'teslim-bul',kod:c,sicil:s}); const k=r.kisi, D=this.d, p=D.pr[k.pi]||{};
+      if(k.teslim) D.tes.set(String(k.sicil),{at:k.teslim.at,kim:k.teslim.kim});
+      bitir({sicil:String(k.sicil),ad:k.ad,lok:k.lok,hediye:k.hediye||p.ad||'',gorsel:p.img||p.url?kucukGorsel48(p):'',muhur:k.muhur,kod:c}); }
+    catch(e){ bitir({hata:e.message}); } },
+  async teslimVer(b){ const r=this.tes.sonuc; if(!r||r.hata) return; b.disabled=true; b.textContent='Kaydediliyor…';
+    try{ const q=await this.api({islem:'teslim',kod:r.kod,sicil:r.sicil}); toast(q.zaten?'Bu hediye daha önce teslim edilmiş':'Teslim kaydedildi');
+      await this.load(true); this.tes.c=''; this.tes.s=''; this.render(); this.teslimOdak(); }
+    catch(e){ toast(e.message); b.disabled=false; b.textContent='Teslim et'; } }
+});
 
 init();
 sahneAdres();
