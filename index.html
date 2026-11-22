@@ -1375,6 +1375,22 @@ body.notap29 .tw29{display:block}
 #s-cover31.pre33 .flipd .o,#s-cover31.pre33 .flipd .n{animation:none!important}
 #s-cover31 .flipd .o{animation-delay:.05s!important}
 #s-cover31 .flipd .n{animation-delay:.3s!important}
+/* ===================== v34 ===================== */
+/* telefon: "Işığımı yak" — emoji çubuğunun hemen üstünde */
+#glow34{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(260%);z-index:60;display:flex;align-items:center;gap:12px;padding:12px 26px 12px 14px;border-radius:99px;border:1px solid rgba(255,226,160,.55);background:linear-gradient(180deg,rgba(40,30,12,.96),rgba(10,10,8,.96));color:#fff3d6;font:800 16px/1 var(--sans,Manrope),sans-serif;letter-spacing:.02em;box-shadow:0 12px 34px rgba(0,0,0,.55),0 0 26px rgba(255,214,140,.22);overflow:hidden;transition:transform .45s cubic-bezier(.2,1.2,.3,1),opacity .3s,filter .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+#glow34.on{transform:translateX(-50%)}
+#glow34 .ic{position:relative;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 40% 36%,#fffdf4,#ffe2a6 45%,#c99640);box-shadow:0 0 16px 4px rgba(255,214,140,.6);flex:none;animation:gl34 2.4s ease-in-out infinite}
+#glow34 .ic i{position:absolute;left:50%;top:-7px;width:10px;height:8px;margin-left:-5px;border-radius:2px 2px 0 0;background:#3a4a3e}
+@keyframes gl34{50%{box-shadow:0 0 26px 8px rgba(255,214,140,.85)}}
+#glow34 .bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:linear-gradient(90deg,#ffe2a0,#f28e00)}
+#glow34.cool .bar{animation:gb34 3s linear forwards}
+@keyframes gb34{from{width:100%}to{width:0}}
+#glow34.cool .ic{animation:none;box-shadow:0 0 34px 12px rgba(255,240,200,.95);background:radial-gradient(circle,#fff,#fff3d1 50%,#e8c27a)}
+#glow34.off{filter:grayscale(1) brightness(.6);pointer-events:none}
+#glow34.off .ic{animation:none;box-shadow:none;background:radial-gradient(circle at 40% 36%,#8a8478,#4a463e)}
+body.win-open #glow34{transform:translateX(-50%) translateY(260%)!important}
+/* telefon içeriği butonun arkasında kalmasın */
+body.tel17 .tps{padding-bottom:150px}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head>
 <body>
@@ -3534,6 +3550,105 @@ addEventListener('keydown',e=>{ if(IS_TEL||IS_PANEL||IS_DESK) return; if(e.targe
     try{ SND.init(); SND.play('impact2',.9); setTimeout(()=>{ SND.play('xreveal',.8); SND.play('glitter',.6); },350); }catch(x){} setTimeout(()=>{ try{ FX.burst(240,.24,.5,1.2,true); FX.rain(3,true); }catch(x){} },420);
     const h=c.querySelector('.c31-hint'); if(h) h.innerHTML='<span class="kbd">BOŞLUK</span> katılım ekranı'; } },true);
 function replayFlip33(){ const c=$('#s-cover31'); if(!c) return; c.classList.remove('on'); void c.offsetWidth; c.classList.add('on'); }
+
+/* =====================================================================
+   v34 · IŞIK PANOSU 2027 + "IŞIĞIMI YAK"
+   · her çalışan yuvarlak bir ampul (numara yok), petek dizilim → pürüzsüz rakam kenarları
+   · katılan ampul sıcak beyaz yanar; kazanan ampul sönmez, ALTINA döner (gece boyunca 2027 altınla dolar)
+   · rakamların arkasında hafif ışık hâlesi, dışı sönük
+   · telefondan "Işığımı yak": kişinin ampulü sahnede parlar (kura anında kapalı, 3 sn'de bir)
+   ===================================================================== */
+CONFIG.storageKey='akkim-cekilis-v34';
+/* ---------------- yerleşim: petek dizilim ---------------- */
+layoutWall=function(){ const n=S.list.length, W=1280, X0=34, Y0=44, AW=1212, AH=776, txt=String(CONFIG.year);
+  const cv=document.createElement('canvas'); cv.width=W; cv.height=900; const g=cv.getContext('2d');
+  const font=s=>`800 ${s}px Manrope, "Segoe UI", Arial, sans-serif`; g.font=font(200); const m=g.measureText(txt);
+  const w=m.actualBoundingBoxLeft+m.actualBoundingBoxRight, h=m.actualBoundingBoxAscent+m.actualBoundingBoxDescent;
+  const sx=AW/w, sy=Math.min(AH/h,sx*1.75), dh=h*sy, oy=Y0+(AH-dh)/2;
+  const glyph=(c,col)=>{ c.save(); c.translate(X0,oy); c.scale(sx,sy); c.fillStyle=col; c.textBaseline='alphabetic'; c.textAlign='left'; c.fillText(txt,m.actualBoundingBoxLeft,m.actualBoundingBoxAscent); c.restore(); };
+  g.font=font(200); glyph(g,'#fff');
+  const A=g.getImageData(0,0,W,900).data, on=(x,y)=>{ x|=0; y|=0; return x>=0&&y>=0&&x<W&&y<900&&A[(y*W+x)*4+3]>127; };
+  let best=null;
+  for(let p=44;p>=8;p-=.25){ const cells=[], rh=p*.866, q=p*.3; let row=0;
+    for(let y=Y0+p/2;y<Y0+AH;y+=rh,row++){ const off=row%2?p/2:0; for(let x=X0+p/2+off;x<X0+AW;x+=p) if(on(x,y)&&on(x-q,y)&&on(x+q,y)&&on(x,y-q)&&on(x,y+q)) cells.push([x,y]); }
+    if(cells.length>=n){ best={p,cells}; break; } }
+  if(!best) return __lw33();
+  const {p,cells}=best, pick=[]; for(let i=0;i<n;i++) pick.push(cells[Math.floor(i*cells.length/n)]);
+  const d=p*.8; WC.grid={cols:Math.round(AW/p),rows:Math.round(AH/(p*.866)),tw:d,th:d,p};
+  WC.pos=pick.map(([x,y])=>({x:x-d/2,y:y-d/2}));
+  /* hâle: rakamların bulanık ışığı + çok hafif rakam gölgesi */
+  const hl=document.createElement('canvas'); hl.width=W; hl.height=900; const hg=hl.getContext('2d'); hg.font=font(200);
+  hg.filter='blur(26px)'; hg.globalAlpha=.16; glyph(hg,'#ffd9a0'); hg.filter='blur(6px)'; hg.globalAlpha=.07; glyph(hg,'#ffe9c8'); hg.filter='none'; WC.halo=hl;
+  WC.spr={}; };
+/* ---------------- ampul görselleri (önbellekli) ---------------- */
+function bulb34(kind,d){ const k=kind+'|'+Math.round(d*10)+'|'+WC.Q; WC.spr=WC.spr||{}; if(WC.spr[k]) return WC.spr[k];
+  const pad=kind==='off'?1.1:(kind==='gold'?3.2:2.2), S_=Math.ceil(d*pad*WC.Q), c=document.createElement('canvas'); c.width=c.height=S_; const g=c.getContext('2d'), m=S_/2, r=d/2*WC.Q;
+  const glow=(col,R,a)=>{ const gr=g.createRadialGradient(m,m,0,m,m,R); gr.addColorStop(0,col.replace('A',a)); gr.addColorStop(.45,col.replace('A',a*.35)); gr.addColorStop(1,col.replace('A',0)); g.fillStyle=gr; g.fillRect(0,0,S_,S_); };
+  const ball=(c0,c1,c2,rr)=>{ const gr=g.createRadialGradient(m-rr*.3,m-rr*.35,rr*.05,m,m,rr); gr.addColorStop(0,c0); gr.addColorStop(.55,c1); gr.addColorStop(1,c2); g.fillStyle=gr; g.beginPath(); g.arc(m,m,rr,0,7); g.fill(); };
+  if(kind==='off'){ ball('rgba(255,230,190,.30)','rgba(255,214,160,.16)','rgba(255,214,160,.07)',r*.82); }
+  else if(kind==='on'){ glow('rgba(255,236,205,A)',S_/2*.8,.38); ball('#fffefa','#f6ecd8','#cdb48e',r*.84); }
+  else if(kind==='gold'){ glow('rgba(255,176,40,A)',S_/2,1); ball('#fff6cf','#ffc23a','#a8670a',r*.98); }
+  else if(kind==='void'){ glow('rgba(231,48,41,A)',S_/2,.5); ball('#ffd0cc','#e73029','#8e1c16',r*.86); }
+  g.fillStyle='rgba(255,255,255,.85)'; if(kind!=='off'){ g.beginPath(); g.arc(m-r*.3,m-r*.32,r*.18,0,7); g.fill(); }
+  return WC.spr[k]=c; }
+/* ---------------- ampul çizimi ---------------- */
+drawTile=function(g,i,mode){ const p=WC.pos[i]; if(!p) return; const d=WC.grid.tw, cx=p.x+d/2, cy=p.y+d/2, f=WC.flags[i], city=S.list[i].city;
+  const put=(kind)=>{ const sp=bulb34(kind,d), s=sp.width/WC.Q; g.drawImage(sp,cx-s/2,cy-s/2,s,s); };
+  if(mode==='win'){ const gl=glowSprite('#ffd98a',d*1.2); g.drawImage(gl,cx-gl.width/WC.Q/2,cy-gl.height/WC.Q/2,gl.width/WC.Q,gl.height/WC.Q); put('gold'); return; }
+  if(f.has('void')){ put('void'); return; }
+  if(f.has('out')){ put('gold'); return; }                 /* kazanan: sönmez, altın kalır */
+  if(f.has('lit')||f.has('hot')){ put('on'); if(WC.cam&&WC.cam.s>1.6){ g.strokeStyle=city==='Y'?'rgba(242,142,0,.9)':'rgba(63,170,144,.9)'; g.lineWidth=1.4; g.beginPath(); g.arc(cx,cy,d*.56,0,7); g.stroke(); } return; }
+  put('off'); };
+const __ds34=drawScene; drawScene=function(g){ if(WC.halo) g.drawImage(WC.halo,0,0,1280,900); return __ds34(g); };
+/* ---------------- parlama ---------------- */
+WC.flares=new Map();
+const __da34=drawAnim; drawAnim=function(g,now){ __da34(g,now); const d=WC.grid?WC.grid.tw:12;
+  for(const [i,t0] of WC.flares){ const k=(now-t0)/1900; if(k>=1){ WC.flares.delete(i); WC.dirty=true; continue; } const p=WC.pos[i]; if(!p) continue;
+    const cx=p.x+d/2, cy=p.y+d/2, city=S.list[i].city, a=1-k, e=1-Math.pow(1-Math.min(1,k*2.2),3), col=city==='Y'?'242,142,0':'63,170,144';
+    const gl=glowSprite('#fff4dc',d*(2.2+e*2.4)); g.globalAlpha=Math.min(1,a*1.4); g.drawImage(gl,cx-gl.width/WC.Q/2,cy-gl.height/WC.Q/2,gl.width/WC.Q,gl.height/WC.Q);
+    /* yıldız ışınları */
+    g.save(); g.translate(cx,cy); g.rotate(k*.9); g.globalAlpha=a*.95; const L=d*(2.5+e*4.5);
+    for(let q=0;q<4;q++){ g.rotate(q?Math.PI/4:0); const lg=g.createLinearGradient(-L,0,L,0); lg.addColorStop(0,'rgba(255,255,255,0)'); lg.addColorStop(.5,'rgba(255,250,235,.95)'); lg.addColorStop(1,'rgba(255,255,255,0)'); g.fillStyle=lg; g.fillRect(-L,-1.2,L*2,2.4); }
+    g.restore(); g.globalAlpha=1;
+    for(let q=0;q<3;q++){ const kk=Math.min(1,k*1.25+q*.18); g.strokeStyle=`rgba(${col},${(1-kk)*.95})`; g.lineWidth=3*(1-kk)+.6; g.beginPath(); g.arc(cx,cy,d*.7+kk*d*5,0,7); g.stroke(); }
+    g.fillStyle=`rgba(255,255,255,${a})`; g.beginPath(); g.arc(cx,cy,d*.5*(1+a*.35),0,7); g.fill(); } };
+wallLoop=function(){ const now=performance.now(), cam=WC.cam, g=WC.c;
+  cam.x+=(cam.tx-cam.x)*.08; cam.y+=(cam.ty-cam.y)*.08; cam.s+=(cam.ts-cam.s)*.08;
+  const zoomed=Math.abs(cam.s-1)>.004||Math.abs(cam.x-640)>.5||Math.abs(cam.y-450)>.5;
+  const act=WC.dirty||zoomed||WC.comets.length||WC.pops.length||WC.wins.size||WC.flares.size; WC.fr++;
+  if(!act&&WC.fr%6){ requestAnimationFrame(wallLoop); return; }
+  if(!WC.base||(WC.dirty&&now-WC.lastBase>120)) renderBase();
+  g.setTransform(1,0,0,1,0,0); g.clearRect(0,0,WC.cv.width,WC.cv.height);
+  if(zoomed){ g.setTransform(WC.Q*cam.s,0,0,WC.Q*cam.s,WC.Q*(640-cam.x*cam.s),WC.Q*(450-cam.y*cam.s)); drawScene(g); }
+  else { g.drawImage(WC.base,0,0); g.setTransform(WC.Q,0,0,WC.Q,0,0); }
+  drawAnim(g,now); requestAnimationFrame(wallLoop); };
+
+const __bw34=buildWall; buildWall=function(){ const r=__bw34.apply(this,arguments); try{ S.results.forEach(x=>{ if(WC.flags[x.ix]) WC.flags[x.ix].add('out'); }); (S.voids||[]).forEach(x=>{ if(WC.flags[x.ix]) WC.flags[x.ix].add('void'); }); WC.dirty=true; }catch(e){} return r; };
+/* ---------------- sahne: "Işığımı yak" kuralları ---------------- */
+L.glowAt=new Map();
+function glowOK(){ try{ if(!S.started||SCREEN!=='draw') return false; const ph=phaseX(); if(!['wait','tap','res','act'].includes(ph)) return false;
+  const d=S.steps[S.si-1]; if(busy&&d&&d.t==='draw') return false; const oc=$('#ov-count'); if(oc&&oc.classList.contains('on')) return false; if(WC.comets&&WC.comets.length) return false; return true; }catch(e){ return false; } }
+const __st34=stateX; stateX=function(){ const st=__st34(); st.gl=glowOK()?1:0; return st; };
+const __msg34=onMsg; onMsg=function(m){ if(m&&m.t==='glow'){ const s=String(m.s||''), ix=S.list.findIndex(x=>x.id===s); if(ix<0||!L.lit.has(ix)) return;
+    const now=Date.now(); if(now-(L.glowAt.get(s)||0)<2800) return; if(!glowOK()) return; L.glowAt.set(s,now); WC.flares.set(ix,performance.now()); return; }
+  return __msg34(m); };
+/* durum değişince (kura başladı / bitti) telefonlar hemen öğrensin */
+if(!IS_TEL&&!IS_PANEL&&!IS_DESK){ let lg=-1; setInterval(()=>{ const v=glowOK()?1:0; if(v!==lg){ lg=v; try{ if(S.started) pushX(); }catch(e){} } },150); }
+
+/* ---------------- telefon: "Işığımı yak" butonu ---------------- */
+PH.glowT=0;
+PH.glow=function(){ const st=this.st||{}; if(!this.me||st.gl!==1) return; const now=Date.now(); if(now-this.glowT<3000) return; this.glowT=now;
+  const m={t:'glow',s:this.s}; sendX(m); if(typeof USE_SUPA!=='undefined'&&USE_SUPA) NET.up1(m); this.vib([20,30,60]);
+  const b=$('#glow34'); if(b){ b.classList.remove('cool'); void b.offsetWidth; b.classList.add('cool'); b.querySelector('.t').textContent='Işığın sahnede parladı'; const r=b.getBoundingClientRect(); PFX.burst(26,(r.left+r.width/2)/innerWidth,r.top/innerHeight,.6,true); }
+  clearTimeout(this.glowTo); this.glowTo=setTimeout(()=>{ const b2=$('#glow34'); if(b2) b2.classList.remove('cool'); glowUI34(); },3000); };
+function glowUI34(){ const b=$('#glow34'); if(!b) return; const st=PH.st||{}; const show=!!PH.me&&st.ph&&!['ls','lobby'].includes(st.ph)&&!PH.winOpen&&!PH.lsRun;
+  b.classList.toggle('on',show); const cool=Date.now()-PH.glowT<3000; const ok=st.gl===1;
+  b.classList.toggle('off',!ok); if(!cool) b.querySelector('.t').textContent=ok?'Işığımı yak':(st.ph==='draw'?'Kura sürüyor…':'Birazdan açılacak'); }
+const __recv34=PH.recv.bind(PH); PH.recv=function(m){ const r=__recv34(m); if(m&&m.t==='st') glowUI34(); return r; };
+const __render34=PH.render.bind(PH); PH.render=function(){ const r=__render34(); glowUI34(); return r; };
+function initPhone34(){ document.body.insertAdjacentHTML('beforeend','<button id="glow34" type="button"><span class="ic"><i></i></span><span class="t">Işığımı yak</span><b class="bar"></b></button>');
+  $('#glow34').addEventListener('pointerdown',e=>{ e.preventDefault(); PH.glow(); }); glowUI34(); }
+const __init34=init; init=function(){ __init34(); if(IS_TEL&&!IS_DESK) initPhone34(); };
 
 init();
 </script>
