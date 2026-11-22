@@ -1332,6 +1332,29 @@ body.notap29 .tw29{display:block}
 /* telefon performansı: ağır bulanık katmanlar kapalı */
 .aur23{display:none!important}
 #tp-gar .b29 .h{mix-blend-mode:normal}
+/* ===================== v31 ===================== */
+/* "Buradayım" akışı kaldırıldı */
+#win22 .tp-here,#win22 .here-note,#dg-st{display:none!important}
+/* kapak */
+#s-cover31{display:flex;align-items:center;padding:0 0 0 120px;overflow:hidden}
+.c31-l{position:relative;z-index:3;width:900px}
+.c31-k{margin-top:56px;font-size:20px;font-weight:800;letter-spacing:.42em;color:var(--gold);animation:rise 1s .2s both}
+.c31-y{font-family:var(--serif);font-weight:900;font-size:300px;line-height:.9;margin-top:10px;animation:rise 1.1s .35s both}
+.c31-y span{background:linear-gradient(180deg,#fff8e1 6%,#f3d38f 42%,#c9963f 70%,#fbe7b5 92%);background-size:100% 220%;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 18px 40px rgba(0,0,0,.6));animation:sh31 5s ease-in-out infinite alternate}
+@keyframes sh31{to{background-position:0 100%}}
+.c31-t{font-family:var(--serif);font-weight:900;font-size:84px;line-height:1;margin-top:6px;animation:rise 1s .5s both}
+.c31-s{display:flex;align-items:center;gap:16px;margin-top:40px;font-size:24px;color:var(--mute);animation:rise 1s .65s both}
+.c31-s .chip{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:99px;border:1px solid var(--line2);background:rgba(255,255,255,.04);color:#fff;font-weight:700;font-size:19px}
+.c31-s .chip i{width:10px;height:10px;border-radius:50%}
+.c31-r{position:absolute;right:0;top:0;width:900px;height:1080px;z-index:2}
+.c31-wm{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);font-family:var(--serif);font-weight:900;font-size:430px;line-height:1;color:transparent;-webkit-text-stroke:2px rgba(232,194,122,.16);white-space:nowrap;pointer-events:none}
+.c31-halo{position:absolute;left:50%;top:52%;width:900px;height:900px;margin:-450px 0 0 -450px;background:radial-gradient(circle,rgba(232,194,122,.22),rgba(206,48,135,.08) 40%,transparent 66%)}
+.c31-ring{position:absolute;left:50%;top:52%;width:720px;height:720px;margin:-360px 0 0 -360px;border:1px solid rgba(232,194,122,.22);border-radius:50%;animation:spin 80s linear infinite}
+.c31-ring.b{width:880px;height:880px;margin:-440px 0 0 -440px;border-style:dashed;opacity:.5;animation-direction:reverse}
+.orb31{position:absolute;display:grid;place-items:center;animation:fl31 7s ease-in-out infinite;filter:drop-shadow(0 30px 50px rgba(0,0,0,.55))}
+.orb31 img,.orb31 svg{width:100%;height:100%;object-fit:contain}
+@keyframes fl31{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-18px) rotate(2deg)}}
+.c31-hint{position:absolute;left:120px;bottom:60px;font-size:16px;color:var(--mute);z-index:3}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head>
 <body>
@@ -2630,7 +2653,7 @@ function nightReport(){ const now=new Date(), R=S.results.filter(r=>!r.void), ci
 
 /* ---------------- sadeleştirme: perde ekranı kısa ---------------- */
 const __next19=next;
-next=async function(){ await __next19(); const done=S.steps[S.si-1]; if(done&&done.t==='act'){ const at=S.si; setTimeout(()=>{ if(S.si===at&&!busy&&SCREEN==='draw') next(); },3400); } };
+next=async function(){ await __next19(); const done=S.steps[S.si-1]; if(done&&done.t==='act'){ const at=S.si; setTimeout(()=>{ if(S.si===at&&!busy&&SCREEN==='draw') next(); },5200); } };
 
 function stageInit19(){ $('#stage').insertAdjacentHTML('beforeend','<div id="rx19"></div>');
   const rp=$('#r-print'); if(rp) rp.insertAdjacentHTML('afterend','<button class="btn" id="r-night">Gece raporu (teslim + katılım)</button>');
@@ -3351,6 +3374,52 @@ function perf30(){ try{ const cv=PFX.cv; if(cv){ const d=Math.min(devicePixelRat
   const bb=PFX.burst; PFX.burst=function(n,...a){ return bb.call(this,Math.ceil(n*.6),...a); };
   try{ if(AMB&&AMB.ps&&AMB.ps.length>40) AMB.ps.length=Math.ceil(AMB.ps.length*.5); }catch(e){} }
 const __ip30=initPhone30; initPhone30=function(){ __ip30(); perf30(); };
+
+/* =====================================================================
+   v31 · TAM SENKRON · KUTUYA DOKUN → AÇILIR → KURA · KAPAK + QR SAYFASI
+   · 4. turda sonuç 4 sn ekranda, ardından 8 sn tahmin süresi, sonra kura kendiliğinden
+   · "Buradayım" akışı kaldırıldı
+   ===================================================================== */
+CONFIG.storageKey='akkim-cekilis-v31';
+/* ---------------- telefon: sahne ne gösteriyorsa o (bekletme/tutma yok) ---------------- */
+PH.recv=function(m){
+  if(m&&m.t==='st'){ if(m.act!=null) this.actKey=m.act; this.actHold=0;
+    const s=this.st; if(s&&s.ph===m.ph&&s.pi===m.pi&&s.k===m.k&&s.act===m.act&&s.tp===m.tp&&s.dn===m.dn&&s.end===m.end&&!['tap','ls','res','draw'].includes(m.ph)){ this.st=m; if(this.voteRender) this.voteRender(); return; } }
+  return __recv30(m); };
+/* kutu: dokunma anında KAPALI kalır, kura başlayınca açılır ve hediye çıkar */
+const __hr31=HERO.render.bind(HERO);
+HERO.render=function(st){ const r=__hr31(st); if(st&&st.ph==='tap'){ clearTimeout(this.t2); if(this.b) this.b.classList.remove('open'); } return r; };
+
+/* ---------------- sahne: 4. turda otomatik tempo (sonuç 4 sn → tahmin 8 sn → kura) ---------------- */
+const RES_T=4000, GUESS_T=8000;
+const __next31=next;
+next=async function(){ clearTimeout(next._t31a); clearTimeout(next._t31b); await __next31();
+  const done=S.steps[S.si-1], up=S.steps[S.si]; if(!done||done.t!=='draw'||!up) return; const p=PRIZES[done.pi]; if(!p||p.mode==='batch') return;
+  if(up.t!=='draw'&&up.t!=='intro') return; const at=S.si;
+  next._t31a=setTimeout(async ()=>{ if(S.si!==at||busy||SCREEN!=='draw') return;
+    if(up.t==='intro'){ await next(); }                       /* yeni hediye: tanıtım + tahmin açılır */
+    else { hideStageLayers(); zoomOut(); $('#wall').classList.remove('dim'); $('#draw').classList.remove('dark'); L.resUntil=0; pushX(); }   /* aynı hediye: duvara dön, tahmin açık */
+    const at2=S.si; next._t31b=setTimeout(()=>{ if(S.si===at2&&!busy&&SCREEN==='draw') next(); },GUESS_T); },RES_T); };
+
+/* ---------------- sahne: 1. sayfa kapak, 2. sayfa QR + canlı katılım ---------------- */
+const __bd31=buildDeck;
+buildDeck=function(){ __bd31(); const deck=$('#deck'); if(!deck||$('#s-cover31')) return; const P=id=>PRIZES.find(x=>x.id===id);
+  const orb=(id,l,t,w,h,d)=>`<div class="orb31" style="left:${l}px;top:${t}px;width:${w}px;height:${h}px;animation-delay:${d}s">${art(P(id))}</div>`;
+  deck.insertAdjacentHTML('afterbegin',`<div class="slide on" id="s-cover31"><div class="c31-l">
+     <div class="c31-logo">${logoSVG(62)}</div>
+     <div class="c31-k">YALOVA · NAZİLLİ · TEK SAHNE</div>
+     <div class="c31-y"><span>2027</span></div>
+     <div class="c31-t">Yeni Yıl <em class="gold">Büyük Çekilişi</em></div>
+     <div class="c31-s"><span class="chip"><i style="background:#f28e00"></i>Yalova 600</span><span class="chip"><i style="background:#3faa90"></i>Nazilli 350</span><span>950 çalışan · 200 özel hediye · tek canlı yayın</span></div></div>
+   <div class="c31-r"><div class="c31-wm">2027</div><div class="c31-halo"></div><div class="c31-ring"></div><div class="c31-ring b"></div>
+     ${orb('i18m',300,190,320,520,-1)}${orb('cmh',70,170,240,240,-3)}${orb('awr',650,150,200,280,-2)}${orb('ps5',110,600,250,250,-4)}${orb('aw',640,560,240,240,-5)}${orb('g1',400,760,170,220,-2.5)}${orb('cyr',40,420,150,170,-1.6)}${orb('ipd',720,380,190,190,-3.6)}</div>
+   <div class="c31-hint"><span class="kbd">BOŞLUK</span> katılım ekranı</div></div>`);
+  const lb=$('#s-lobby'); if(lb){ lb.classList.remove('on'); const y=lb.querySelector('.lb-year'); if(y){ y.className='lb-year'; y.removeAttribute('style'); y.innerHTML=`<span class="gd">${CONFIG.year}</span>`; } } };
+function cover31(){ const c=$('#s-cover31'); return !!(c&&c.classList.contains('on')&&SCREEN==='deck'); }
+document.addEventListener('keydown',e=>{ if(IS_TEL||IS_PANEL||IS_DESK) return; if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA') return;
+  if(cover31()&&[' ','Enter','ArrowRight','PageDown'].includes(e.key)){ e.preventDefault(); e.stopImmediatePropagation(); $('#s-cover31').classList.remove('on'); const lb=$('#s-lobby'); if(lb) lb.classList.add('on'); try{ lobbyRender(); }catch(x){} } },true);
+/* hiç dokunma kalmadıysa kapak tekrar açılmasın diye QR sayfası ekranı sırasında katılım sayısı büyük */
+const __init31=init; init=function(){ __init31(); if(IS_TEL&&!IS_DESK){ const c=$('#tp-tap .tap-cta'); if(c) c.innerHTML='Kutuya <em>dokun!</em>'; const w=$('#tp-tap .tw29'); if(w) w.textContent='Kutun hazır · kura birazdan başlıyor'; } };
 
 init();
 </script>
