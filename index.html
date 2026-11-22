@@ -3,6 +3,7 @@
 <head><script>/* /admin, /masa, /sahne, /kumanda, /telefon: ekran yoldan okunur. Yalnızca eski #yonetim, #masa, #sahne linkleri çizimden önce yeni adrese çevrilir */(function(){var m=location.pathname.match(/\/(admin|masa|sahne|kumanda|telefon)$/),y=m?m[1]:'';if(window.top===window&&/^https?:/.test(location.protocol)){var o=location.hash.match(/^#(yonetim|masa|sahne|kumanda)(?:&(.*))?$/);if(o){y=o[1]==='yonetim'?'admin':o[1];history.replaceState(null,'',y+location.search+(o[2]?'#'+o[2]:''));}var t=location.hash.match(/^#teslim(?:=(\d+\.[A-Za-z0-9]+))?(?:&(.*))?$/);if(t){y='admin';history.replaceState(null,'','admin'+location.search+'#s=sonuc'+(t[1]?'&tk='+t[1]:'')+(t[2]?'&'+t[2]:''));}}window.YOL48=y;})();</script><script>(function(){var h=location.hash||'';if(/sifirla/.test(h)){try{Object.keys(localStorage).filter(function(k){return /^akkim/.test(k)&&(/tel/.test(h)||!/^akkim-(oturum-sahne|oturum-masa|cihaz)/.test(k));}).forEach(function(k){localStorage.removeItem(k);});}catch(e){}location.replace(location.pathname+'?t='+Date.now()+(/tel/.test(h)?'#tel':'#sahne'));return;}addEventListener('hashchange',function(){if(/sifirla/.test(location.hash))location.reload();});if(!window.YOL48&&!/sahne|demo|teslim|test=|tel|masa|yonetim|kumanda/.test(h)&&!/panel/.test(location.search)){location.replace(location.pathname+location.search+'#tel');}})();</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a1f2e">
 <title>Akkim · Yeni Yıl Büyük Çekilişi 2027</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1754,6 +1755,28 @@ body.adm46>*:not(#adm):not(#toast){display:none!important}
 .t52-b span{font-size:13px;color:var(--mut)}
 /* v52 · hafif final */
 body.ortu52 #garland .bulb{animation-play-state:paused!important}
+
+/* ===== v54 · telefon: çıkış, tam ekran, yakınlaştırma kapalı ===== */
+html:has(body.tel54),body.tel54,body.tel54 #tel17{touch-action:manipulation;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body.tel54 .pg,body.tel54 #hero25,body.tel54 .pgw{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+#out54{position:fixed;top:calc(12px + env(safe-area-inset-top));right:calc(12px + env(safe-area-inset-right));z-index:9990;display:none;align-items:center;gap:7px;height:34px;padding:0 13px 0 11px;border-radius:99px;border:1px solid rgba(232,194,122,.34);background:rgba(4,16,26,.62);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#f1e2bf;font:800 10.5px var(--sans);letter-spacing:.18em;text-transform:uppercase;box-shadow:0 8px 22px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.06);cursor:pointer;touch-action:manipulation;transition:transform .12s,background .2s}
+#out54.on{display:flex}
+#out54.inh{position:relative;top:auto;right:auto;margin-left:12px;flex:none}
+body.tel54 .tp-h:has(#out54.on) .tp-live{margin-left:auto}
+#out54 svg{width:15px;height:15px;flex:none;color:#e8c27a}
+#out54:active{transform:scale(.94);background:rgba(4,16,26,.85)}
+#ox54{position:fixed;inset:0;z-index:9995;display:flex;align-items:flex-end;justify-content:center;padding:0 12px calc(12px + env(safe-area-inset-bottom));background:rgba(2,8,14,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .22s}
+#ox54.on{opacity:1;pointer-events:auto}
+.ox54-c{width:100%;max-width:440px;padding:26px 22px 20px;border-radius:26px;background:linear-gradient(180deg,#0f2535,#07141f);border:1px solid rgba(232,194,122,.26);box-shadow:0 -10px 50px rgba(0,0,0,.5);text-align:center;color:#eef4f8;transform:translateY(24px);transition:transform .26s cubic-bezier(.2,.9,.3,1.2)}
+#ox54.on .ox54-c{transform:none}
+.ox54-k{font:800 10.5px var(--sans);letter-spacing:.3em;color:#e8c27a}
+.ox54-c h3{margin:10px 0 8px;font:800 24px/1.2 var(--serif);color:#fff}
+.ox54-c p{margin:0 auto 20px;max-width:330px;font-size:14.5px;line-height:1.55;color:rgba(238,244,248,.72)}
+.ox54-b{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ox54-b button{height:52px;border-radius:16px;font:800 15px var(--sans);cursor:pointer;touch-action:manipulation}
+.ox54-b .no{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);color:#fff}
+.ox54-b .yes{background:linear-gradient(180deg,#f0cf8c,#c9963e);border:0;color:#1a1206}
+.ox54-b .yes:disabled{opacity:.7}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script><link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet"></head>
 <body>
@@ -5784,6 +5807,68 @@ Object.assign(ADM,{
       await this.load(true); this.tes.c=''; this.tes.s=''; this.render(); this.teslimOdak(); }
     catch(e){ toast(e.message); b.disabled=false; b.textContent='Teslim et'; } }
 });
+
+/* =====================================================================
+   v54 · TELEFON İNCE AYARLARI
+   · çekiliş başlamadan "Tüm hediyeler çekildi" görünmesin (sahne adımları kurulmadan final bayrağı açılıyordu)
+   · bekleme ekranı: çekiliş öncesi "birazdan başlıyoruz" metni
+   · sağ üstte çıkış (onay penceresiyle)
+   · tam ekran (Android: ilk dokunuşta), koyu tarayıcı çubuğu, yakınlaştırma kapalı
+   ===================================================================== */
+/* sahne: final bayrağı yalnızca çekiliş başlamış ve en az bir hediye çekilmişse */
+const __st54=stateX; stateX=function(){ const st=__st54(); if(st.end&&!(S.started&&S.results.length>0&&S.steps.some(x=>x.pi!=null))) delete st.end; return st; };
+
+/* telefon: bekleme ekranı metni */
+const set54=(sel,v,html)=>{ const el=$(sel); if(!el) return; if(html){ if(el.innerHTML!==v) el.innerHTML=v; } else if(el.textContent!==v) el.textContent=v; };
+function bekle54(){ if(this.cur!=='tp-wait'||!this.me||this.me.g!=null) return; const st=this.st||{};
+  if(st.dn>0||st.end) return;
+  const r=this.me, ad=String(r.name||'').split(' ')[0], once=!st.ph||st.ph==='lobby';
+  const yer=r.row?` (<b>${r.row}. sıra, ${r.col}. kutu</b>)`:'';
+  set54('#wait-k',once?'BİRAZDAN BAŞLIYORUZ':'ÇEKİLİŞ BAŞLADI');
+  set54('#wait-h',ad?`Hoş geldin, ${ad}.`:'Hoş geldin.');
+  set54('#wait-p',once
+    ?`Çekilişimiz birazdan başlayacak. Kutun sahnedeki dev 2027’nin içinde yerini aldı${yer}. Hediye sırası geldiğinde telefonun titrer: kutunu salla, şansını gör.`
+    :`İlk hediye birazdan sahnede. Kutun 2027’nin içinde yanıyor${yer}; sıra gelince telefonun titrer.`,true);
+  const now=$('#tp-wait .tp-now'); if(now&&now.style.display==='none') now.style.display=''; }
+
+/* telefon: çıkış */
+const OUT54_KEYS=/^akkim-(kisi-v43|tel-v17|won-seen-|v19-dlv|v19-here|v20-score|kk43-|oturum-tel)/;
+function out54(){ if(!IS_TEL||!SEC43) return; const on=!!ls43.get('akkim-kisi-v43')&&!PH.lsRun; let b=$('#out54');
+  if(!b){ if(!on) return;
+    document.body.insertAdjacentHTML('beforeend',`<button id="out54" type="button" aria-label="Çıkış yap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4"/><path d="M9 16l-4-4 4-4"/><path d="M5 12h10"/></svg><span>Çıkış</span></button>
+      <div id="ox54" role="dialog" aria-modal="true" aria-labelledby="ox54-h"><div class="ox54-c"><div class="ox54-k">ÇIKIŞ</div><h3 id="ox54-h">Çıkış yapmak istiyor musun?</h3><p>Kutun sahnede yerinde kalır. Aynı numarayla yeniden giriş yaptığında kaldığın yerden devam edersin.</p><div class="ox54-b"><button type="button" class="no">Vazgeç</button><button type="button" class="yes">Çıkış yap</button></div></div></div>`);
+    b=$('#out54'); const ox=$('#ox54'); const h=$('#tel17 .tp-h'); if(h){ h.appendChild(b); b.classList.add('inh'); }
+    b.onclick=()=>{ ox.classList.add('on'); };
+    ox.querySelector('.no').onclick=()=>ox.classList.remove('on');
+    ox.addEventListener('click',e=>{ if(e.target===ox) ox.classList.remove('on'); });
+    ox.querySelector('.yes').onclick=()=>cikis54(); }
+  b.classList.toggle('on',on); }
+async function cikis54(){ const y=$('#ox54 .yes'); if(y){ y.disabled=true; y.textContent='Çıkılıyor…'; }
+  try{ clearInterval(PH.rt); PH.pend=false; }catch(e){}
+  try{ if(NET.sb) await Promise.race([NET.sb.auth.signOut({scope:'local'}),new Promise(r=>setTimeout(r,2500))]); }catch(e){}
+  try{ Object.keys(localStorage).filter(k=>OUT54_KEYS.test(k)).forEach(k=>localStorage.removeItem(k)); }catch(e){}
+  try{ if(document.fullscreenElement) await document.exitFullscreen(); }catch(e){}
+  location.replace(location.pathname+location.search); }
+
+const __render54=PH.render.bind(PH);
+PH.render=function(){ const st=this.st; if(st&&st.end&&!(st.dn>0)) delete st.end;
+  const r=__render54(); try{ bekle54.call(this); }catch(e){} try{ out54(); }catch(e){} return r; };
+
+/* telefon: tam ekran, koyu çubuk, yakınlaştırma kapalı */
+if(IS_TEL){
+  document.body.classList.add('tel54');
+  const vp=document.querySelector('meta[name=viewport]'); if(vp) vp.setAttribute('content','width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover');
+  if(!document.querySelector('meta[name=theme-color]')) document.head.insertAdjacentHTML('beforeend','<meta name="theme-color" content="#0a1f2e">');
+  /* iOS Safari: iki parmakla yakınlaştırma ve çift dokunuş */
+  ['gesturestart','gesturechange','gestureend'].forEach(t=>document.addEventListener(t,e=>e.preventDefault(),{passive:false}));
+  document.addEventListener('touchmove',e=>{ if(e.touches&&e.touches.length>1) e.preventDefault(); },{passive:false});
+  document.addEventListener('dblclick',e=>e.preventDefault(),{passive:false});
+  /* tam ekran: giriş yapılmışsa ilk dokunuşta (Android Chrome / Samsung); iPhone desteklemez, çubuk koyu kalır */
+  const fs54=e=>{ const d=document.documentElement; if(document.fullscreenElement||!d.requestFullscreen) return;
+    if(!ls43.get('akkim-kisi-v43')) return; const t=e.target; if(t&&t.closest&&t.closest('input,textarea,select,#out54,#ox54')) return;
+    try{ d.requestFullscreen({navigationUI:'hide'}).catch(()=>{}); }catch(err){} };
+  document.addEventListener('pointerup',fs54,true); document.addEventListener('touchend',fs54,true);
+}
 
 init();
 sahneAdres();
