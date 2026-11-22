@@ -1428,6 +1428,7 @@ body.tel17 .tps{padding-bottom:150px}
 #bgrid .bc{background:rgba(6,22,34,.94)!important}
 /* ===================== v38 ===================== */
 #bg38{position:absolute;left:0;top:0;width:1800px;height:660px;pointer-events:none}
+/* v39 */
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head>
 <body>
@@ -3945,6 +3946,111 @@ const __init38=init; init=function(){ __init38(); if(!IS_TEL&&!IS_PANEL&&!IS_DES
 drawScene=function(g){ const now=performance.now(); if(WC.halo) g.drawImage(WC.halo,0,0,WW,WH); wires35(g);
   if(WC.decor) for(const c of WC.decor) putBulb35(g,c.x,c.cy,'on',c.ci);
   for(let i=0;i<WC.pos.length;i++){ const f=WC.flags[i]; if(!f) continue; const pa=WC.popAt[i]; if(f.has('win')||(pa!=null&&now-pa<700)) continue; drawTile(g,i); } };
+
+/* =====================================================================
+   v39 · KONTÜR 2027 · KISIK VARSAYILAN IŞIK · ÇİZGİ ÇALIŞMASI ARKA PLAN
+   · ampuller 2027'nin şeklini iç içe kontür hatlarıyla izler (gravür / tabela harfi gibi)
+   · varsayılan ampul ışığı kısıldı (hâle küçük ve sönük)
+   · Noel Baba ve Akkim logoları: içi boş, altın kenar çizgileri (2D çizgi çalışması)
+   · Noel Baba ekranın dikey ortasından soldan sağa geçer
+   ===================================================================== */
+CONFIG.storageKey='akkim-cekilis-v39';
+putBulb35=__pb38;   /* v38'deki genel kısmayı kaldır: kısma artık ampul görselinin kendisinde */
+
+/* ---------------- yerleşim: kontür hatları ---------------- */
+layoutWall=function(){ const n=S.list.length, X0=40, Y0=116, AW=WW-80, AH=476, txt=String(CONFIG.year);
+  const cv=document.createElement('canvas'); cv.width=WW; cv.height=WH; const g=cv.getContext('2d');
+  const font=s=>`900 ${s}px "Playfair Display", Georgia, serif`;
+  g.font=font(400); let mm=g.measureText(txt); let fs=400*AH/(mm.actualBoundingBoxAscent+mm.actualBoundingBoxDescent);
+  const lay=()=>{ g.font=font(fs); const ws=[...txt].map(ch=>{ const q=g.measureText(ch); return {ch,l:q.actualBoundingBoxLeft,w:q.actualBoundingBoxLeft+q.actualBoundingBoxRight}; }); return {ws,sum:ws.reduce((a,b)=>a+b.w,0)}; };
+  let L_=lay(), gap=Math.max(40,Math.min(130,(AW-L_.sum)/3)); if(L_.sum+3*gap>AW){ fs*=AW/(L_.sum+3*gap); L_=lay(); gap=Math.max(30,Math.min(130,(AW-L_.sum)/3)); }
+  g.font=font(fs); mm=g.measureText(txt); const asc=mm.actualBoundingBoxAscent, hh=asc+mm.actualBoundingBoxDescent;
+  const sx0=X0+(AW-(L_.sum+3*gap))/2, base=Y0+(AH-hh)/2+asc;
+  const each=(fn)=>{ let x=sx0; L_.ws.forEach(o=>{ fn(o.ch,x+o.l,base); x+=o.w+gap; }); };
+  g.fillStyle='#fff'; g.textBaseline='alphabetic'; each((c,x,y)=>g.fillText(c,x,y));
+  /* uzaklık haritası (yarım çözünürlük) */
+  const s2=2, w=WW/s2|0, h=WH/s2|0, A=g.getImageData(0,0,WW,WH).data, D=new Float32Array(w*h);
+  for(let y=0;y<h;y++) for(let x=0;x<w;x++) D[y*w+x]=A[((y*s2)*WW+x*s2)*4+3]>127?1e6:0;
+  for(let y=0;y<h;y++) for(let x=0;x<w;x++){ const i=y*w+x; if(!D[i]) continue; let v=D[i]; if(x>0) v=Math.min(v,D[i-1]+1); if(y>0){ v=Math.min(v,D[i-w]+1); if(x>0) v=Math.min(v,D[i-w-1]+1.414); if(x<w-1) v=Math.min(v,D[i-w+1]+1.414); } D[i]=v; }
+  for(let y=h-1;y>=0;y--) for(let x=w-1;x>=0;x--){ const i=y*w+x; if(!D[i]) continue; let v=D[i]; if(x<w-1) v=Math.min(v,D[i+1]+1); if(y<h-1){ v=Math.min(v,D[i+w]+1); if(x<w-1) v=Math.min(v,D[i+w+1]+1.414); if(x>0) v=Math.min(v,D[i+w-1]+1.414); } D[i]=v; }
+  let maxD=0; for(let i=0;i<D.length;i++) if(D[i]<1e5&&D[i]>maxD) maxD=D[i];
+  /* r aralığıyla kontür hatlarına ampul diz */
+  const build=r=>{ const rr=r/s2, pts=[], cell=rr, H=new Map(); const key=(x,y)=>((x/cell)|0)+','+((y/cell)|0);
+    const near=(x,y)=>{ const cx=(x/cell)|0, cy=(y/cell)|0; for(let dy=-1;dy<=1;dy++) for(let dx=-1;dx<=1;dx++){ const a=H.get((cx+dx)+','+(cy+dy)); if(a) for(const q of a){ if((q.x-x)**2+(q.y-y)**2<rr*rr*.92) return true; } } return false; };
+    for(let b=0;;b++){ const bd=rr*.62+b*rr*1.02; if(bd>maxD-.2) break;
+      for(let y=0;y<h;y++) for(let x=0;x<w;x++){ const v=D[y*w+x]; if(v<1e5&&v>0&&Math.abs(v-bd)<.62&&!near(x,y)){ const p={x,y,b}; pts.push(p); const k=key(x,y); (H.get(k)||H.set(k,[]).get(k)).push(p); } } }
+    return pts; };
+  let lo=8, hi=40, best=null; for(let it=0;it<11;it++){ const mid=(lo+hi)/2, pts=build(mid); if(pts.length>=n){ best={r:mid,pts}; lo=mid; } else hi=mid; }
+  if(!best) best={r:lo,pts:build(lo)};
+  const {r,pts}=best, bw=r*.56, bh=bw*1.42, sk=bw*.42;
+  /* her hattı zincire çevir (kablo) */
+  const rr=r/s2, used=new Set(), chains=[]; const byB={}; pts.forEach((p,i)=>{ (byB[p.b]=byB[p.b]||[]).push(i); });
+  for(const b in byB){ const ids=byB[b]; for(const st of ids){ if(used.has(st)) continue; const ch=[st]; used.add(st); let cur=st;
+      for(;;){ let bi=-1, bd=1e9; const P=pts[cur]; for(const j of ids){ if(used.has(j)) continue; const d=(pts[j].x-P.x)**2+(pts[j].y-P.y)**2; if(d<bd){ bd=d; bi=j; } } if(bi<0||bd>(rr*1.75)**2) break; ch.push(bi); used.add(bi); cur=bi; }
+      chains.push(ch); } }
+  const full=pts.map(p=>({x:p.x*s2,y:p.y*s2,b:p.b}));
+  const pick=new Set(); const persons=[]; for(let i=0;i<n;i++){ const k=Math.floor(i*full.length/n); pick.add(k); persons.push(k); }
+  full.forEach((p,k)=>{ p.ci=(k*5+p.b*2)%BCOL.length; });
+  WC.decor=full.filter((p,k)=>!pick.has(k)).map(p=>({x:p.x,cy:p.y,ci:p.ci}));
+  WC.grid={cols:0,rows:0,tw:bw,th:bh,p:r,sk};
+  WC.pos=persons.map(k=>({x:full[k].x-bw/2,y:full[k].y-bh/2})); WC.cix=persons.map(k=>full[k].ci);
+  WC.chains=chains.filter(c=>c.length>1).map(c=>c.map(k=>[full[k].x,full[k].y-bh/2-sk*.5]));
+  /* hâle + ince altın kontür */
+  const hl=document.createElement('canvas'); hl.width=WW; hl.height=WH; const hg=hl.getContext('2d'); hg.font=font(fs); hg.textBaseline='alphabetic';
+  hg.filter='blur(34px)'; hg.globalAlpha=.08; hg.fillStyle='#fff1dc'; each((c,x,y)=>hg.fillText(c,x,y)); hg.filter='none';
+  hg.globalAlpha=.16; hg.strokeStyle='#e8c27a'; hg.lineWidth=1.4; each((c,x,y)=>hg.strokeText(c,x,y)); WC.halo=hl; WC.spr={}; };
+/* kablolar: hatları izleyen ince dizi kablosu */
+wires35=function(g){ if(!WC.chains) return; const d=WC.grid; g.lineCap='round'; g.lineJoin='round';
+  for(const ch of WC.chains){ g.beginPath(); g.moveTo(ch[0][0],ch[0][1]); for(let i=1;i<ch.length;i++){ const [x0,y0]=ch[i-1], [x1,y1]=ch[i]; g.quadraticCurveTo((x0+x1)/2,(y0+y1)/2+d.p*.12,x1,y1); }
+    g.strokeStyle='rgba(8,10,8,.9)'; g.lineWidth=1.5; g.stroke(); } };
+/* ---------------- varsayılan ampul: daha kısık ---------------- */
+const __b39=bulb35;
+bulb35=function(kind,ci){ if(kind!=='on') return __b39(kind,ci); const d=WC.grid, k='on39|'+ci+'|'+Math.round(d.tw*10)+'|'+WC.Q; WC.spr=WC.spr||{}; if(WC.spr[k]) return WC.spr[k];
+  const Q=WC.Q, bw=d.tw*Q, bh=d.th*Q, sk=d.sk*Q, W_=Math.ceil(bw*3), H_=Math.ceil(bh*2.8), c=document.createElement('canvas'); c.width=W_; c.height=H_; const g=c.getContext('2d'), mx=W_/2, my=H_/2, col=hex2(BCOL[ci]);
+  const gr0=g.createRadialGradient(mx,my,0,mx,my,bw*1.15); gr0.addColorStop(0,rgba(col,.26)); gr0.addColorStop(1,rgba(col,0)); g.fillStyle=gr0; g.fillRect(0,0,W_,H_);
+  const sg=g.createLinearGradient(mx-bw*.26,0,mx+bw*.26,0); sg.addColorStop(0,'#2e2716'); sg.addColorStop(.5,'#7a6740'); sg.addColorStop(1,'#2e2716'); g.fillStyle=sg; g.fillRect(mx-bw*.24,my-bh/2-sk,bw*.48,sk+bh*.08);
+  const c0=mix(col,[255,255,255],.32), c1=mix(col,[0,0,0],.08), c2=mix(col,[0,0,0],.5);
+  const gr=g.createRadialGradient(mx-bw*.16,my-bh*.2,bw*.05,mx,my,bh*.58); gr.addColorStop(0,rgba(c0,1)); gr.addColorStop(.55,rgba(c1,1)); gr.addColorStop(1,rgba(c2,1)); g.fillStyle=gr; g.beginPath(); g.ellipse(mx,my,bw/2,bh/2,0,0,7); g.fill();
+  g.fillStyle='rgba(255,255,255,.55)'; g.beginPath(); g.ellipse(mx-bw*.16,my-bh*.16,bw*.09,bh*.14,0,0,7); g.fill();
+  return WC.spr[k]=c; };
+
+/* ---------------- arka plan: çizgi çalışması ---------------- */
+const LINE39='rgba(240,207,138,.85)';
+santa38=function(g,x,y,t,s){ g.save(); g.translate(x,y); g.scale(s,s); g.strokeStyle=LINE39; g.fillStyle='transparent'; g.lineWidth=1.6/s*1.2; g.lineCap='round'; g.lineJoin='round'; g.shadowColor='rgba(255,214,140,.55)'; g.shadowBlur=8;
+  const P=(f)=>{ g.beginPath(); f(); g.stroke(); };
+  /* ren geyikleri (önde, sağda) */
+  [158,222,286].forEach((rx,k)=>{ const ph=t*10+k*1.4, by=-42+Math.sin(ph)*2.2, a=Math.sin(ph)*.55;
+    P(()=>{ g.moveTo(rx-20,by-2); g.bezierCurveTo(rx-14,by-12,rx+8,by-12,rx+16,by-6); g.bezierCurveTo(rx+18,by+4,rx+4,by+8,rx-10,by+7); g.bezierCurveTo(rx-18,by+6,rx-22,by+3,rx-20,by-2); });   /* gövde */
+    P(()=>{ g.moveTo(rx+12,by-8); g.quadraticCurveTo(rx+18,by-18,rx+22,by-24); g.moveTo(rx+16,by-4); g.quadraticCurveTo(rx+22,by-14,rx+28,by-19); });                                          /* boyun */
+    P(()=>{ g.moveTo(rx+22,by-24); g.quadraticCurveTo(rx+30,by-29,rx+36,by-24); g.quadraticCurveTo(rx+34,by-19,rx+28,by-19); });                                                                 /* baş */
+    P(()=>{ g.moveTo(rx+23,by-26); g.quadraticCurveTo(rx+18,by-36,rx+12,by-42); g.moveTo(rx+18,by-35); g.lineTo(rx+11,by-34); g.moveTo(rx+16,by-39); g.lineTo(rx+18,by-46);
+           g.moveTo(rx+27,by-27); g.quadraticCurveTo(rx+28,by-38,rx+24,by-46); g.moveTo(rx+27,by-36); g.lineTo(rx+33,by-40); });                                                              /* boynuzlar */
+    [[rx+10,1],[rx+5,-1],[rx-13,1],[rx-17,-1]].forEach(([lx,dir],j)=>{ const sw=(j<2?1:-1)*a*dir, kx=lx+Math.sin(sw+(j<2?.7:-.7))*8, ky=by+11;
+      P(()=>{ g.moveTo(lx,by+5); g.lineTo(kx,ky); g.lineTo(kx+Math.sin(sw*1.4+(j<2?.2:-.3))*8,ky+9); }); });                                                                                     /* bacaklar */
+    P(()=>{ g.moveTo(rx-20,by-2); g.quadraticCurveTo(rx-26,by-6,rx-25,by-10); }); });                                                                                                          /* kuyruk */
+  P(()=>{ g.moveTo(78,-40); g.bezierCurveTo(110,-30,140,-52,160,-48); g.moveTo(160,-48); g.quadraticCurveTo(190,-40,222,-48); g.quadraticCurveTo(254,-40,286,-48); });                          /* dizgin */
+  /* kızak */
+  P(()=>{ g.moveTo(-12,-4); g.lineTo(80,-4); g.bezierCurveTo(100,-4,104,-22,92,-26); g.bezierCurveTo(84,-28,82,-18,90,-17); });                                                                   /* ayak */
+  P(()=>{ g.moveTo(8,-4); g.lineTo(12,-16); g.moveTo(62,-4); g.lineTo(58,-16); });
+  P(()=>{ g.moveTo(-6,-16); g.lineTo(70,-16); g.bezierCurveTo(84,-17,86,-34,80,-44); g.moveTo(-6,-16); g.bezierCurveTo(-14,-24,-12,-40,-2,-48); g.bezierCurveTo(4,-38,8,-32,20,-30); g.lineTo(62,-30); g.bezierCurveTo(70,-30,76,-36,80,-44); });   /* gövde */
+  P(()=>{ g.moveTo(6,-24); g.bezierCurveTo(24,-20,48,-20,66,-24); });                                                                                                                         /* süs çizgisi */
+  /* çuval */
+  P(()=>{ g.moveTo(6,-30); g.bezierCurveTo(-2,-44,8,-62,18,-58); g.bezierCurveTo(28,-56,30,-42,24,-30); g.moveTo(14,-57); g.lineTo(18,-66); g.lineTo(22,-58); });
+  /* Noel Baba */
+  P(()=>{ g.moveTo(30,-30); g.bezierCurveTo(26,-46,34,-58,44,-56); g.bezierCurveTo(54,-54,58,-42,54,-30); });                                                                                 /* gövde */
+  P(()=>{ g.arc(45,-63,7,0,Math.PI*2); });                                                                                                                                                   /* baş */
+  P(()=>{ g.moveTo(39,-60); g.quadraticCurveTo(45,-50,51,-60); });                                                                                                                           /* sakal */
+  P(()=>{ g.moveTo(38,-67); g.quadraticCurveTo(44,-84,60,-78); g.moveTo(52,-68); g.quadraticCurveTo(56,-74,60,-78); g.moveTo(37,-67); g.lineTo(53,-68); });                                  /* şapka */
+  P(()=>{ g.arc(62,-78,2.6,0,Math.PI*2); });
+  P(()=>{ g.moveTo(52,-48); g.quadraticCurveTo(64,-46,78,-40); });                                                                                                                           /* kol */
+  g.restore(); };
+logo38=function(g,x,y,h,a){ g.save(); g.globalAlpha=a; g.translate(x,y); const k=h/54; g.scale(k,k); g.strokeStyle=LINE39; g.lineWidth=1.3/k*1.4; g.shadowColor='rgba(255,214,140,.5)'; g.shadowBlur=6;
+  g.font='700 44px Manrope, sans-serif'; g.textBaseline='alphabetic'; g.strokeText('Akkim',0,49);
+  for(let r=0;r<4;r++)for(let c=0;c<4;c++){ if(r>=2&&c<2) continue; g.beginPath(); g.arc(126+c*13+6,r*13+6,4.6,0,Math.PI*2); g.stroke(); }
+  g.restore(); };
+/* Noel Baba ekranın dikey ortasından geçer (sabit yükseklik, hafif süzülme) */
+const __bgl39=bg38Loop;
+bg38Loop=function(now){ if(BG38.santa&&!BG38.santa.c39){ BG38.santa.c39=1; BG38.santa.y=WH/2+38; } return __bgl39(now); };
 
 init();
 </script>
