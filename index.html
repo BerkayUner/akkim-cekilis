@@ -1419,6 +1419,13 @@ body.tel17 .tps{padding-bottom:150px}
 /* ===================== v36 ===================== */
 #warn36{position:fixed;left:50%;top:18px;transform:translate(-50%,-160%);z-index:9999;padding:14px 26px;border-radius:14px;background:#b3261e;color:#fff;font:800 18px/1.3 Manrope,sans-serif;box-shadow:0 14px 40px rgba(0,0,0,.6);transition:transform .4s}
 #warn36.on{transform:translate(-50%,0)}
+/* ===================== v37 ===================== */
+#glow34.cool .bar{animation-duration:5s!important}
+/* pano öndeki ekranların arkasından seçilsin */
+#ov-intro{background:radial-gradient(circle at 50% 45%,rgba(8,36,54,.80),rgba(2,9,14,.86) 70%)!important}
+#wall.dim{opacity:.4!important}
+#dg-name,#digits .dg-k,#digits .dg-sub{text-shadow:0 4px 22px rgba(0,0,0,.95),0 0 4px rgba(0,0,0,.8)}
+#bgrid .bc{background:rgba(6,22,34,.94)!important}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head>
 <body>
@@ -3817,6 +3824,39 @@ if(!IS_TEL&&!IS_PANEL&&!IS_DESK){
   setInterval(()=>{ let b=$('#warn36'); const on=Date.now()-L.other36<6000;
     if(on&&!b){ document.body.insertAdjacentHTML('beforeend','<div id="warn36">⚠ Başka bir sahne ekranı daha açık. Telefonlar karışabilir — diğer sekmeyi / bilgisayarı kapatın.</div>'); b=$('#warn36'); }
     if(b) b.classList.toggle('on',on); },1000); }
+
+/* =====================================================================
+   v37 · HERKESİN AMPULÜ YANIK · "IŞIĞIMI YAK" HER ZAMAN (5 sn)
+   · telefonla bağlı olsun olmasın tüm ampuller yanık (bağlı kişinin ampulü gibi)
+   · buton 5 sn'de bir her zaman basılabilir; kura anında basış bekletilir, sonuç çıkınca topluca parlar
+   ===================================================================== */
+CONFIG.storageKey='akkim-cekilis-v37';
+/* ---------------- sahne: varsayılan yanık ampul ---------------- */
+const __dt37=drawTile;
+drawTile=function(g,i,mode){ const f=WC.flags[i];
+  if(!mode&&f&&!f.has('lit')&&!f.has('hot')&&!f.has('out')&&!f.has('void')){ const p=WC.pos[i]; if(!p) return; const d=WC.grid; putBulb35(g,p.x+d.tw/2,p.y+d.th/2,'on',WC.cix[i]||0); return; }
+  return __dt37(g,i,mode); };
+drawScene=function(g){ const now=performance.now(); if(WC.halo) g.drawImage(WC.halo,0,0,WW,WH); wires35(g);
+  if(WC.decor) for(const c of WC.decor) putBulb35(g,c.x,c.cy,'on',c.ci);
+  for(let i=0;i<WC.pos.length;i++){ const f=WC.flags[i]; if(f.has('win')||now-(WC.popAt[i]||0)<700) continue; drawTile(g,i); } };
+/* ---------------- sahne: basışlar — uygunsa hemen, kura anındaysa sonuçta topluca ---------------- */
+L.glowQ=new Map();
+const __msg37=onMsg;
+onMsg=function(m){ if(m&&m.t==='glow'){ const s=String(m.s||''), ix=S.list.findIndex(x=>x.id===s); if(ix<0) return;
+    const now=Date.now(); if(now-(L.glowAt.get(s)||0)<4500) return; L.glowAt.set(s,now);
+    if(glowOK()) WC.flares.set(ix,performance.now()); else L.glowQ.set(ix,1); return; }
+  return __msg37(m); };
+if(!IS_TEL&&!IS_PANEL&&!IS_DESK) setInterval(()=>{ if(!L.glowQ.size||!glowOK()) return; const t=performance.now();
+  for(const ix of L.glowQ.keys()) WC.flares.set(ix,t+Math.random()*700); L.glowQ.clear(); WC.dirty=true; },150);
+/* ---------------- telefon: 5 sn'de bir, her zaman ---------------- */
+PH.glow=function(){ const st=this.st||{}; if(!this.me) return; const now=Date.now(); if(now-this.glowT<5000) return; this.glowT=now;
+  const m={t:'glow',s:this.s}; sendX(m); if(typeof USE_SUPA!=='undefined'&&USE_SUPA) NET.up1(m); this.vib([20,30,60]);
+  const live=st.gl===1, b=$('#glow34');
+  if(b){ b.classList.remove('cool'); void b.offsetWidth; b.classList.add('cool'); b.querySelector('.t').textContent=live?'Işığın sahnede parladı':'Kura bitince yanacak'; const r=b.getBoundingClientRect(); PFX.burst(26,(r.left+r.width/2)/innerWidth,r.top/innerHeight,.6,true); }
+  clearTimeout(this.glowTo); this.glowTo=setTimeout(()=>{ const b2=$('#glow34'); if(b2) b2.classList.remove('cool'); glowUI34(); },5000); };
+glowUI34=function(){ const b=$('#glow34'); if(!b) return; const st=PH.st||{};
+  const show=!!PH.me&&st.ph&&!['ls','lobby','final','ak'].includes(st.ph)&&!PH.winOpen&&!PH.lsRun;
+  b.classList.toggle('on',show); b.classList.remove('off'); if(Date.now()-PH.glowT>=5000) b.querySelector('.t').textContent='Işığımı yak'; };
 
 init();
 </script>
