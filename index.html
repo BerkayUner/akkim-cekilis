@@ -1432,6 +1432,7 @@ body.tel17 .tps{padding-bottom:150px}
 /* ===================== v40 ===================== */
 #fx40{position:absolute;left:0;top:0;width:1800px;height:660px;pointer-events:none}
 #wall.dim~#fx40{opacity:0}
+/* v41 */
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script><link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet"></head>
 <body>
@@ -4169,6 +4170,32 @@ bulb35=function(kind,ci){ if(kind!=='hi'&&kind!=='goldhi') return __b40(kind,ci)
   const gr=g.createRadialGradient(m,m,0,m,m,bw*5); gr.addColorStop(0,rgba(col,1)); gr.addColorStop(.22,rgba(col,.55)); gr.addColorStop(.55,rgba(col,.16)); gr.addColorStop(1,rgba(col,0)); g.fillStyle=gr; g.fillRect(0,0,S_,S_);
   const cr=g.createRadialGradient(m,m,0,m,m,bw*.85); cr.addColorStop(0,'rgba(255,255,255,1)'); cr.addColorStop(1,'rgba(255,255,255,0)'); g.fillStyle=cr; g.beginPath(); g.ellipse(m,m,bw*.85,bh*.75,0,0,7); g.fill();
   return WC.spr[k]=c; };
+
+/* =====================================================================
+   v41 · SADECE AMPULLER
+   · 2027'nin kahverengi gövdesi, altın kenar çizgisi, derinliği ve yuvaları kaldırıldı: rakamları yalnızca ampuller çiziyor
+   · ampuller ~%28 büyütüldü (aynı yerleşim, aynı aralık)
+   · ara ara geçen ışık parıltısı artık gövdeye değil ampullere vuruyor (dalga gibi ampulleri sırayla parlatır)
+   ===================================================================== */
+CONFIG.storageKey='akkim-cekilis-v41';
+const __lw41=layoutWall;
+layoutWall=function(){ __lw41(); const d=WC.grid, ow=d.tw, oh=d.th, bw=d.p*.64, bh=bw*1.42;
+  WC.pos=WC.pos.map(p=>({x:p.x+ow/2-bw/2,y:p.y+oh/2-bh/2})); d.tw=bw; d.th=bh; d.sk=bw*.42;
+  WC.halo=null;                                                    /* gövde / kenar / yuva yok */
+  /* parıltı maskesi: yalnızca ampul noktaları */
+  const m=document.createElement('canvas'); m.width=WW; m.height=WH; const g=m.getContext('2d'); g.fillStyle='#fff';
+  const dot=(x,y)=>{ const gr=g.createRadialGradient(x,y,0,x,y,bw*1.1); gr.addColorStop(0,'rgba(255,255,255,1)'); gr.addColorStop(.45,'rgba(255,255,255,.55)'); gr.addColorStop(1,'rgba(255,255,255,0)'); g.fillStyle=gr; g.beginPath(); g.arc(x,y,bw*1.1,0,7); g.fill(); };
+  for(const p of WC.pos) dot(p.x+bw/2,p.y+bh/2); if(WC.decor) for(const c of WC.decor) dot(c.x,c.cy);
+  WC.gmask=m; WC.spr={}; };
+wires35=function(){};
+fx40Loop=function(now){ requestAnimationFrame(fx40Loop); if(!FX40.cv||SCREEN!=='draw'||!WC.gmask) return; const Q=WC.Q||1; if(FX40.cv.width!==WW*Q){ FX40.cv.width=WW*Q; FX40.cv.height=WH*Q; }
+  const g=FX40.g, quiet=(WC.cam&&WC.cam.s>1.05)||($('#wall')&&$('#wall').classList.contains('dim'));
+  if(!FX40.on&&now>FX40.next&&!quiet){ FX40.on=true; FX40.t0=now; }
+  if(!FX40.on) return; const k=(now-FX40.t0)/2300; g.setTransform(1,0,0,1,0,0); g.clearRect(0,0,FX40.cv.width,FX40.cv.height);
+  if(k>=1||quiet){ FX40.on=false; FX40.next=now+8000+Math.random()*5000; return; }
+  g.setTransform(Q,0,0,Q,0,0); const x=-300+(WW+600)*k, band=g.createLinearGradient(-190,0,190,0); band.addColorStop(0,'rgba(255,236,196,0)'); band.addColorStop(.5,'rgba(255,236,196,.62)'); band.addColorStop(1,'rgba(255,236,196,0)');
+  g.save(); g.translate(x,WH/2); g.transform(1,0,-.35,1,0,0); g.fillStyle=band; g.fillRect(-190,-WH,380,WH*2); g.restore();
+  g.globalCompositeOperation='destination-in'; g.drawImage(WC.gmask,0,0,WW,WH); g.globalCompositeOperation='source-over'; };
 
 init();
 </script>
