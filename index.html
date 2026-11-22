@@ -1416,6 +1416,9 @@ body.tel17 .tps{padding-bottom:150px}
 #draw:has(#en17:not(.on)) #poll20,body.notap29 #poll20{bottom:auto!important}
 #panel .slot:not(.f):not(.vd){display:grid!important;opacity:.3}
 #panel .slot.f{opacity:1}
+/* ===================== v36 ===================== */
+#warn36{position:fixed;left:50%;top:18px;transform:translate(-50%,-160%);z-index:9999;padding:14px 26px;border-radius:14px;background:#b3261e;color:#fff;font:800 18px/1.3 Manrope,sans-serif;box-shadow:0 14px 40px rgba(0,0,0,.6);transition:transform .4s}
+#warn36.on{transform:translate(-50%,0)}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head>
 <body>
@@ -3794,6 +3797,26 @@ renderSlots=function(pi,fresh=[]){ const p=PRIZES[pi]; if(!p) return; const ws=S
     html+=`<div class="slot ${r?'f':''} ${nw?'new':''}"><span class="sn">${String(i).padStart(2,'0')}</span>${w?`<span class="sw">${shortName(w.name)}</span><span class="cd35 ${w.city==='Y'?'y':'n'}"></span>`:`<span class="sw e">—</span>`}</div>`; }
   const sl=$('#slots'); sl.className='slots'; sl.innerHTML=html;
   $('#pn-cnt').textContent=`${ws.length} / ${p.qty}`+(vs.length?` · ${vs.length} geçersiz`:''); $('#pn-bar').style.width=(ws.length/p.qty*100)+'%'; };
+
+/* =====================================================================
+   v36 · İKİNCİ SAHNE KORUMASI
+   · telefon ilk duyduğu sahneye kilitlenir; diğer sahneyi yok sayar (6 sn susarsa geçer)
+   · sahne, aynı kanalda başka bir sahne yayın yapıyorsa uyarı gösterir
+   ===================================================================== */
+CONFIG.storageKey='akkim-cekilis-v36';
+PH.sidLock=null; PH.sidSeen=0;
+const __recv36=PH.recv.bind(PH);
+PH.recv=function(m){ if(m&&m.t==='st'&&m.sid){ const now=Date.now(); if(!this.sidLock||now-this.sidSeen>6000) this.sidLock=m.sid; if(m.sid!==this.sidLock) return; this.sidSeen=now; } return __recv36(m); };
+/* sahne: başka sahne yayınını yakala */
+L.other36=0;
+function other36(p){ if(p&&p.t==='st'&&p.sid&&p.sid!==SID) L.other36=Date.now(); }
+if(!IS_TEL&&!IS_PANEL&&!IS_DESK){
+  const hook=()=>{ try{ if(USE_SUPA&&NET.down&&!NET.down.__o36){ NET.down.__o36=1; NET.down.on('broadcast',{event:'m'},({payload})=>other36(payload)); } }catch(e){} };
+  setInterval(hook,1500);
+  try{ if(BCX){ BCX.addEventListener('message',e=>other36(e.data)); } }catch(e){}
+  setInterval(()=>{ let b=$('#warn36'); const on=Date.now()-L.other36<6000;
+    if(on&&!b){ document.body.insertAdjacentHTML('beforeend','<div id="warn36">⚠ Başka bir sahne ekranı daha açık. Telefonlar karışabilir — diğer sekmeyi / bilgisayarı kapatın.</div>'); b=$('#warn36'); }
+    if(b) b.classList.toggle('on',on); },1000); }
 
 init();
 </script>
