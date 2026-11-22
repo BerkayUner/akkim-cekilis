@@ -1355,6 +1355,19 @@ body.notap29 .tw29{display:block}
 .orb31 img,.orb31 svg{width:100%;height:100%;object-fit:contain}
 @keyframes fl31{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-18px) rotate(2deg)}}
 .c31-hint{position:absolute;left:120px;bottom:60px;font-size:16px;color:var(--mute);z-index:3}
+/* ===================== v32 ===================== */
+/* QR sayfası: canlı katılım daha görünür, QR kartı nefes alır */
+#s-lobby .lb-qr .q{border-radius:22px;animation:qrg32 2.6s ease-in-out infinite alternate}
+@keyframes qrg32{from{box-shadow:0 0 0 rgba(232,194,122,0)}to{box-shadow:0 0 60px rgba(232,194,122,.45)}}
+#lb-n{font-size:150px!important;line-height:.9!important;background:linear-gradient(180deg,#fff8e1,#f3d38f 50%,#c9963f);-webkit-background-clip:text;background-clip:text;color:transparent}
+#lb-n.bump32{animation:bump32 .5s cubic-bezier(.2,1.4,.4,1)}
+@keyframes bump32{0%{transform:scale(1.18)}100%{transform:scale(1)}}
+.lb-live32{display:flex;width:max-content;margin-top:44px!important;align-items:center;gap:10px;margin-bottom:14px;font-size:16px;font-weight:800;letter-spacing:.3em;color:#ff6b6b}
+.lb-live32 i{width:10px;height:10px;border-radius:50%;background:#ff4d4d;box-shadow:0 0 12px #ff4d4d;animation:tw 1.2s ease-in-out infinite}
+/* sahne: dokunmalı turda kutu kapalı kalır ve sallanır */
+.gift.hold32.open .g-lid,.gift.hold32.open .g-box{transform:none!important;opacity:1!important;transition-delay:0s!important}
+.gift.hold32.open .g-prod{opacity:0!important}
+.gift.hold32 .g-box,.gift.hold32 .g-lid{animation:gshake .9s ease-in-out infinite!important}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head>
 <body>
@@ -3420,6 +3433,57 @@ document.addEventListener('keydown',e=>{ if(IS_TEL||IS_PANEL||IS_DESK) return; i
   if(cover31()&&[' ','Enter','ArrowRight','PageDown'].includes(e.key)){ e.preventDefault(); e.stopImmediatePropagation(); $('#s-cover31').classList.remove('on'); const lb=$('#s-lobby'); if(lb) lb.classList.add('on'); try{ lobbyRender(); }catch(x){} } },true);
 /* hiç dokunma kalmadıysa kapak tekrar açılmasın diye QR sayfası ekranı sırasında katılım sayısı büyük */
 const __init31=init; init=function(){ __init31(); if(IS_TEL&&!IS_DESK){ const c=$('#tp-tap .tap-cta'); if(c) c.innerHTML='Kutuya <em>dokun!</em>'; const w=$('#tp-tap .tw29'); if(w) w.textContent='Kutun hazır · kura birazdan başlıyor'; } };
+
+/* =====================================================================
+   v32 · ÖLÇÜLMÜŞ SENKRON + KAPAK/QR CİLASI
+   ===================================================================== */
+CONFIG.storageKey='akkim-cekilis-v32';
+/* ---------------- sahne: her geçişte durum anında gönderilir (tazelemeyi beklemez) ---------------- */
+const __next32=next;
+next=async function(){ const r=__next32(); try{ await r; } finally{ try{ pushX(); }catch(e){} } return r; };
+/* aşama değişimini 120 ms'de bir yokla; değiştiyse hemen gönder (zamanlayıcıyla biten sonuç süresi vb.) */
+if(!IS_TEL&&!IS_PANEL&&!IS_DESK){ let lastPh=''; setInterval(()=>{ try{ if(!S.started) return; const k=phaseX()+'|'+S.si+'|'+(busy?1:0); if(k!==lastPh){ lastPh=k; pushX(); } }catch(e){} },120); }
+
+/* ---------------- kapak: yerleşim ---------------- */
+const ORB32=[[300,190,320,520],[10,110,230,230],[660,110,190,280],[60,610,260,260],[650,610,230,230],[380,770,170,220],[70,380,160,180],[690,400,190,190]];
+const __bd32=buildDeck;
+buildDeck=function(){ __bd32(); $$('#s-cover31 .orb31').forEach((o,i)=>{ const q=ORB32[i]; if(q){ o.style.left=q[0]+'px'; o.style.top=q[1]+'px'; o.style.width=q[2]+'px'; o.style.height=q[3]+'px'; } });
+  const c=$('#s-lobby .lb-c'); if(c&&!$('#s-lobby .lb-live32')) c.insertAdjacentHTML('beforebegin','<div class="lb-live32"><i></i>CANLI KATILIM</div>'); };
+/* QR sayfası: sayaç her yeni katılımda zıplar */
+let lr32=-1; if(!IS_TEL&&!IS_PANEL&&!IS_DESK) setInterval(()=>{ const n=$('#lb-n'); if(!n) return; if(L.lit.size!==lr32){ if(lr32>=0){ n.classList.remove('bump32'); void n.offsetWidth; n.classList.add('bump32'); } lr32=L.lit.size; } },300);
+
+/* ---------------- kutu açılışı: sahne ve telefon aynı kurala bağlı ----------------
+   dokunmalı turda (tur başı + 4. tur) kutu iki ekranda da KAPALI kalır ve sallanır; kura başladığı an ikisinde birden açılır.
+   dokunmasız hediyede iki ekranda da tanıtımın 1. saniyesinde açılır. */
+const __next32b=next;
+next=async function(){ const st=S.steps[S.si]; const pr=__next32b();
+  if(st&&st.t==='intro'&&!IS_TEL){ const gf=$('#gift'); if(gf) gf.classList.toggle('hold32',tapOK()); }
+  return pr; };
+const __ad32=animateDraw;
+animateDraw=async function(p,recs,st){ const gf=$('#gift'), oi=$('#ov-intro');
+  if(gf&&gf.classList.contains('hold32')&&oi&&oi.classList.contains('on')){ gf.classList.remove('hold32'); gf.classList.add('open'); try{ SND.play('xreveal',.85); SND.play('glitter',.5); }catch(e){} FX.burst(140,.5,.42,.85,true); await wait(1500*K()); }
+  else if(gf) gf.classList.remove('hold32');
+  return __ad32(p,recs,st); };
+HERO.render=function(st){ const r=__hr31(st);
+  if(st&&st.ph==='tap'&&this.b){ clearTimeout(this.t2);
+    if(st.tp===0){ if(this._k32!==this.key){ this._k32=this.key; clearTimeout(this.t32); this.b.classList.remove('open');
+        this.t32=setTimeout(()=>{ if(this.mode!=='tap') return; this.state(['open']); PH.vib([40,30,90]); const q=this.b.getBoundingClientRect(); PFX.burst(70,(q.left+q.width/2)/innerWidth,(q.top+q.height*.45)/innerHeight,.8,true); },850); } }
+    else { this._k32=null; clearTimeout(this.t32); this.b.classList.remove('open'); } }
+  return r; };
+
+/* ---------------- sonuç senkronu ----------------
+   · telefon sonucu, sahnede kartlar / isim GÖRÜNDÜĞÜ AN alır (kura animasyonunun bitmesini beklemez)
+   · sonuç, sahne bir sonraki adıma geçene kadar iki ekranda da kalır (zamanlayıcıyla bitmez) */
+L.early32=false; L.rec32=null;
+const __db32=drawBatch; drawBatch=function(p,recs){ const g=$('#bgrid'); if(g) g.classList.remove('on'); L.early32=false; L.rec32={pi:PRIZES.indexOf(p),ids:recs.map(r=>S.list[r.ix].id)}; return __db32(p,recs); };
+const __dd32=drawDigits; drawDigits=function(p,r,g){ const dn=$('#dg-name'); if(dn) dn.classList.remove('on'); L.early32=false; L.rec32={pi:PRIZES.indexOf(p),ids:[S.list[r.ix].id]}; return __dd32(p,r,g); };
+const __ph32=phaseX; phaseX=function(){ if(busy&&L.early32&&S.started) return 'res'; return __ph32(); };
+const __next32c=next;
+next=async function(){ if(busy||!S.started) return __next32c(); L.resUntil=0; L.early32=false; L.rec32=null; const pr=__next32c();
+  try{ await pr; } finally{ const d=S.steps[S.si-1]; if(d&&d.t==='draw'&&L.lastW) L.resUntil=Date.now()+864e5; L.early32=false; L.rec32=null; try{ pushX(); }catch(e){} } return pr; };
+function early32(){ if(!busy||!L.rec32||L.early32) return; const on=($('#bgrid')&&$('#bgrid').classList.contains('on'))||($('#dg-name')&&$('#dg-name').classList.contains('on'));
+  if(on){ L.early32=true; L.lastW=L.rec32.ids; L.lastPi=L.rec32.pi; pushX(); } }
+if(!IS_TEL&&!IS_PANEL&&!IS_DESK){ const ob=new MutationObserver(early32); const hook=()=>{ ['#bgrid','#dg-name'].forEach(s=>{ const e=$(s); if(e&&!e.dataset.o32){ e.dataset.o32=1; ob.observe(e,{attributes:true,attributeFilter:['class']}); } }); }; setInterval(hook,1000); setTimeout(hook,0); }
 
 init();
 </script>
