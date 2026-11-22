@@ -1,6 +1,13 @@
-# Akkim Yeni Yıl Büyük Çekilişi 2027 · ajans konsept demosu
+# Akkim Yeni Yıl Büyük Çekilişi 2027
 
-- Telefon (QR): https://berkayuner.github.io/akkim-cekilis/
-- Yayın ekranı (sunucu): https://berkayuner.github.io/akkim-cekilis/#sahne
+Yalova ve Nazilli çalışanları için canlı çekiliş: sahne ekranı, çalışan telefonu, sunucu kumandası ve yönetim paneli.
 
-İsimler örnektir (demo liste).
+| Sayfa | Adres | Kim kullanır |
+|---|---|---|
+| Telefon | `/telefon` | Çalışanlar (davet linki ya da telefon numarası + SMS kodu) |
+| Sahne | `/sahne` | Sahne bilgisayarı · yetkili anahtarla |
+| Kumanda | `/kumanda` | Sunucu · yetkili anahtarla |
+| Yönetim | `/admin` | Organizasyon · yetkili anahtarla |
+| Masa | `/masa` | Karşılama / teslim masası · yetkili anahtarla |
+
+Canlı bağlantı ve kimlik doğrulama Supabase üzerinden yapılır; bu depoda yalnızca herkese açık (anon) anahtar bulunur. Yetkili anahtarlar depoda yer almaz.
