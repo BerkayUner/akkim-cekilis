@@ -1777,6 +1777,18 @@ body.tel54 .tp-h:has(#out54.on) .tp-live{margin-left:auto}
 .ox54-b .no{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);color:#fff}
 .ox54-b .yes{background:linear-gradient(180deg,#f0cf8c,#c9963e);border:0;color:#1a1206}
 .ox54-b .yes:disabled{opacity:.7}
+
+/* ===== v55 · teslim kodu bileti ===== */
+.tp-dlv.t55{position:relative;padding:20px 16px 18px;overflow:hidden}
+.tp-dlv.t55::before,.tp-dlv.t55::after{content:"";position:absolute;top:50%;width:22px;height:22px;margin-top:-11px;border-radius:50%;background:#04101a;border:1px solid rgba(232,194,122,.4)}
+.tp-dlv.t55::before{left:-12px}.tp-dlv.t55::after{right:-12px}
+.dc55{display:flex;justify-content:center;gap:7px;margin:16px 0 4px}
+.dc55 b{display:grid;place-items:center;width:42px;height:56px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1px solid rgba(232,194,122,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 6px 16px rgba(0,0,0,.25);font:800 30px/1 var(--mono);color:#fff;letter-spacing:0}
+.dc55 b:nth-child(3){margin-right:9px}
+.tp-dlv.t55 .dt{margin-top:12px;line-height:1.5}
+#tp-final .tp-dlv.f55{max-width:380px;margin:26px auto 0;animation:f55 .7s .3s both cubic-bezier(.2,.9,.3,1.2)}
+@keyframes f55{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+@media (max-width:360px){.dc55{gap:5px}.dc55 b{width:36px;height:50px;font-size:26px}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script><link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet"></head>
 <body>
@@ -4960,7 +4972,7 @@ const ADM={ sb:null, rol:'', page:'genel', d:{emp:[],ayar:[],durum:null,kura:[],
   nav(){ const it=(k,t,i)=>this.can(k)?`<a href="#" data-p="${k}" class="${this.page===k?'on':''}">${ic46(i)}<span>${t}</span></a>`:'';
     const ext=(t,i,u)=>`<a href="${u}" target="_blank" rel="noopener" class="ext">${ic46(i)}<span>${t}</span></a>`, base=String(PUBLIC_URL).split('#')[0];
     return `<div class="a-g">YÖNETİM</div>${it('genel','Genel Bakış','genel')}${it('calisan','Çalışanlar','calisan')}${it('hediye','Hediyeler','hediye')}${it('sonuc','Sonuçlar','sonuc')}${it('kayit','İşlem Kaydı','kayit')}
-      <div class="a-g">ETKİNLİK</div>${it('davet','Davet ve SMS','davet')}${it('dogru','Doğrulama','dogru')}${this.rol==='sahne'?ext('Sunucu Kumandası','kumanda',ADM_YOL?'kumanda':String(PUBLIC_URL).split('#')[0]+'#kumanda'):''}${ext('Sahne Ekranı','sahne',sahneLink())}${ext('Telefon Ekranı','tel',ADM_YOL?'telefon':base+'#tel')}<a href="#" data-teslim>${ic46('teslim')}<span>Teslim Masası</span></a>`; },
+      <div class="a-g">ETKİNLİK</div>${it('davet','Davet linkleri','davet')}${it('dogru','Doğrulama','dogru')}${this.rol==='sahne'?ext('Sunucu Kumandası','kumanda',ADM_YOL?'kumanda':String(PUBLIC_URL).split('#')[0]+'#kumanda'):''}${ext('Sahne Ekranı','sahne',sahneLink())}`; },
   shell(){ $('#adm').innerHTML=`<aside id="a-side"><button id="a-kapat" aria-label="Menüyü kapat"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15"/></svg></button><div class="a-brand">${logoSVG(44,true)}</div><nav id="a-nav">${this.nav()}</nav>
       <div class="a-me"><i>${this.rol==='sahne'?'Y':'T'}</i><div><b>${this.rol==='sahne'?'Yönetici':'Teslim masası'}</b><small>Yeni Yıl Çekilişi 2027</small></div><button id="a-out">Çıkış</button></div></aside>
     <main id="a-main" tabindex="-1"><header class="a-top"><button id="a-menu" aria-label="Menü" aria-controls="a-side" aria-expanded="false">☰</button><div class="a-bc">AKKİM Çekiliş / <b id="a-bct"></b></div><div class="a-tr"><span class="a-pill" id="a-pill"><i></i><span>Hazırlık</span></span><a class="a-btn" href="${sahneLink()}" target="_blank" rel="noopener">Sahne</a></div></header><section id="a-pg"></section></main><div id="a-ort" aria-hidden="true"></div>`;
@@ -5013,7 +5025,7 @@ const ADM={ sb:null, rol:'', page:'genel', d:{emp:[],ayar:[],durum:null,kura:[],
       if(fark<0) m.scrollTop+=fark;
       let n=yon&&pg.querySelector(`[data-yon="${yon}"]`); if(!n||n.disabled) n=pg.querySelector('[data-sy][aria-current]'); if(n) n.focus({preventScroll:true}); });
     if(boy) boy.onchange=()=>{ this.boy=+boy.value; this.syf=1; this.render(); $('#sy-boy').focus({preventScroll:true}); }; },
-  render(html){ const T={genel:'Genel Bakış',calisan:'Çalışanlar',hediye:'Hediyeler',sonuc:'Sonuçlar',davet:'Davet ve SMS',dogru:'Doğrulama',kayit:'İşlem Kaydı'};
+  render(html){ const T={genel:'Genel Bakış',calisan:'Çalışanlar',hediye:'Hediyeler',sonuc:'Sonuçlar',davet:'Davet linkleri',dogru:'Doğrulama',kayit:'İşlem Kaydı'};
     const pg=$('#a-pg'), m=$('#a-main'), ayni=pg.dataset.page===this.page;   /* v47: yenilemede kaydırma ve açık tablo korunur */
     const y=m.scrollTop, xs=ayni?[...pg.querySelectorAll('.a-card.np')].map(e=>e.scrollLeft):[], acik=ayni?[...pg.querySelectorAll('details')].map(e=>e.open):[];
     $('#a-bct').textContent=T[this.page]; this.sonHtml=typeof html==='string'?html:this['p_'+this.page](); pg.innerHTML=this.sonHtml; pg.dataset.page=this.page; const b=this['b_'+this.page]; if(b) b.call(this); this.sayfaBagla();
@@ -5030,13 +5042,13 @@ const ADM={ sb:null, rol:'', page:'genel', d:{emp:[],ayar:[],durum:null,kura:[],
   /* ---------- GENEL BAKIŞ ---------- */
   p_genel(){ const D=this.d, pr=D.pr, top=D.toplamHediye, acik=D.sonuc.length, kutu=this.kutular();
     const turT=[0,1,2,3].map(a=>({a,ad:ACTS[a].name,n:pr.filter(p=>p.act===a).reduce((s,p)=>s+p.adet,0),k:pr.filter(p=>p.act===a).length,acik:D.sonuc.filter(w=>{ const p=PRIZES[w.pi]; return p&&p.act===a; }).length}));
-    const mx=Math.max(...turT.map(t=>t.n),1), st=D.st, cur=st&&st.pi!=null&&PRIZES[st.pi]?pr[st.pi]:null;
+    const mx=Math.max(...turT.map(t=>t.n),1), st=D.st, cur=st&&st.pi!=null&&PRIZES[st.pi]&&D.durumAd!=='Tamamlandı'&&!st.end&&!['lobby','final','ak','ls'].includes(st.ph)?pr[st.pi]:null;
     const o=D.ozet||{}, Y=D.lok.Y||0, N=D.lok.N||0, tot=Y+N||1;
     const C=2*Math.PI*62, yL=C*Y/tot, gap=Y&&N?4:0;
     const adim=[
       ['Gerçek çalışan listesi yüklendi', o.toplam>0&&o.test===0, o.test?`Şu an ${fmt46(o.test)} test kaydı var`:(o.toplam?fmt46(o.toplam)+' kişi':'Liste bekleniyor')],
       ['Hediyeler ve görseller kontrol edildi', D.ayar.length>0, D.ayar.length?D.ayar.length+' hediyede düzenleme var':'Hediyeler sayfasından kontrol et'],
-      ['Davet linkleri üretildi ve SMS’le gönderildi', o.toplam>0&&o.linkli>=o.telefonlu&&o.telefonlu>0, fmt46(o.linkli||0)+' / '+fmt46(o.telefonlu||0)+' telefonlu kişi'],
+      ['Davet linkleri üretildi', o.toplam>0&&o.linkli>=o.telefonlu&&o.telefonlu>0, fmt46(o.linkli||0)+' / '+fmt46(o.telefonlu||0)+' telefonlu kişi'],
       ['Sahne bilgisayarı anahtarla açıldı', D.kayit.some(k=>k.islem==='Sahne ekranı açıldı'), 'Kablolu internet ve tek sekme'],
       ['Çekiliş başladı', acik>0, acik?fmt46(acik)+' hediye açıklandı':'Sahnede BOŞLUK ile başlar'],
       ['Tamamlandı · tutanak alındı', acik>=top&&top>0, 'Sonuçlar › Tutanak'] ];
@@ -5061,7 +5073,7 @@ const ADM={ sb:null, rol:'', page:'genel', d:{emp:[],ayar:[],durum:null,kura:[],
         ${[['Telefonu kayıtlı',o.telefonlu],['Davet linki üretildi',o.linkli],['Giriş yaptı',o.giris],['Şu an sahneye bağlı',st&&D.canli?st.n:0]].map(([l,v])=>`<div class="a-kp"><span>${l}</span><b>${fmt46(v||0)}</b><i><em style="width:${Math.min(100,(v||0)/(o.toplam||D.calisan||1)*100)}%"></em></i></div>`).join('')}</div>
       <div class="a-card"><div class="a-ct">Çekiliş durumu <span class="a-tag ${D.canli?'t-live':''}">${esc43(D.durumAd)}</span></div>
         <dl class="a-dl"><dt>Güvence kodu</dt><dd class="mono">${D.muhur?esc43(String(D.muhur).slice(0,24))+'…':'Çekiliş başlayınca sahnede oluşur'}</dd>
-        <dt>İlk açıklama</dt><dd>${tarih46(D.ilk)}</dd><dt>Sahne son sinyal</dt><dd>${D.durum?saat46(D.durum.guncel)+(D.canli?' · canlı':''):'—'}</dd><dt>Şu anki hediye</dt><dd>${cur?esc43(cur.ad):'—'}</dd></dl>
+        <dt>İlk açıklama</dt><dd>${tarih46(D.ilk)}</dd><dt>Sahne son sinyal</dt><dd>${D.durum?saat46(D.durum.guncel)+(D.canli?' · canlı':''):'—'}</dd>${D.durumAd==='Tamamlandı'?`<dt>Hediyeler</dt><dd>Tümü çekildi · ${fmt46(D.sonuc.length)} / ${fmt46(D.toplamHediye)}</dd>`:`<dt>Şu anki hediye</dt><dd>${cur?esc43(cur.ad):(st&&st.ph==='lobby'?'Çekiliş başlamadı':'—')}</dd>`}</dl>
         <p class="a-mut">Sonuçlar sahnedeki kriptografik tohumla üretilir; aynı tohumla birebir yeniden üretilebilir.</p></div>
       <div class="a-card"><div class="a-ct">Etkinlik günü adımları</div><ol class="a-steps">${adim.map(([t,ok,s],i)=>`<li class="${ok?'ok':''}"><b>${ok?ic46('ok',14):i+1}</b><div><span>${t}</span><small>${esc43(s)}</small></div></li>`).join('')}</ol></div>
     </div>`; },
@@ -5186,7 +5198,7 @@ const ADM={ sb:null, rol:'', page:'genel', d:{emp:[],ayar:[],durum:null,kura:[],
       <div class="a-card"><div class="a-ct">SMS durumu <span class="a-tag">TEST MODU</span></div><p class="a-mut">SMS servisi henüz bağlı değil. Test kişilerinde kod telefon ekranında görünür; gerçek çalışanlar şimdilik davet linkiyle girer.</p>
         <ol class="a-steps"><li><b>1</b><div><span>Kurumsal SMS hesabı ve “AKKIM” gönderen adı</span><small>Talep yazısı hazır</small></div></li><li><b>2</b><div><span>API bilgileri sunucuya gizli ayar olarak eklenir</span><small>Sayfada ya da e-postada yer almaz</small></div></li><li><b>3</b><div><span>Test modu kapanır, kodlar SMS ile gider</span><small>Kişi başı dakikada 1, saatte 5 kod sınırı</small></div></li></ol></div></div>`; },
   b_davet(){ const run=async yeniden=>{ const out=$('#d-ly2'), taban=$('#d-tb').value.trim();
-      if(!confirm(yeniden?'TÜM linkler yenilenecek ve eski linkler çalışmayacak. Daha önce SMS gönderildiyse herkese yeniden gönderilmesi gerekir. Emin misin?':'Linki olmayan herkes için davet linki üretilecek. Devam edilsin mi?')) return;
+      if(!confirm(yeniden?'TÜM linkler yenilenecek ve eski linkler çalışmayacak. Linkler daha önce dağıtıldıysa herkese yeniden iletilmesi gerekir. Emin misin?':'Linki olmayan herkes için davet linki üretilecek. Devam edilsin mi?')) return;
       out.innerHTML='<p class="a-mut">Üretiliyor… (950 kişi için yarım dakika sürebilir)</p>';
       try{ const r=await this.api({islem:'linkler',taban,yeniden}); if(!r.adet){ out.innerHTML='<p class="a-mut">Yeni link gereken kimse yok.</p>'; return; }
         const lines=['sicil;ad_soyad;telefon;link;sms_metni'].concat(r.satirlar.map(x=>[x.sicil,x.ad_soyad,x.telefon,x.link,x.mesaj].map(csvCell46).join(';')));
@@ -5869,6 +5881,38 @@ if(IS_TEL){
     try{ d.requestFullscreen({navigationUI:'hide'}).catch(()=>{}); }catch(err){} };
   document.addEventListener('pointerup',fs54,true); document.addEventListener('touchend',fs54,true);
 }
+
+/* =====================================================================
+   v55 · TESLİM KODU VE PANEL SADELEŞTİRME
+   · teslim kartında QR yok; yalnızca 6 haneli teslim kodu (bilet görünümünde)
+   · final ve "50. yıl" ekranlarında kazanana teslim kodu görünür
+   · panel: "Davet linkleri" (SMS kartı kaldırıldı), menüden Telefon Ekranı / Teslim Masası kalktı
+   ===================================================================== */
+PH.dlvHTML=function(){ if(this.dlvAt) return `<div class="tp-dlv done"><div class="dk">TESLİM EDİLDİ ✓</div><div class="dt">${fmtT(this.dlvAt)} · Güzel günlerde kullan!</div></div>`;
+  const sl=this.st&&this.st.sl; if(!sl||!this.s||!this.k) return ''; const c=deliverCode(sl,this.s,this.k);
+  return `<div class="tp-dlv t55"><div class="dk">HEDİYE TESLİM KODUN</div><div class="dc55" aria-label="Teslim kodu ${c.split('').join(' ')}">${c.split('').map(x=>`<b>${x}</b>`).join('')}</div><div class="dt">Teslim masasında bu kodu göster; görevli kodu girip hediyeni teslim eder.</div></div>`; };
+
+/* final ve 50. yıl: kazanan kendi teslim kodunu görür */
+function finalKod55(){ const R=$('#tp-final'); if(!R) return; if(!PH.me||PH.me.g==null){ R.querySelectorAll('.tp-dlv').forEach(x=>x.remove()); return; } if(PH.cur!=='tp-final') return;
+  const h=PH.dlvHTML(); const var_=R.querySelector('.tp-dlv'); if(!h){ if(var_) var_.remove(); return; }
+  const want=PH.dlvAt?'done':'kod'; if(var_&&var_.dataset.k===want) return;
+  if(var_) var_.remove(); R.insertAdjacentHTML('beforeend',h); const y=R.querySelector('.tp-dlv'); if(y){ y.dataset.k=want; y.classList.add('f55'); }
+  const p=R.querySelector('p'); if(p&&/7 iş günü/.test(p.textContent)) p.textContent='Hediyen teslim masasında seni bekliyor. Aşağıdaki kodu görevliye göster.'; }
+const __render55=PH.render.bind(PH);
+PH.render=function(){ const r=__render55(); try{ finalKod55(); }catch(e){} return r; };
+const __recv55=PH.recv.bind(PH);
+PH.recv=function(m){ const r=__recv55(m); if(m&&(m.t==='dlvd'||m.t==='st')) try{ finalKod55(); }catch(e){} return r; };
+
+/* ---------- panel ---------- */
+if(typeof ADM!=='undefined') Object.assign(ADM,{
+  p_davet(){ const o=this.d.ozet||{}; return this.head('Davet linkleri','Her çalışana kişiye özel giriş linki. Link ilk açıldığı telefona kilitlenir; başka bir telefonda açılmaz.')+`
+    <div class="a-cards three"><div class="a-card stat"><div class="a-ck">TELEFONU KAYITLI</div><div class="a-big">${fmt46(o.telefonlu||0)}</div><div class="a-cs">/ ${fmt46(o.toplam||0)} çalışan</div></div><div class="a-card stat"><div class="a-ck">DAVET LİNKİ ÜRETİLDİ</div><div class="a-big">${fmt46(o.linkli||0)}</div></div><div class="a-card stat"><div class="a-ck">GİRİŞ YAPTI</div><div class="a-big">${fmt46(o.giris||0)}</div></div></div>
+    <div class="a-row"><div class="a-card"><div class="a-ct">Davet linklerini üret</div><p class="a-mut">Linki olmayan herkes için kişiye özel link üretir ve dağıtım dosyasını indirir (sicil, ad, telefon, link, hazır mesaj metni). Linkler yalnızca bu dosyada bulunur; sunucuda saklanmaz. Dosyayı yalnızca güvenli bir kanaldan paylaşın.</p>
+      <div class="a-fg"><label>TABAN ADRES</label><input id="d-tb" value="${esc43(String(PUBLIC_URL).split('#')[0])}"></div>
+      <div class="a-fr"><button class="a-btn gold" id="d-lb">Eksik linkleri üret ve indir</button><button class="a-btn ghost danger" id="d-ly">Tümünü yenile</button></div><div id="d-ly2"></div></div>
+      <div class="a-card"><div class="a-ct">Link nasıl çalışır</div>
+        <ol class="a-steps"><li><b>1</b><div><span>Her çalışana kişiye özel link üretilir</span><small>Sunucuda yalnızca linkin parmak izi tutulur; tahmin edilemez</small></div></li><li><b>2</b><div><span>Çalışan linke dokunur, giriş kendiliğinden olur</span><small>Şifre ya da kod yazması gerekmez</small></div></li><li><b>3</b><div><span>Link ilk açıldığı telefona kilitlenir</span><small>Telefon değişirse Çalışanlar sayfasından kilit kaldırılır</small></div></li></ol></div></div>`; }
+});
 
 init();
 sahneAdres();
