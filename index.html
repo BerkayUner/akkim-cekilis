@@ -1483,6 +1483,21 @@ body.masa43>*:not(#m43):not(#toast){display:none!important}
 #m43 pre{white-space:pre-wrap;font-size:12px;color:#ffb38a}
 #tp-join.sec43 #g43 input{display:block!important}
 #tp-join.sec43 #man25,body.sec43 .out25{display:none!important}
+/* ===================== v45 · telefonda kayan haneler ===================== */
+.dd.r45{display:block!important;position:relative;overflow:hidden;padding:0!important;color:#e8c27a}
+.dd.r45::before,.dd.r45::after{content:"";position:absolute;left:0;right:0;height:26%;z-index:2;pointer-events:none}
+.dd.r45::before{top:0;background:linear-gradient(180deg,rgba(3,12,19,.92),transparent)}
+.dd.r45::after{bottom:0;background:linear-gradient(0deg,rgba(3,12,19,.92),transparent)}
+.dd.r45 .st45{position:absolute;left:0;right:0;top:0;will-change:transform;font-style:normal}
+.dd.r45 .st45 b{display:grid;place-items:center;height:var(--h,73px);font:900 44px/1 var(--serif);color:#e8c27a}
+.dd.r45.spin .st45{filter:blur(1.4px)}
+.dd.r45.spin{animation:none!important}
+.dd.r45.done .st45 b{color:#ffe7a6;text-shadow:0 0 18px rgba(255,214,130,.65),0 1px 0 #b8863b}
+.dd.r45.done{border-color:#ffe2a0!important;box-shadow:0 0 24px rgba(255,214,130,.5),0 12px 30px rgba(0,0,0,.6)!important}
+.dd.r45.okd .st45 b{color:#9fb3c2;text-shadow:none}
+.dd.r45.okd{border-color:rgba(255,255,255,.2)!important;box-shadow:0 12px 30px rgba(0,0,0,.6)!important}
+.dd.r45.no .st45 b{color:#ff9d96;text-shadow:none}
+.dd.r45.no{border-color:rgba(255,107,98,.65)!important;box-shadow:0 0 16px rgba(255,107,98,.25)!important;opacity:.85}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script><link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet"></head>
 <body>
@@ -4524,6 +4539,61 @@ function csv43(txt){ const lines=txt.replace(/\r/g,'').split('\n').filter(l=>l.t
 
 const __init43=init;
 init=function(){ if(IS_MASA43) return MASA43.start(); const r=__init43(); if(SEC43&&IS_TEL&&!IS_DESK){ document.body.classList.add('sec43'); AUTH43.form43(); if(!PH.pend&&!PH.me) AUTH43.step('bek'); } return r; };
+
+/* =====================================================================
+   v45 · TELEFONDA KAYAN HANELER (sahnedeki davullar gibi)
+   · açılmamış haneler dikey şerit gibi sürekli kayar (titreyen rastgele rakam yok)
+   · sahnede hane durmaya başladığı an telefona 'dgx' gider; telefondaki hane aynı sürede,
+     aynı yaylanmayla aynı rakamda durur
+   · 'dg' (eşleşme bilgisi) geldiğinde yalnız renkler ve durum yazısı güncellenir; kutular yeniden çizilmez
+   ===================================================================== */
+/* ---------- sahne: hane durmaya başlarken haber ver ---------- */
+const __sd45=stopDrum;
+stopDrum=function(d,slow){ if(d&&d.ix!=null){ try{ dm({t:'dgx',i:d.ix,d:d.ch,n:DG.n,pi:DG.pi,slow:slow?1:0}); }catch(e){} } return __sd45(d,slow); };
+
+/* ---------- telefon: kayan hane şeritleri ---------- */
+const R45={key:'',reels:[]};
+function r45Cell(){ const r=$('#dg-row .r45'); return r?r.clientHeight:78; }
+function r45Build(d){ const row=$('#dg-row'); R45.key=d.k45; R45.reels=[];
+  row.innerHTML=Array.from({length:d.n},()=>`<span class="dd r45 spin"><i class="st45"></i></span>`).join('');
+  [...row.querySelectorAll('.r45')].forEach((el,i)=>{ const strip=el.firstChild, H=el.clientHeight||73; strip.style.setProperty('--h',H+'px');
+    const seq=[]; for(let k=0;k<20;k++) seq.push((Math.random()*10)|0); for(let k=0;k<10;k++) seq.push(seq[k]);   /* 0–9 ve 10–19 aynı → kesintisiz döngü */
+    strip.innerHTML=seq.map(c=>`<b>${c}</b>`).join('');
+    const anim=strip.animate([{transform:'translateY(0)'},{transform:`translateY(${-10*H}px)`}],{duration:380+i*40,iterations:Infinity});
+    R45.reels.push({el,strip,anim,H,state:'spin',digit:null}); }); }
+function r45Land(i,digit,dur){ const r=R45.reels[i]; if(!r||r.state!=='spin') return; r.state='land'; r.digit=digit; const H=r.H;
+  const seq=[]; for(let k=0;k<30;k++) seq.push((Math.random()*10)|0); seq.push(digit);
+  try{ r.anim.cancel(); }catch(e){} r.strip.innerHTML=seq.map(c=>`<b>${c}</b>`).join('');
+  r.strip.style.transition='none'; r.strip.style.transform=`translateY(${-20*H}px)`; void r.strip.offsetWidth;
+  r.strip.style.transition=`transform ${dur}ms cubic-bezier(.15,1.25,.35,1)`; r.strip.style.transform=`translateY(${-30*H}px)`;
+  r.el.classList.remove('spin'); r.el.classList.add('stop');
+  clearTimeout(r.t); r.t=setTimeout(()=>{ r.state='done'; r.el.classList.add('done'); r45Paint(); },Math.round(dur*.48)); }
+/* eşleşme renkleri (eski mantıkla aynı) */
+function r45Paint(){ const d=PH.dg; if(!d) return; const me=String(PH.s||''); let alive=true, miss=-1;
+  for(let i=0;i<d.n;i++){ const v=d.digs[i], r=R45.reels[i]; if(!r) continue; if(v==null){ continue; }
+    const ok=me[i]===v; if(alive&&!ok){ alive=false; miss=i; }
+    if(r.state!=='done') continue; r.el.classList.remove('ok','okd','no'); r.el.classList.add(alive||ok&&miss<0?'ok':(ok?'okd':'no')); } }
+
+PH.dgRender=function(newI){ const row=$('#dg-row'), st=$('#dg-st'); if(!row) return; const d=this.dg, me=String(this.s||'');
+  if(!d){ row.innerHTML=''; st.innerHTML=''; R45.key=''; R45.reels=[]; return; }
+  if(!d.k45) d.k45=d.pi+'|'+d.n+'|'+Math.random().toString(36).slice(2,8);
+  if(R45.key!==d.k45||R45.reels.length!==d.n||!row.querySelector('.r45')) r45Build(d);
+  for(let i=0;i<d.n;i++){ const v=d.digs[i]; if(v!=null&&R45.reels[i]&&R45.reels[i].state==='spin') r45Land(i,v,520); }   /* 'dgx' kaçtıysa kısa yaylanma */
+  r45Paint();
+  let alive=true, miss=-1, k=0; for(let i=0;i<d.n;i++){ const v=d.digs[i]; if(v==null) continue; const ok=me[i]===v; if(alive&&!ok){ alive=false; miss=i; } if(alive&&ok) k=i+1; }
+  $('#dg-me').innerHTML='Senin sicilin <b>'+me.split('').map((c,i)=>{ const v=d.digs[i]; return `<i class="${v==null?'':(v===c?'m':'x')}">${c}</i>`; }).join('')+'</b>';
+  const myP=this.me&&this.me.g!=null?PRIZES[this.me.g]:null, pg=$('#pg-draw .pg');
+  if(myP){ st.innerHTML=`Senin hediyen hazır (${esc(myP.name)}). Bu turu keyifle izle.`; return; }
+  const revealed=d.digs.filter(x=>x!=null).length;
+  if(!revealed){ st.innerHTML='Sicil hane hane açılıyor. Kendi numaranla karşılaştır!'; return; }
+  if(alive){ st.innerHTML=revealed>=d.n?'<b class="gold">Tüm haneler tuttu!</b>':`<b class="gold">${k}. hane de tuttu!</b> Hâlâ yarıştasın…`; if(newI!=null){ this.vib(revealed>=d.n?[120,60,120,60,300]:[60]); PFX.burst(revealed>=d.n?120:24,.5,.42,.6,true); } if(pg){ pg.classList.add('hot'); } }
+  else { st.innerHTML=`${miss+1}. hanede ayrıldın · bu sefer olmadı`; if(pg) pg.classList.remove('hot'); if(pg) pg.classList.add('dim'); } };
+
+const __recv45=PH.recv;
+PH.recv=function(m){ if(m&&m.t==='dgx'){ if(!this.dg||this.dg.n!==m.n||this.dg.pi!==m.pi){ this.dg={n:m.n,digs:[],pi:m.pi,alive:true,miss:-1}; this.dgRender(); }
+    else if(!R45.reels.length) this.dgRender();
+    r45Land(m.i,m.d,m.slow?1600:900); return; }
+  return __recv45.apply(this,arguments); };
 
 init();
 </script>
