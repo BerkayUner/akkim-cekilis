@@ -1368,6 +1368,13 @@ body.notap29 .tw29{display:block}
 .gift.hold32.open .g-lid,.gift.hold32.open .g-box{transform:none!important;opacity:1!important;transition-delay:0s!important}
 .gift.hold32.open .g-prod{opacity:0!important}
 .gift.hold32 .g-box,.gift.hold32 .g-lid{animation:gshake .9s ease-in-out infinite!important}
+/* ===================== v33 ===================== */
+/* kapak: 2026 → 2027 geçişi */
+.c31-y.c33 .flipd{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:inherit!important;animation:none!important;filter:none!important;perspective:700px}
+.c31-y.c33 .flipd b{background:linear-gradient(180deg,#fff8e1 6%,#f3d38f 42%,#c9963f 70%,#fbe7b5 92%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 18px 40px rgba(0,0,0,.6))}
+#s-cover31.pre33 .flipd .o,#s-cover31.pre33 .flipd .n{animation:none!important}
+#s-cover31 .flipd .o{animation-delay:.05s!important}
+#s-cover31 .flipd .n{animation-delay:.3s!important}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head>
 <body>
@@ -2316,7 +2323,7 @@ function stateX(){ const ph=phaseX(), pi=curPi(), st={t:'st',ph,v:++L.ver,pi,n:L
   if(ph==='tap') st.e=Math.round(L.energy*100)/100; return st; }
 function pushX(){ const st=stateX(); sendX(st); NET.emit('state',st); }
 function replyX(s,cid){ const ix=S.list.findIndex(x=>x.id===s); if(ix<0) return; const p=S.list[ix], r=S.results.find(x=>x.ix===ix), g=WC.grid;
-  const m={t:'you',s,cid,ok:1,name:p.name,city:p.city,row:g?Math.floor(ix/g.cols)+1:0,col:g?ix%g.cols+1:0,g:r?r.pi:null}; sendX(m); NET.emit('dm',m); }
+  const m={t:'you',s,cid,ok:1,name:p.name,city:p.city,row:0,col:0,g:r?r.pi:null}; sendX(m); NET.emit('dm',m); }
 function lightIx(ix,real){ const fresh=!L.lit.has(ix); L.lit.add(ix); const t=W.tiles[ix]; if(t){ t.classList.add('lit'); if(fresh) t.classList.add('pop'); }
   if(fresh){ L.recent.push(ix); if(L.recent.length>60) L.recent.shift(); if(L.lit.size%20===0) saveLit(); if(real) try{ SND.play('lock',.15); }catch(e){} } }
 function onMsg(m){ if(!m||typeof m!=='object') return;
@@ -2494,7 +2501,7 @@ const PH={ s:null,k:null,cid:Math.random().toString(36).slice(2,10),me:null,st:n
     /* bekleme */
     const key='w'+(myP?myP.id:'')+st.pi+st.ph; if(this.rk===key&&this.cur==='tp-wait') return; this.rk=key;
     const r=this.me; $('#wait-k').textContent=myP?'HEDİYEN HAZIR':'KUTUN HAZIR'; $('#wait-h').textContent=`Hoş geldin, ${r.name.split(' ')[0]}.`;
-    $('#wait-p').innerHTML=myP?`Kutundan <b>${esc(myP.name)}</b> çıktı. Kalan çekilişleri keyifle izle.`:`Kutun sahnedeki duvarda yandı${r.row?` (<b>${r.row}. sıra, ${r.col}. kutu</b>)`:''}. Çekiliş zamanı telefonun titrer: kutunu salla, hediye kutudan çıksın.`;
+    $('#wait-p').innerHTML=myP?`Kutundan <b>${esc(myP.name)}</b> çıktı. Kalan çekilişleri keyifle izle.`:`Kutun sahnedeki dev 2027’nin içinde yandı${r.row?` (<b>${r.row}. sıra, ${r.col}. kutu</b>)`:''}. Çekiliş zamanı telefonun titrer: kutunu salla, hediye kutudan çıksın.`;
     $('#pg-wait').innerHTML=boxHTML({box:myP?null:BOX[p?p.act:1],cls:myP?'gold open':'idle',tag:myP?'':this.tag(),prod:myP?art(myP):''});
     if(p){ $('#now-i').innerHTML=art(p); $('#now-k').textContent=st.ph==='lobby'?'İLK HEDİYE':'SIRADAKİ HEDİYE'; $('#now-b').textContent=p.name; $('#now-s').textContent=`${ACTS[p.act].r}. tur · ${ACTS[p.act].name} · ${p.qty} adet`; }
     this.cur=null; this.show('tp-wait'); },
@@ -3484,6 +3491,49 @@ next=async function(){ if(busy||!S.started) return __next32c(); L.resUntil=0; L.
 function early32(){ if(!busy||!L.rec32||L.early32) return; const on=($('#bgrid')&&$('#bgrid').classList.contains('on'))||($('#dg-name')&&$('#dg-name').classList.contains('on'));
   if(on){ L.early32=true; L.lastW=L.rec32.ids; L.lastPi=L.rec32.pi; pushX(); } }
 if(!IS_TEL&&!IS_PANEL&&!IS_DESK){ const ob=new MutationObserver(early32); const hook=()=>{ ['#bgrid','#dg-name'].forEach(s=>{ const e=$(s); if(e&&!e.dataset.o32){ e.dataset.o32=1; ob.observe(e,{attributes:true,attributeFilter:['class']}); } }); }; setInterval(hook,1000); setTimeout(hook,0); }
+
+/* =====================================================================
+   v33 · SİCİL DUVARI DEV "2027" YAZAR · KAPAKTA 2026 → 2027 GEÇİŞİ
+   ===================================================================== */
+CONFIG.storageKey='akkim-cekilis-v33';
+/* ---------------- duvar: 950 kutucuk "2027" rakamlarının içine dizilir ---------------- */
+layoutWall=function(){ const n=S.list.length, W=1280, X0=36, Y0=36, AW=1208, AH=790;
+  const cv=document.createElement('canvas'); cv.width=W; cv.height=900; const g=cv.getContext('2d'); const txt=String(CONFIG.year);
+  const font=s=>`800 ${s}px Manrope, "Segoe UI", Arial, sans-serif`; const fs=200; g.font=font(fs); const m=g.measureText(txt);
+  const w=m.actualBoundingBoxLeft+m.actualBoundingBoxRight, h=m.actualBoundingBoxAscent+m.actualBoundingBoxDescent;
+  const sx=AW/w, sy=Math.min(AH/h,sx*1.75), dh=h*sy; g.save(); g.translate(X0,Y0+(AH-dh)/2); g.scale(sx,sy); g.fillStyle='#fff'; g.textBaseline='alphabetic'; g.textAlign='left'; g.fillText(txt,m.actualBoundingBoxLeft,m.actualBoundingBoxAscent); g.restore();
+  const A=g.getImageData(0,0,W,900).data, on=(x,y)=>{ x|=0; y|=0; return x>=0&&y>=0&&x<W&&y<900&&A[(y*W+x)*4+3]>127; };
+  let best=null;
+  for(let p=44;p>=7;p-=.25){ const cells=[]; for(let y=Y0+p/2;y<Y0+AH;y+=p) for(let x=X0+p/2;x<X0+AW;x+=p) if(on(x,y)) cells.push([x,y]); if(cells.length>=n){ best={p,cells}; break; } }
+  if(!best){ return __lw33(); }
+  const {p,cells}=best, pick=[]; for(let i=0;i<n;i++) pick.push(cells[Math.floor(i*cells.length/n)]);
+  const t=Math.max(4,p-3); WC.grid={cols:Math.round(AW/p),rows:Math.round(AH/p),tw:t,th:t,p};
+  WC.pos=pick.map(([x,y])=>({x:x-t/2,y:y-t/2})); };
+const __lw33=function(){ /* yedek: düz ızgara */ const n=S.list.length, AW=1200, AH=800; const cols=Math.ceil(Math.sqrt(n*AW/AH)), rows=Math.ceil(n/cols), tw=Math.floor(AW/cols)-3, th=Math.floor(AH/rows)-3;
+  const Wd=cols*(tw+3)-3, Hd=rows*(th+3)-3, ox=(1280-Wd)/2, oy=(900-Hd)/2-6; WC.grid={cols,rows,tw,th}; WC.pos=S.list.map((x,i)=>({x:ox+(i%cols)*(tw+3),y:oy+Math.floor(i/cols)*(th+3)})); };
+/* küçük kutucukta numara yazısı yerine dolgun şehir rengi */
+drawTile=function(g,i,mode){ const p=WC.pos[i], {tw,th}=WC.grid, city=S.list[i].city, f=WC.flags[i], small=th<15, r=Math.min(4,tw*.28);
+  if(mode==='win'){ const gl=glowSprite('#ffd98a',tw*1.4); g.drawImage(gl,p.x+tw/2-gl.width/WC.Q/2,p.y+th/2-gl.height/WC.Q/2,gl.width/WC.Q,gl.height/WC.Q);
+    const lg=g.createLinearGradient(0,p.y,0,p.y+th); lg.addColorStop(0,'#fff3d1'); lg.addColorStop(.6,'#e8c27a'); lg.addColorStop(1,'#c9963f'); rrect(g,p.x,p.y,tw,th,r); g.fillStyle=lg; g.fill();
+    if(!small){ g.fillStyle='#3a2600'; g.font=`800 ${Math.round(th*.36)}px "JetBrains Mono",monospace`; g.textAlign='center'; g.fillText(S.list[i].id.slice(-3),p.x+tw/2,p.y+th*.64); } return; }
+  g.globalAlpha=f.has('out')?.13:1; rrect(g,p.x,p.y,tw,th,r);
+  if(small){ g.fillStyle=f.has('void')?'rgba(231,48,41,.6)':(f.has('lit')?(city==='Y'?'rgba(242,142,0,.78)':'rgba(63,170,144,.8)'):(city==='Y'?'rgba(242,142,0,.24)':'rgba(63,170,144,.26)')); g.fill(); }
+  else { g.fillStyle=f.has('void')?'rgba(231,48,41,.55)':(f.has('lit')?(city==='Y'?'rgba(242,142,0,.42)':'rgba(63,170,144,.44)'):(city==='Y'?'rgba(242,142,0,.16)':'rgba(63,170,144,.17)')); g.fill();
+    g.fillStyle=city==='Y'?'rgba(242,142,0,.8)':'rgba(63,170,144,.85)'; g.fillRect(p.x,p.y+th-2,tw,2);
+    g.fillStyle=f.has('lit')?'rgba(255,255,255,.9)':'rgba(255,255,255,.33)'; g.font=`700 ${Math.max(6,Math.round(th*.32))}px "JetBrains Mono",monospace`; g.textAlign='center'; g.fillText(S.list[i].id.slice(-3),p.x+tw/2,p.y+th*.62); }
+  g.globalAlpha=1; };
+/* yazı tipi geç yüklenirse duvar bir kez yeniden dizilsin */
+if(!IS_TEL&&document.fonts&&document.fonts.load){ document.fonts.load('800 100px Manrope').then(()=>{ if(W.tiles&&W.tiles.length&&WC.pos.length){ layoutWall(); WC.dirty=true; WC.base=null; } }).catch(()=>{}); }
+
+/* ---------------- kapak: 2026 → 2027 geçişi (kapak her göründüğünde) ---------------- */
+const __bd33=buildDeck;
+buildDeck=function(){ __bd33(); const y=$('#s-cover31 .c31-y'); if(y){ const Y=String(CONFIG.year); const cv=$('#s-cover31'); cv.classList.add('pre33'); const h=cv.querySelector('.c31-hint'); if(h) h.innerHTML='<span class="kbd">BOŞLUK</span> 2027’ye geç'; y.classList.add('c33'); y.innerHTML=`<span class="gd">${Y.slice(0,3)}</span><span class="flipd"><b class="o gd">${String(CONFIG.year-1).slice(3)}</b><b class="n gd">${Y.slice(3)}</b></span>`; } };
+/* ilk BOŞLUK: 2026 → 2027 (ses + ışık), ikinci BOŞLUK: QR sayfası */
+addEventListener('keydown',e=>{ if(IS_TEL||IS_PANEL||IS_DESK) return; if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA') return; const c=$('#s-cover31');
+  if(c&&c.classList.contains('pre33')&&cover31()&&[' ','Enter','ArrowRight','PageDown'].includes(e.key)){ e.preventDefault(); e.stopImmediatePropagation(); c.classList.remove('pre33');
+    try{ SND.init(); SND.play('impact2',.9); setTimeout(()=>{ SND.play('xreveal',.8); SND.play('glitter',.6); },350); }catch(x){} setTimeout(()=>{ try{ FX.burst(240,.24,.5,1.2,true); FX.rain(3,true); }catch(x){} },420);
+    const h=c.querySelector('.c31-hint'); if(h) h.innerHTML='<span class="kbd">BOŞLUK</span> katılım ekranı'; } },true);
+function replayFlip33(){ const c=$('#s-cover31'); if(!c) return; c.classList.remove('on'); void c.offsetWidth; c.classList.add('on'); }
 
 init();
 </script>
