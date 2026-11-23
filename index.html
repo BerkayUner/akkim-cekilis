@@ -2264,12 +2264,18 @@ body.ortu52 #garland .b64 .gh{animation-play-state:paused!important}
 .jpt-ad i.ok{background:#b52670}.jpt-ad i.su{background:#fc6f16;width:34px}
 .jpt-ad span{margin-left:8px;font:800 11px/1 Montserrat,sans-serif;letter-spacing:.14em;color:#8a8590}
 .jpt-sh{position:relative;height:250px;perspective:1100px}
-.jtk{position:absolute;left:50%;top:6px;width:236px;height:236px;margin-left:-118px;transition:transform .55s cubic-bezier(.55,0,.75,.2),opacity .5s ease}
-.jtk.gir{transform:translateY(26px) scale(.82);opacity:0;transition:transform .5s cubic-bezier(.2,.8,.25,1),opacity .4s ease}
+.jtk{z-index:1;position:absolute;left:50%;top:6px;width:236px;height:236px;margin-left:-118px;transition:transform .45s cubic-bezier(.55,0,.75,.2),opacity .4s ease}
+.jtk.isin{animation:jtIsin .56s cubic-bezier(.2,.75,.2,1) backwards}
+@keyframes jtIsin{0%{transform:translateZ(-600px) scale(.18);opacity:0;filter:blur(12px) brightness(2.6)}40%{opacity:1;filter:blur(4px) brightness(1.9)}72%{transform:scale(1.05);filter:blur(0) brightness(1.15)}100%{transform:none;opacity:1;filter:none}}
+.jpt-sh .isik{position:absolute;left:50%;top:124px;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;pointer-events:none;opacity:0;z-index:0}
+.jpt-sh .isik::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,rgba(255,244,234,1) 0%,rgba(254,198,162,.9) 30%,rgba(252,111,22,.45) 55%,rgba(252,111,22,0) 72%)}
+.jpt-sh .isik::after{content:"";position:absolute;left:50%;top:-140px;width:3px;height:292px;margin-left:-1.5px;background:linear-gradient(180deg,rgba(252,111,22,0),rgba(254,198,162,.95) 50%,rgba(252,111,22,0));filter:blur(.5px)}
+.jpt-sh .isik.on{animation:jtIsik .78s ease-out}
+@keyframes jtIsik{0%{opacity:0;transform:scale(.4)}25%{opacity:1;transform:scale(9)}100%{opacity:0;transform:scale(26)}}
 .jtk.cik.sag{transform:translateX(150%) rotate(10deg);opacity:0}
 .jtk.cik.sol{transform:translateX(-150%) rotate(-10deg);opacity:0}
 .jtk.cik.asagi{transform:translateY(130%) rotate(4deg);opacity:0}
-.jtk .in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.45,.05,.25,1)}
+.jtk .in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.45,.05,.25,1)}
 .jtk.open .in{transform:rotateY(180deg)}
 .jtk .fr,.jtk .bk{position:absolute;inset:0;border-radius:24px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
 .jtk .fr{background:radial-gradient(120% 90% at 30% 15%,#8a3a96 0%,#62226c 50%,#45164d 100%);box-shadow:0 22px 40px -18px rgba(69,22,77,.75),inset 0 0 0 1px rgba(255,255,255,.12),inset 0 2px 0 rgba(255,255,255,.18)}
@@ -2297,9 +2303,11 @@ body.ortu52 #garland .b64 .gh{animation-play-state:paused!important}
 .jpt-s.off{color:#8a8590}
 /* kutu akışı sürerken kazananın üst şeridi (hediyen …) görünmesin: sürpriz 4. kutuda */
 body.jp67k #chip22{display:none!important}
+/* tur rakamı: soluk üst kısım yerine doygun turuncu */
+#pc28 .rm{background:linear-gradient(180deg,#fd7a26 0%,#e8590c 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent}
 /* telefon tur ekranı başlığı: soluk geçiş yerine doygun turuncu */
 #pc28 .an{background:linear-gradient(180deg,#fd7a26 0%,#e8590c 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent}
-@media (prefers-reduced-motion:reduce){.jtk,.jtk .in{transition:none}.jtk.kazandi .bk{animation:none}}
+@media (prefers-reduced-motion:reduce){.jtk,.jtk .in{transition:none}.jtk.isin,.jpt-sh .isik.on{animation:none}.jtk.kazandi .bk{animation:none}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script><link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet"></head>
 <body>
@@ -6635,7 +6643,7 @@ if(!IS_TEL&&!IS_PANEL&&!IS_DESK){
   const __kart66=JP64.kartlar.bind(JP64); JP64.kartlar=function(p,w,no,acik){ const r=__kart66(p,w,no,acik);
     try{ this.vals=[w.city==='N'?'N':'Y',this.depAd(w.id)||'Akkim',this.bas(w.name),shortName(w.name)]; this.acik=acik?3:-1; this.key=Math.random().toString(36).slice(2,8); this.jpPi=PRIZES.indexOf(p); }catch(e){} return r; };
   const __ac66=JP64.ac.bind(JP64); JP64.ac=function(i){ const r=__ac66(i); try{ if(i>this.acik){ this.acik=i; pushX(); } }catch(e){} return r; };
-  const __st66=stateX; stateX=function(){ const st=__st66(); try{ if(JP64.key&&JP64.jpPi!=null&&st.ph==='draw'&&st.pi===JP64.jpPi) st.jp={k:JP64.key,pi:JP64.jpPi,v:JP64.vals.slice(0,JP64.acik+1)}; }catch(e){} return st; };
+  const __st66=stateX; stateX=function(){ const st=__st66(); try{ if(JP64.key&&JP64.jpPi!=null&&(st.ph==='draw'||st.ph==='res')&&st.pi===JP64.jpPi) st.jp={k:JP64.key,pi:JP64.jpPi,v:JP64.vals.slice(0,JP64.acik+1)}; }catch(e){} return st; };
 }
 if(IS_TEL){
   /* =====================================================================
@@ -6649,28 +6657,34 @@ if(IS_TEL){
     ad:{Y:'Yalova',N:'Nazilli'}, yon:{Y:'Yalova’ya',N:'Nazilli’ye'}, L:['ŞEHİR','DEPARTMAN','BAŞ HARFLER','KAZANAN'], CIK:['sag','sol','asagi'],
     bas(ad){ return String(ad||'').trim().split(/\s+/).filter(Boolean).map(x=>x[0].toLocaleUpperCase('tr')+'.').join(' '); },
     kur(){ const box=$('#dg-box'); if(!box||$('#jpt')) return; box.insertAdjacentHTML('afterbegin','<div class="jpt" id="jpt"><div class="jpt-ad" id="jpt-ad"></div><div class="jpt-sh" id="jpt-sh"></div><div class="jpt-s" id="jpt-s"></div></div>'); },
-    sifirla(key,pi){ this.key=key; this.pi=pi; this.v=[]; this.adim=0; this.faz=''; this.mesgul=false; this.kilitAc(true); const sh=$('#jpt-sh'); if(sh) sh.innerHTML=''; this.noktalar(); this.durum([]); },
+    sifirla(key,pi){ const onceki=this.kilit; this.key=key; this.pi=pi; this.v=[]; this.adim=0; this.faz=''; this.mesgul=false; this.tekrar=false; this.acildi=0; this.kilitAc(!onceki||!this.kazanQ); const sh=$('#jpt-sh'); if(sh) sh.innerHTML=''; this.noktalar(); this.durum([]); },
     noktalar(){ const a=$('#jpt-ad'); if(!a) return; a.innerHTML=this.L.map((l,i)=>`<i class="${i<this.adim?'ok':i===this.adim?'su':''}"></i>`).join('')+`<span>${Math.min(this.adim+1,4)} / 4 · ${this.L[Math.min(this.adim,3)]}</span>`; },
-    kart(i){ return `<div class="jtk${i===3?' fin':''} gir" data-i="${i}"><div class="in"><div class="fr"><i class="rv"></i><i class="rh"></i><b class="bw"></b><span class="no">${i+1}</span><span class="lb">${this.L[i]}</span><span class="ft">${i===3?'KAZANAN':'AKKİM 2027'}</span></div><div class="bk"><span class="ak">${i+1} · ${this.L[i]}</span><div class="vl"></div></div></div></div>`; },
+    kart(i){ return `<div class="jtk${i===3?' fin':''} isin" data-i="${i}"><div class="in"><div class="fr"><i class="rv"></i><i class="rh"></i><b class="bw"></b><span class="no">${i+1}</span><span class="lb">${this.L[i]}</span><span class="ft">${i===3?'KAZANAN':'AKKİM 2027'}</span></div><div class="bk"><span class="ak">${i+1} · ${this.L[i]}</span><div class="vl"></div></div></div></div>`; },
     yaz(c,i){ const vl=c.querySelector('.vl'), v=this.v[i]; if(i===0){ vl.className='vl sh '+(v==='N'?'n':'y'); vl.textContent=(this.ad[v]||'').toLocaleUpperCase('tr'); } else { vl.className='vl'+(i===2?' bh':i===3?' kz':''); vl.textContent=String(v); } },
     bekle(ms){ return new Promise(r=>setTimeout(r,ms)); },
+    isik(){ const sh=$('#jpt-sh'); if(!sh) return; let e=sh.querySelector('.isik'); if(!e){ sh.insertAdjacentHTML('afterbegin','<i class="isik"></i>'); e=sh.querySelector('.isik'); } e.classList.remove('on'); void e.offsetWidth; e.classList.add('on'); },
     /* sahneden gelen durum: yeni değerleri kaydet, akışı ilerlet */
     ciz(st){ this.kur(); const jp=st.jp&&st.jp.pi===st.pi?st.jp:null, key=(jp?jp.k:'yok')+'|'+st.pi; if(this.key!==key) this.sifirla(key,st.pi);
       if(jp) this.v=jp.v.slice(0,4); this.ilerle(); },
-    async ilerle(){ if(this.mesgul) return; this.mesgul=true; const key=this.key;
+    /* sahneyle senkron akış: kutu, sahnede açıldığı an döner; sahnede sıradaki açılınca kayarak çıkar ve sıradaki ışınlanır.
+       telefon sahnenin ~1 sn gerisinde kalır; bir kutu en az okunacak kadar ekranda durur */
+    async ilerle(){ if(this.mesgul){ this.tekrar=true; return; } this.mesgul=true; this.tekrar=false; const key=this.key;
       try{ while(this.key===key&&this.adim<4){ const sh=$('#jpt-sh'); if(!sh) break; const i=this.adim; let c=sh.querySelector(`.jtk[data-i="${i}"]`);
-          if(!c){ this.kilitle(); sh.innerHTML=this.kart(i); c=sh.firstChild; this.noktalar(); requestAnimationFrame(()=>c.classList.remove('gir')); await this.bekle(520); continue; }
+          if(!c){ this.kilitle(); sh.insertAdjacentHTML('beforeend',this.kart(i)); c=sh.querySelector(`.jtk[data-i="${i}"]`); this.isik(); this.noktalar(); await this.bekle(560); continue; }
           if(this.v[i]==null) break;                                      /* sahnede bu kutu henüz açılmadı */
-          if(!c.classList.contains('open')){ this.yaz(c,i); c.classList.add('open'); PH.vib(i===3?[80,40,160]:[40]); await this.bekle(820); this.durum(this.v.slice(0,i+1)); }
-          if(i===3){ this.adim=4; this.noktalar(); c.classList.add('kazandi'); try{ PFX.burst(70,.5,.45,.7,true); }catch(e){} await this.bekle(2600); this.kilitAc(); break; }
-          await this.bekle(this.v.length>i+1?900:1300);                    /* açılan bilgi okunsun */
-          if(this.key!==key) break; c.classList.add('cik',this.CIK[i]); await this.bekle(520); c.remove(); this.adim=i+1; this.noktalar(); }
-      }catch(e){} this.mesgul=false; if(this.key===key&&this.adim<4&&this.v[this.adim]!=null) this.ilerle(); },
+          if(!c.classList.contains('open')){ this.yaz(c,i); c.classList.add('open'); PH.vib(i===3?[80,40,160]:[40]); this.acildi=Date.now(); await this.bekle(380); this.durum(this.v.slice(0,i+1)); }
+          if(i===3){ this.adim=4; this.noktalar(); await this.bekle(250); c.classList.add('kazandi'); try{ PFX.burst(70,.5,.45,.7,true); }catch(e){} await this.bekle(1500); if(this.key===key) this.kilitAc(); break; }
+          if(this.v[i+1]==null) break;                                    /* sahnede sıradaki kutu açılınca devam */
+          const kalan=750-(Date.now()-(this.acildi||0)); if(kalan>0) await this.bekle(kalan);   /* en az okunma süresi */
+          if(this.key!==key) break; c.classList.add('cik',this.CIK[i]); this.adim=i+1; this.noktalar();
+          await this.bekle(120); if(this.key!==key) break; sh.insertAdjacentHTML('beforeend',this.kart(i+1)); this.isik();   /* sıradaki kutu uzaktan ışınlanarak gelir */
+          await this.bekle(430); c.remove(); }
+      }catch(e){} this.mesgul=false; if(this.tekrar&&this.key===key) this.ilerle(); },
     /* akış sürerken sonuç ekranı ve kazandın penceresi bekler */
     kilitle(){ if(this.kilit) return; this.kilit=true; document.body.classList.add('jp67k'); clearTimeout(this.kilitT); this.kilitT=setTimeout(()=>this.kilitAc(),16000); },
     kilitAc(sessiz){ const vardi=this.kilit; this.kilit=false; clearTimeout(this.kilitT); document.body.classList.remove('jp67k'); if(sessiz||!vardi) return;
-      if(this.bekleyen){ this.bekleyen=false; try{ PH.render(); }catch(e){} }
-      if(this.kazanQ){ const a=this.kazanQ; this.kazanQ=null; try{ PH.showWin.apply(PH,a); }catch(e){} } },
+      setTimeout(()=>{ if(this.bekleyen){ this.bekleyen=false; try{ PH.render(); }catch(e){} }
+        if(this.kazanQ&&!this.kilit){ const a=this.kazanQ; this.kazanQ=null; try{ PH.showWin.apply(PH,a); }catch(e){} } },0); },
     durum(v){ const s=$('#jpt-s'); if(!s) return; const me=PH.me||{}, myP=me.g!=null&&!(this.kazanQ)?PRIZES[me.g]:null;
       if(myP&&!v.length){ s.innerHTML=`Senin hediyen hazır (${esc(myP.name)}). Bu turu keyifle izle.`; s.className='jpt-s'; return; }
       if(!v.length){ s.innerHTML='Kutular sahneyle birlikte açılıyor…'; s.className='jpt-s'; return; }
@@ -6684,9 +6698,13 @@ if(IS_TEL){
   PH.dgRender=function(){};
   const __rn67=PH.render.bind(PH); PH.render=function(){ const st=this.st||{};
     /* kutu akışı bitmeden aynı hediyenin sonuç ekranına geçme */
-    if(JPT.kilit&&st.pi===JPT.pi&&st.ph!=='draw'){ JPT.bekleyen=true; return; }
-    if(JPT.kilit&&st.pi!==JPT.pi) JPT.kilitAc(true);
+    /* yalnız aynı çekilişin sonuç ekranı bekler; sahne yeni bir aşamaya geçtiyse (dokun, tur, sonraki hediye) akış hemen bırakılır */
+    /* sonuç aşamasında da kutu bilgisi gelir (kazanan adı sonuçla aynı anda açılır): akışa ver */
+    if(st.jp&&st.jp.k&&JPT.key===st.jp.k+'|'+st.pi){ JPT.v=st.jp.v.slice(0,4); JPT.ilerle(); }
+    if(JPT.kilit){ if(st.ph==='res'&&st.pi===JPT.pi){ JPT.bekleyen=true; return; } if(st.ph!=='draw') JPT.kilitAc(); }
     const r=__rn67(); try{ const p=PRIZES[st.pi], tek=this.cur==='tp-draw'&&st.ph==='draw'&&p&&p.mode!=='batch'; const td=$('#tp-draw'); if(td) td.classList.toggle('jp66',!!tek); document.body.classList.toggle('jp66',!!tek); if(tek) JPT.ciz(st); }catch(e){} return r; };
+  /* tur ekranı: ilk grubun başlığı "Altın Turu" */
+  const __rn68=PH.render.bind(PH); PH.render=function(){ const r=__rn68(); try{ const st=this.st||{}, an=document.querySelector('#pc28 .an'); if(st.ph==='act'&&st.act===0&&an&&an.textContent!=='Altın Turu') an.textContent='Altın Turu'; }catch(e){} return r; };
   const __sw67=PH.showWin; PH.showWin=function(){ if(JPT.kilit){ JPT.kazanQ=[...arguments]; return; } return __sw67.apply(this,arguments); };
 }
 
