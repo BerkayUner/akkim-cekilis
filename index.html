@@ -2192,10 +2192,10 @@ html:not(:has(body.tel17)):not(:has(body.adm46)),body:not(.tel17):not(.adm46){ba
 .jp-t{margin:14px 0 0;font:800 34px/1.1 Montserrat,sans-serif;color:#1f1d21;letter-spacing:-.01em}
 .jp-t em{font-style:normal;color:#fc6f16}
 .jp-row{display:flex;gap:30px;margin-top:28px;perspective:1600px}
-.jc{width:290px;height:290px;position:relative;opacity:0;transform:translateY(26px) scale(.94);animation:jcGel .7s cubic-bezier(.2,1.2,.35,1) forwards}
+.jc{width:290px;height:290px;position:relative;opacity:0;animation:jcGel .6s ease-out forwards}
 .jc:nth-child(2){animation-delay:.08s}.jc:nth-child(3){animation-delay:.16s}.jc:nth-child(4){animation-delay:.24s}
 @keyframes jcGel{to{opacity:1;transform:none}}
-.jc .in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.3,1.35,.45,1)}
+.jc .in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform 1.1s cubic-bezier(.45,.05,.25,1)}
 .jc.open .in{transform:rotateY(180deg)}
 .jc .fr,.jc .bk{position:absolute;inset:0;border-radius:24px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
 /* kapalı kutu: mor, şeftali-turuncu kurdele */
@@ -2212,8 +2212,6 @@ html:not(:has(body.tel17)):not(:has(body.adm46)),body:not(.tel17):not(.adm46){ba
 .jc .lb{position:absolute;right:16px;top:18px;padding:7px 11px;border-radius:99px;background:rgba(31,29,33,.45);color:#ffe1cc;font:800 11px/1 Montserrat,sans-serif;letter-spacing:.16em}
 .jc .ft{position:absolute;right:18px;bottom:16px;color:rgba(255,225,204,.85);font:800 11px/1 Montserrat,sans-serif;letter-spacing:.2em}
 .jc.fin .fr{background:radial-gradient(120% 90% at 30% 15%,#c43a86 0%,#8e2471 45%,#5a1a5f 100%);box-shadow:0 0 0 2px rgba(254,198,162,.55),0 30px 70px -20px rgba(181,38,112,.75),inset 0 2px 0 rgba(255,255,255,.2)}
-.jc.shake .in{animation:jcSalla .9s ease-in-out infinite}
-@keyframes jcSalla{0%,100%{transform:rotate(0)}15%{transform:rotate(-2.2deg) scale(1.02)}30%{transform:rotate(2.2deg) scale(1.02)}45%{transform:rotate(-1.2deg)}60%{transform:rotate(0)}}
 /* açık yüz */
 .jc .bk{transform:rotateY(180deg);background:#fff;border:3px solid #b52670;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:22px;box-sizing:border-box;text-align:center;
   box-shadow:0 26px 60px -20px rgba(181,38,112,.55)}
@@ -2246,7 +2244,7 @@ html:not(:has(body.tel17)):not(:has(body.adm46)),body:not(.tel17):not(.adm46){ba
 .jp-tah.y .l .n,.jp-tah.n .l .y{opacity:.35}
 .jp-tah.y .f{color:#c9480a;font-weight:800}.jp-tah.n .f{color:#b52670;font-weight:800}
 #draw.dark .jp-pill,#draw.dark .jp-t{position:relative;z-index:6}
-@media (prefers-reduced-motion:reduce){.jc,.jc .in,.jc.shake .in{animation:none!important;transition:none!important;opacity:1;transform:none}.jc.open .in{transform:rotateY(180deg)}}
+@media (prefers-reduced-motion:reduce){.jc,.jc .in{animation:none!important;transition:none!important;opacity:1;transform:none}.jc.open .in{transform:rotateY(180deg)}}
 /* büyük finalde ekran kararırken açık perde kartların arkasında kalsın */
 #draw.dark:has(#digits.jp.on)::after{background:radial-gradient(ellipse at 50% 50%,transparent 38%,rgba(243,244,246,.55) 82%)}
 /* üst ampul dizisi: yanıp sönen ışık, ampul değil */
@@ -2495,14 +2493,11 @@ const CONFIG = {
 };
 /* mode: batch = toplu (altın küçükler) · wall = isim duvarı (tek tek) · digits = hane hane (tek tek) · grand = geri sayım + hane hane (tek tek) */
 const PRIZES = [
-  {id:'apd', act:0, mode:'batch', batch:10, name:'AirPods 5', sub:'Apple', qty:12, img:'airpods', cat:'tek', price:9000},
-  {id:'aw',  act:0, mode:'batch', batch:10, name:'Apple Watch 12', sub:'GPS · 42 mm', qty:8, img:'apple-watch', cat:'tek', price:22000},
-  {id:'tv',  act:0, mode:'batch', batch:10, name:'Philips 50 inç TV', sub:'50PUS7800/62', qty:5, img:'tv', cat:'tek', price:25000},
-  {id:'hp',  act:0, mode:'batch', batch:10, name:'HP 250 G10 Dizüstü', sub:'15,6 inç', qty:5, img:'laptop', cat:'tek', price:28000},
-  {id:'ps5', act:0, mode:'batch', batch:10, name:'PlayStation 5', sub:'1 TB', qty:5, img:'ps5', cat:'tek', price:30000},
-  {id:'ipd', act:0, mode:'digits', name:'13 inç iPad Air', sub:'256 GB · Wi-Fi', qty:5, img:'ipad-air', cat:'tek', price:45000},
-  {id:'i18', act:0, mode:'grand', name:'iPhone 18 Pro', sub:'256 GB', qty:3, img:'iphone-18-pro', cat:'tek', price:95000},
-  {id:'i18m',act:0, mode:'grand', name:'iPhone 18 Pro Max', sub:'256 GB · Büyük Ödül', qty:2, img:'iphone-18-pro-max', cat:'tek', price:110000},
+  {id:'g05', act:0, mode:'batch', batch:10, name:'0,5 Gram Altın', sub:'24 ayar · külçe', qty:20, img:'altin-05', cat:'altin', price:3300},
+  {id:'g1',  act:0, mode:'batch', batch:10, name:'Gram Altın', sub:'24 ayar · 1 gr külçe', qty:50, img:'altin-gram', cat:'altin', price:6500},
+  {id:'cyr', act:0, mode:'batch', batch:10, name:'Çeyrek Altın', sub:'22 ayar', qty:20, img:'altin-ceyrek', cat:'altin', price:10500},
+  {id:'yrm', act:0, mode:'batch', batch:10, name:'Yarım Altın', sub:'22 ayar', qty:9, img:'altin-yarim', cat:'altin', price:21000},
+  {id:'cmh', act:0, mode:'digits', name:'Cumhuriyet Altını', sub:'22 ayar · tam', qty:5, img:'altin-cumhuriyet', big:true, cat:'altin', price:42000},
   {id:'utu', act:1, mode:'batch', batch:10, name:'Philips Buharlı El Ütüsü', sub:'STH5030/20', qty:8, img:'utu', cat:'ev', price:3500},
   {id:'bln', act:1, mode:'batch', batch:10, name:'Philips 5000 Blender Seti', sub:'5000 Serisi', qty:8, img:'blender', cat:'ev', price:4500},
   {id:'gs',  act:1, mode:'batch', batch:10, name:'Gurme Şef Çok Amaçlı Pişirici', sub:'Çok amaçlı pişirici', qty:8, img:'gurme-sef', cat:'ev', price:9000},
@@ -2511,16 +2506,19 @@ const PRIZES = [
   {id:'ltg', act:1, mode:'batch', batch:10, name:'Philips LatteGo Kahve Makinesi', sub:'EP4446', qty:6, img:'lattego', cat:'ev', price:28000},
   {id:'awr', act:1, mode:'batch', batch:10, name:'Dyson Airwrap', sub:'Saç şekillendirici', qty:5, img:'airwrap', cat:'ev', price:33000},
   {id:'v15', act:1, mode:'digits', name:'Dyson V15', sub:'Kablosuz süpürge', qty:4, img:'v15', cat:'ev', price:38000},
-  {id:'g05', act:2, mode:'batch', batch:10, name:'0,5 Gram Altın', sub:'24 ayar · külçe', qty:20, img:'altin-05', cat:'altin', price:3300},
-  {id:'g1',  act:2, mode:'batch', batch:10, name:'Gram Altın', sub:'24 ayar · 1 gr külçe', qty:50, img:'altin-gram', cat:'altin', price:6500},
-  {id:'cyr', act:2, mode:'batch', batch:10, name:'Çeyrek Altın', sub:'22 ayar', qty:20, img:'altin-ceyrek', cat:'altin', price:10500},
-  {id:'yrm', act:2, mode:'batch', batch:10, name:'Yarım Altın', sub:'22 ayar', qty:9, img:'altin-yarim', cat:'altin', price:21000},
-  {id:'cmh', act:2, mode:'digits', name:'Cumhuriyet Altını', sub:'22 ayar · tam', qty:5, img:'altin-cumhuriyet', big:true, cat:'altin', price:42000}
+  {id:'apd', act:2, mode:'batch', batch:10, name:'AirPods 5', sub:'Apple', qty:12, img:'airpods', cat:'tek', price:9000},
+  {id:'aw',  act:2, mode:'batch', batch:10, name:'Apple Watch 12', sub:'GPS · 42 mm', qty:8, img:'apple-watch', cat:'tek', price:22000},
+  {id:'tv',  act:2, mode:'batch', batch:10, name:'Philips 50 inç TV', sub:'50PUS7800/62', qty:5, img:'tv', cat:'tek', price:25000},
+  {id:'hp',  act:2, mode:'batch', batch:10, name:'HP 250 G10 Dizüstü', sub:'15,6 inç', qty:5, img:'laptop', cat:'tek', price:28000},
+  {id:'ps5', act:2, mode:'batch', batch:10, name:'PlayStation 5', sub:'1 TB', qty:5, img:'ps5', cat:'tek', price:30000},
+  {id:'ipd', act:2, mode:'digits', name:'13 inç iPad Air', sub:'256 GB · Wi-Fi', qty:5, img:'ipad-air', cat:'tek', price:45000},
+  {id:'i18', act:2, mode:'grand', name:'iPhone 18 Pro', sub:'256 GB', qty:3, img:'iphone-18-pro', cat:'tek', price:95000},
+  {id:'i18m',act:2, mode:'grand', name:'iPhone 18 Pro Max', sub:'256 GB · Büyük Ödül', qty:2, img:'iphone-18-pro-max', cat:'tek', price:110000}
 ];
 const ACTS = [
-  {r:'I',   name:'Teknoloji',            desc:'AirPods 5, Apple Watch 12, Philips TV, HP dizüstü, PlayStation 5, iPad Air, iPhone 18 Pro ve Pro Max: 45 talihli.'},
+  {r:'I',   name:'Altın ve Hediye Çeki', desc:'0,5 gram, gram, çeyrek, yarım ve Cumhuriyet altını: 104 talihli. Özel hediye çıkmayan herkese 3.500 ₺ iWallet hediye çeki.'},
   {r:'II',  name:'Ev ve Kişisel Bakım',  desc:'Philips ütü ve blender, Gurme Şef, Tefal, Xiaomi robot süpürge, LatteGo, Dyson Airwrap ve Dyson V15: 51 talihli.'},
-  {r:'III', name:'Altın ve Hediye Çeki', desc:'0,5 gram, gram, çeyrek, yarım ve Cumhuriyet altını: 104 talihli. Özel hediye çıkmayan herkese 3.500 ₺ iWallet hediye çeki.'}
+  {r:'III', name:'Teknoloji',            desc:'AirPods 5, Apple Watch 12, Philips TV, HP dizüstü, PlayStation 5, iPad Air, iPhone 18 Pro ve Pro Max: 45 talihli.'}
 ];
 const MODE_TR = {batch:'10’ARLI KART TURU', wall:'İSİM DUVARI · TEK TEK', digits:'HANE HANE · TEK TEK', grand:'BÜYÜK FİNAL · TEK TEK'};
 const TOTAL_SPECIAL = PRIZES.reduce((a,p)=>a+p.qty,0);
@@ -2574,7 +2572,7 @@ function giftSVG(){ const u='gc'+(UID++);
   <rect x="4" y="4" width="252" height="162" rx="18" fill="url(#${u}g)" stroke="#fc9a5c" stroke-opacity=".6"/><rect x="4" y="150" width="252" height="10" fill="url(#${u}s)"/>
   <text x="22" y="38" font-family="Manrope" font-weight="800" font-size="12" letter-spacing="3" fill="#fc9a5c">HEDİYE ÇEKİ</text><text x="22" y="108" font-family="Montserrat" font-weight="900" font-size="44" fill="#fedec9">${CONFIG.giftCardValue}</text><rect x="200" y="24" width="36" height="26" rx="5" fill="#fc9a5c" opacity=".8"/></svg>`; }
 const BOX=['linear-gradient(160deg,#fd8d45,#c9480a)','linear-gradient(160deg,#fc6f16,#a8390a)','linear-gradient(160deg,#fdb07e,#d9580c)','linear-gradient(160deg,#f6b68f,#b9571a)'];
-function buildGarland(){ const g=$('#garland'); const cols=['#885987','#ce3087','#e73029','#f28e00','#fdd4a4','#e8c27a']; let path='M0 6', bulbs=''; const seg=240; let k=0;
+function buildGarland(){ const g=$('#garland'); const cols=['#fc6f16','#8a3d93','#fec6a2','#b52670','#fc6f16','#e8364f']; let path='M0 6', bulbs=''; const seg=240; let k=0;
   for(let x=0;x<1920;x+=seg){ path+=` Q${x+seg/2} 44 ${x+seg} 6`; for(let j=1;j<6;j++){ const t=j/6, bx=x+seg*t, by=(1-t)*(1-t)*6+2*(1-t)*t*44+t*t*6, c=cols[k++%cols.length];
     bulbs+=`<g class="bulb" style="animation-delay:${(-Math.random()*2.4).toFixed(2)}s"><ellipse cx="${bx}" cy="${by+12}" rx="14" ry="16" fill="${c}" opacity=".2"/><rect x="${bx-3}" y="${by-1}" width="6" height="6" rx="1.5" fill="#8d4214"/><ellipse cx="${bx}" cy="${by+12}" rx="5.5" ry="8" fill="${c}"/><ellipse cx="${bx-1.6}" cy="${by+9}" rx="1.6" ry="2.6" fill="#fff" opacity=".7"/></g>`; } }
   g.innerHTML=`<path d="${path}" stroke="rgba(24,12,4,.9)" stroke-width="2" fill="none"/>`+bulbs; }
@@ -2697,7 +2695,7 @@ function buildDeck(){
   const cat=c=>PRIZES.filter(p=>p.cat===c).reduce((a,p)=>a+p.qty,0);
   const ico={list:'<svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>',dice:'<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.2"/><circle cx="16" cy="16" r="1.2"/><circle cx="12" cy="12" r="1.2"/></svg>',seal:'<svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="6"/><path d="M8.5 15 7 22l5-3 5 3-1.5-7"/></svg>',eye:'<svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>'};
   const TL=[['00:00','Açılış: geri sayım videosu + DJ','İki salon aynı anda geri sayar',5],['00:05','Yönetim mesajı','Yalova sahnesi + Nazilli canlı bağlantı',10],['00:15','Kurallar, şans sayıları, mühür','Her şehirden bir çalışan sayısını söyler',5],
-    ['','I. Tur · '+ACTS[0].name,'3-2-1 ritüeli',est[0]],['','II. Tur · '+ACTS[1].name,'',est[1]],['','Altın Dakika (ara)','Şehirler arası hızlı yarışma',5],['','III. Tur · '+ACTS[2].name,'',est[2]],['','Final: 750 hediye çeki + kapanış','Toplu fotoğraf',7]];
+    ['','I. Tur · '+ACTS[0].name,'',est[0]],['','II. Tur · '+ACTS[1].name,'',est[1]],['','Altın Dakika (ara)','Şehirler arası hızlı yarışma',5],['','III. Tur · '+ACTS[2].name,'3-2-1 ritüeli',est[2]],['','Final: 750 hediye çeki + kapanış','Toplu fotoğraf',7]];
   [0,1,2].forEach(a=>{ const ps=PRIZES.filter(p=>p.act===a); TL[[3,4,6][a]][2]=(TL[[3,4,6][a]][2]?TL[[3,4,6][a]][2]+' · ':'')+ps.reduce((x,p)=>x+p.qty,0)+' hediye'; });
   let t=20; TL.forEach((r,i)=>{ if(i>=3){ r[0]=String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0'); t+=r[3]; } });
   const total=TL.reduce((a,r)=>a+r[3],0), maxM=Math.max(...TL.map(r=>r[3]));
@@ -3387,7 +3385,7 @@ const PH={ s:null,k:null,cid:Math.random().toString(36).slice(2,10),me:null,st:n
     const b=$('#pg-tap .pg'); if(b){ b.classList.remove('idle','shake'); void b.offsetWidth; b.classList.add('shake'); } this.vib(14); if(this.myT%3===0) PFX.burst(8,.5,.5,.5,true);
     this.q=(this.q||0)+1; if(!this.qt) this.qt=setTimeout(()=>{ this.qt=null; sendX({t:'tap',s:this.s,n:this.q}); this.q=0; NET.pres({taps:this.taps}); },150); } };
 function initPhone(){ document.body.classList.add('tel17'); $$('#tel17 .logo-slot').forEach(e=>e.innerHTML=logoSVG(+e.dataset.h||26)); $$('.yr').forEach(e=>e.textContent=CONFIG.year);
-  const cols=['#885987','#ce3087','#e73029','#f28e00','#fdd4a4','#e8c27a','#3faa90']; let g='<svg viewBox="0 0 400 34" preserveAspectRatio="none"><path d="M0 6 Q200 34 400 6" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.2"/>'; for(let i=0;i<18;i++){ const t=(i+.5)/18, x=t*400, y=6+28*t*(1-t)*2; g+=`<circle cx="${x.toFixed(1)}" cy="${(y+4).toFixed(1)}" r="4.2" fill="${cols[i%7]}" style="animation-delay:${(i*.37%2.6).toFixed(2)}s"/>`; } $('#tp-gar').innerHTML=g+'</svg>';
+  const cols=['#fc6f16','#8a3d93','#fec6a2','#b52670','#fc6f16','#e8364f','#8a3d93']; let g='<svg viewBox="0 0 400 34" preserveAspectRatio="none"><path d="M0 6 Q200 34 400 6" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.2"/>'; for(let i=0;i<18;i++){ const t=(i+.5)/18, x=t*400, y=6+28*t*(1-t)*2; g+=`<circle cx="${x.toFixed(1)}" cy="${(y+4).toFixed(1)}" r="4.2" fill="${cols[i%7]}" style="animation-delay:${(i*.37%2.6).toFixed(2)}s"/>`; } $('#tp-gar').innerHTML=g+'</svg>';
   $('#pg-join').innerHTML=boxHTML({cls:'idle',box:BOX[1]});
   PFX.init($('#tpfx')); $('#tp-go').onclick=()=>PH.join(); $('#tp-k').addEventListener('keydown',e=>{ if(e.key==='Enter') PH.join(); });
   $$('#tp-demo a').forEach(a=>a.onclick=()=>{ $('#tp-s').value=a.dataset.s; $('#tp-k').value=joinCode(a.dataset.s); });
@@ -3603,7 +3601,7 @@ const DESK={ q:0, s:'', c:'', cur:null,
 
 const __init19=init;
 init=function(){ if(IS_DESK){ initPhoneShell19(); DESK.init(); return; } __init19(); if(IS_TEL) initPhone19(); else if(!IS_PANEL) stageInit19(); };
-function initPhoneShell19(){ document.body.classList.add('tel17'); PFX.init($('#tpfx')); const cols=['#885987','#ce3087','#e73029','#f28e00','#fdd4a4','#e8c27a','#3faa90']; let g='<svg viewBox="0 0 400 34" preserveAspectRatio="none">'; for(let i=0;i<18;i++){ const t=(i+.5)/18; g+=`<circle cx="${(t*400).toFixed(1)}" cy="${(10+28*t*(1-t)*2).toFixed(1)}" r="4.2" fill="${cols[i%7]}"/>`; } $('#tp-gar').innerHTML=g+'</svg>'; }
+function initPhoneShell19(){ document.body.classList.add('tel17'); PFX.init($('#tpfx')); const cols=['#fc6f16','#8a3d93','#fec6a2','#b52670','#fc6f16','#e8364f','#8a3d93']; let g='<svg viewBox="0 0 400 34" preserveAspectRatio="none">'; for(let i=0;i<18;i++){ const t=(i+.5)/18; g+=`<circle cx="${(t*400).toFixed(1)}" cy="${(10+28*t*(1-t)*2).toFixed(1)}" r="4.2" fill="${cols[i%7]}"/>`; } $('#tp-gar').innerHTML=g+'</svg>'; }
 
 /* =====================================================================
    v20 · SALON IŞIK ŞOVU · TAHMİN OYUNU · KİŞİSEL DAVET LİNKİ
@@ -4173,7 +4171,7 @@ const __ls29=lightShow; lightShow=function(){ if(!IS_TEL) LS29.start(); return _
 /* ---------------- telefon ---------------- */
 /* gerçekçi ampul dizisi */
 function shade29(h,k){ const n=parseInt(h.slice(1),16); const f=c=>Math.max(0,Math.round(c*k)); return '#'+[(n>>16)&255,(n>>8)&255,n&255].map(f).map(x=>x.toString(16).padStart(2,'0')).join(''); }
-function garland29(){ const el=$('#tp-gar'); if(!el) return; const cols=['#ff5848','#ffb43c','#fff0c4','#38d6a5','#ff4fa8','#b48cff'];
+function garland29(){ const el=$('#tp-gar'); if(!el) return; const cols=['#fc6f16','#8a3d93','#fec6a2','#b52670','#fc6f16','#e8364f'];
   let defs='<linearGradient id="g29s" x1="0" x2="1"><stop offset="0" stop-color="#0d1410"/><stop offset=".5" stop-color="#3a4a3e"/><stop offset="1" stop-color="#0d1410"/></linearGradient>';
   cols.forEach((c,i)=>{ defs+=`<radialGradient id="g29b${i}" cx=".4" cy=".34" r=".78"><stop offset="0" stop-color="#fffef6"/><stop offset=".22" stop-color="${c}"/><stop offset=".78" stop-color="${shade29(c,.62)}"/><stop offset="1" stop-color="${shade29(c,.38)}"/></radialGradient><radialGradient id="g29h${i}"><stop offset="0" stop-color="${c}" stop-opacity=".7"/><stop offset=".4" stop-color="${c}" stop-opacity=".22"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient>`; });
   const W=400, segs=2, sw=W/segs, sag=30; let wire='M-6 3', bulbs='', k=0;
@@ -4523,7 +4521,7 @@ CONFIG.storageKey='akkim-cekilis-v35';
 const WW=1800, WH=660;
 WC.cam={x:WW/2,y:WH/2,s:1,tx:WW/2,ty:WH/2,ts:1};
 /* altın sadece kazanana ait → normal ampullerde sarı/turuncu yok */
-const BCOL=['#e0408f','#9b6bd6','#e73029','#3faa90','#4f8ff0','#f4f1ff'];
+const BCOL=['#fc6f16','#8a3d93','#b52670','#fc6f16','#f7f2f8','#8a3d93','#e8364f','#fc6f16'];
 const hex2=h=>{ const n=parseInt(h.slice(1),16); return [(n>>16)&255,(n>>8)&255,n&255]; };
 const mix=(a,b,k)=>a.map((v,i)=>Math.round(v+(b[i]-v)*k));
 const rgba=(c,a)=>`rgba(${c[0]},${c[1]},${c[2]},${a})`;
@@ -4561,12 +4559,12 @@ layoutWall=function(){ const n=S.list.length, X0=40, Y0=122, AW=WW-80, AH=468, t
 function bulb35(kind,ci){ const d=WC.grid, k=kind+'|'+ci+'|'+Math.round(d.tw*10)+'|'+WC.Q; WC.spr=WC.spr||{}; if(WC.spr[k]) return WC.spr[k];
   const Q=WC.Q, bw=d.tw*Q, bh=d.th*Q, sk=d.sk*Q, W_=Math.ceil(bw*(kind==='dim'?1.4:(kind==='hi'||kind==='goldhi'?6:4))), H_=Math.ceil(bh*(kind==='dim'?2.2:(kind==='hi'||kind==='goldhi'?4.4:3.6)));
   const c=document.createElement('canvas'); c.width=W_; c.height=H_; const g=c.getContext('2d'), mx=W_/2, my=H_/2;
-  let col=kind==='gold'||kind==='goldhi'?[255,196,64]:hex2(BCOL[ci]);
+  let col=kind==='gold'||kind==='goldhi'?[254,198,162]:hex2(BCOL[ci]);
   const glow=(cc,R,a)=>{ const gr=g.createRadialGradient(mx,my,0,mx,my,R); gr.addColorStop(0,rgba(cc,a)); gr.addColorStop(.4,rgba(cc,a*.35)); gr.addColorStop(1,rgba(cc,0)); g.fillStyle=gr; g.fillRect(0,0,W_,H_); };
   if(kind==='on') glow(col,bw*1.5,.5);
   if(kind==='gold') glow(col,bw*1.8,.75);
   if(kind==='hi') glow(mix(col,[255,255,255],.3),bw*2.7,1);
-  if(kind==='goldhi') glow([255,214,120],bw*2.8,1);
+  if(kind==='goldhi') glow([255,222,196],bw*2.8,1);
   if(kind==='hi'||kind==='goldhi'){ /* parlaklık katmanı: sadece ışık */ const gr=g.createRadialGradient(mx,my,0,mx,my,bw*.7); gr.addColorStop(0,'rgba(255,255,255,1)'); gr.addColorStop(1,'rgba(255,255,255,0)'); g.fillStyle=gr; g.beginPath(); g.ellipse(mx,my,bw*.62,bh*.6,0,0,7); g.fill(); return WC.spr[k]=c; }
   /* duy */
   const sg=g.createLinearGradient(mx-bw*.26,0,mx+bw*.26,0); sg.addColorStop(0,'#2e2716'); sg.addColorStop(.5,'#7a6740'); sg.addColorStop(1,'#2e2716');
@@ -4986,7 +4984,7 @@ const __init40=init; init=function(){ __init40(); if(!IS_TEL&&!IS_PANEL&&!IS_DES
 const __b40=bulb35;
 bulb35=function(kind,ci){ if(kind!=='hi'&&kind!=='goldhi') return __b40(kind,ci); const d=WC.grid, k='hi40|'+kind+'|'+ci+'|'+Math.round(d.tw*10)+'|'+WC.Q; WC.spr=WC.spr||{}; if(WC.spr[k]) return WC.spr[k];
   const Q=WC.Q, bw=d.tw*Q, bh=d.th*Q, S_=Math.ceil(bw*11), c=document.createElement('canvas'); c.width=c.height=S_; const g=c.getContext('2d'), m=S_/2;
-  const col=kind==='goldhi'?[255,206,110]:mix(hex2(BCOL[ci]),[255,255,255],.28);
+  const col=kind==='goldhi'?[254,212,180]:mix(hex2(BCOL[ci]),[255,255,255],.28);
   const gr=g.createRadialGradient(m,m,0,m,m,bw*5); gr.addColorStop(0,rgba(col,1)); gr.addColorStop(.22,rgba(col,.55)); gr.addColorStop(.55,rgba(col,.16)); gr.addColorStop(1,rgba(col,0)); g.fillStyle=gr; g.fillRect(0,0,S_,S_);
   const cr=g.createRadialGradient(m,m,0,m,m,bw*.85); cr.addColorStop(0,'rgba(255,255,255,1)'); cr.addColorStop(1,'rgba(255,255,255,0)'); g.fillStyle=cr; g.beginPath(); g.ellipse(m,m,bw*.85,bh*.75,0,0,7); g.fill();
   return WC.spr[k]=c; };
@@ -6456,6 +6454,8 @@ setInterval(()=>{ try{ const el=document.getElementById('k-sure'); if(!el||typeo
   if(!st||!st.sb){ if(!el.hidden) el.hidden=true; return; }
   const t='SÜRE '+SURE61.bicim((st.sbt||Date.now())-st.sb); if(el.textContent!==t) el.textContent=t; el.hidden=false; el.classList.toggle('bitti',!!st.sbt); }catch(e){} },500);
 
+/* v65 · grup sırası değişti (Altın → Ev → Teknoloji): eski sıradaki tarayıcı kaydı yeni sırayla oynatılmasın */
+CONFIG.storageKey='akkim-cekilis-v65';
 /* =====================================================================
    v64 · JACKPOT: 4 adımda kazanan (Şehir → Departman → Baş harfler → Kazanan)
    · tek tek çekilen hediyelerde (hane hane ve büyük final) sahnede sicil çarklarının yerine 4 kart açılır
@@ -6480,7 +6480,7 @@ const JP64={ cur:null, dep:new Map(), depAt:0, tah:{pi:-1,Y:0,N:0},
       <div class="jp-tah" id="jp-tah"><div class="k">BU HEDİYE HANGİ ŞEHRE?</div><div class="l"><span class="y">Yalova <b id="jp-ty">%50</b></span><span class="n"><b id="jp-tn">%50</b> Nazilli</span></div>
       <div class="bar"><i id="jp-tb"></i></div><div class="f" id="jp-tf"></div></div>`); },
   ADIM:[['ŞEHİR','Kazananın lokasyonu'],['DEPARTMAN','Çalışma birimi'],['BAŞ HARFLER','Ad ve soyadın baş harfleri'],['KAZANAN','']],
-  kartlar(p,w,no,acik){ const row=$('#jp-row'); if(!row) return; const son=p.mode==='grand'||p.big;
+  kartlar(p,w,no,acik){ const row=$('#jp-row'); if(!row) return; const son=p.mode==='grand';
     row.innerHTML=this.ADIM.map((a,i)=>`<div class="jc${i===3?' fin':''}${acik?' open':''}" data-i="${i}"><div class="in">
       <div class="fr"><div class="rb v"></div><div class="rb h"></div><div class="bow"><i></i><i></i><b></b></div>
         <span class="no">${i+1}</span><span class="lb">${a[0]}${i===3?' ★':''}</span><span class="ft">${i===3?(son?'BÜYÜK FİNAL':'TEK TEK'):'AKKİM 2027'}</span></div>
@@ -6492,9 +6492,10 @@ const JP64={ cur:null, dep:new Map(), depAt:0, tah:{pi:-1,Y:0,N:0},
     if(i===1) return `<div class="ak">ADIM 2 · DEPARTMAN</div><div class="dp">${e((dep||'Akkim').toLocaleUpperCase('tr'))}</div><div class="al">Çalışma birimi</div>`;
     if(i===2) return `<div class="ak">ADIM 3 · BAŞ HARFLER</div><div class="bh">${e(this.bas(w.name))}</div><div class="al">Ad ve soyadın baş harfleri</div>`;
     return `<div class="ak">ADIM 4 · KAZANAN</div><div class="tb">★ TEBRİKLER</div><div class="kz">${e(shortName(w.name))}</div><div class="kc ${c}">${e(this.sehir(w.city))}${dep?' · '+e(dep):''}</div><div class="kid">#${e(w.id)}</div>`; },
-  ac(i){ const c=$(`#jp-row .jc[data-i="${i}"]`); if(!c||c.classList.contains('open')) return; c.classList.remove('shake'); c.classList.add('open');
-    const nx=$(`#jp-row .jc[data-i="${i+1}"]`); if(nx) setTimeout(()=>nx.classList.add('shake'),500);
-    try{ const r=c.getBoundingClientRect(); FX.burst(i===3?200:70,(r.left+r.width/2)/innerWidth,(r.top+r.height/2)/innerHeight,i===3?1.1:.55,i===3); }catch(e){}
+  /* kutu yalnızca döner; konfeti tek sefer, son kutuda */
+  ac(i){ const c=$(`#jp-row .jc[data-i="${i}"]`); if(!c||c.classList.contains('open')) return; c.classList.add('open');
+    /* büyük finalde kutlamayı hemen ardından gelen 'kazandı' ekranı yapar; kutu konfetisi yalnız diğer tek tek çekilişlerde */
+    if(i===3){ this.sus=false; if(!(this.cur&&this.cur.p.mode==='grand')) setTimeout(()=>{ try{ const r=c.getBoundingClientRect(); FX.burst(220,(r.left+r.width/2)/innerWidth,(r.top+r.height/2)/innerHeight,1.1,true); }catch(e){} },650); }
     const w=this.cur&&this.cur.w; const msg=$('#jp-msg');
     if(msg&&w){ msg.innerHTML=i===0?`Hediye <b>${this.esc(this.yon(w.city))}</b> gidiyor…`:i===1?'Departman belli oldu, kazanan daralıyor…':i===2?'Baş harfler açıldı, kazanan açıklanıyor…'
       :`Tebrikler <b>${this.esc(shortName(w.name))}</b> (${this.esc(this.sehir(w.city))}${this.depAd(w.id)?' · '+this.esc(this.depAd(w.id)):''}) · <b>${this.esc(this.cur.p.name)}</b> kazandı!`; msg.classList.add('on'); }
@@ -6513,11 +6514,12 @@ if(!IS_TEL&&!IS_PANEL&&!IS_DESK){
   /* dokunuşları şehre göre say (yalnızca sayaç; mevcut enerji hesabına dokunmaz) */
   const __msg64=onMsg; onMsg=function(m){ try{ if(m&&m.t==='tap'&&phaseX()==='tap'&&(typeof tapOK!=='function'||tapOK())){ const pi=curPi(), s=String(m.s||''), w=S.list.find(x=>String(x.id)===s);
       if(w){ if(JP64.tah.pi!==pi) JP64.tah={pi,Y:0,N:0}; const n=Math.max(0,Math.min(60,+m.n||0)); w.city==='N'?JP64.tah.N+=n:JP64.tah.Y+=n; } } }catch(e){} return __msg64(m); };
+  if(typeof FX!=='undefined'&&FX.burst){ const __fb64=FX.burst.bind(FX); FX.burst=function(...a){ if(JP64.sus) return; return __fb64(...a); }; }
   /* çekiliş: kartlar kapalı kurulur, çarklar her zamanki gibi döner */
   const __dd64=drawDigits; drawDigits=function(p,r,grand){ try{ JP64.kur(); const w=S.list[r.ix]; JP64.cur={p,w,no:r.no}; JP64.kartlar(p,w,r.no,false);
       const m=$('#jp-msg'); if(m){ m.classList.remove('on'); m.textContent=''; } setTimeout(()=>{ const m2=$('#jp-msg'); if(m2&&!m2.classList.contains('on')){ m2.textContent='2027 taranıyor…'; m2.classList.add('on'); } },300);
-      const c0=$('#jp-row .jc[data-i="0"]'); if(c0) c0.classList.add('shake'); JP64.tahGoster(PRIZES.indexOf(p)); }catch(e){}
-    return __dd64(p,r,grand); };
+      JP64.sus=true; clearTimeout(JP64.susT); JP64.susT=setTimeout(()=>{ JP64.sus=false; },25000); JP64.tahGoster(PRIZES.indexOf(p)); }catch(e){}
+    const sonuc=__dd64(p,r,grand); Promise.resolve(sonuc).catch(()=>{}).then(()=>{ JP64.sus=false; }); return sonuc; };
   /* çark durunca sıradaki kart açılır: son üç haneden önceki üç durak → Şehir, Departman, Baş harfler */
   const __sd64=stopDrum; stopDrum=function(d,slow){ const r=__sd64(d,slow); try{ if(JP64.cur&&d&&d.ix!=null){ const n=DG.n||5, adim=d.ix-(n-4); if(adim>=0&&adim<3) setTimeout(()=>JP64.ac(adim),Math.round(380*K())); } }catch(e){} return r; };
   /* kazanan adı açıldığında 4. kart; sayfa yenilenip sonuç geri yüklendiğinde tüm kartlar açık gelir */
@@ -6530,10 +6532,10 @@ if(!IS_TEL&&!IS_PANEL&&!IS_DESK){
 }
 
 /* =====================================================================
-   v64 · sahnenin üst ampul dizisi: v58 renkleri, gerçek ışık gibi
+   v64 · sahnenin üst ampul dizisi: Akkim paleti, gerçek ışık gibi
    · ışık halesi yumuşak (düz disk değil), cam parlak, duy pirinç; yanıp sönen yalnızca ışık, ampul hep görünür
    ===================================================================== */
-if(typeof buildGarland==='function'){ buildGarland=function(){ const g=$('#garland'); if(!g) return; const cols=['#885987','#ce3087','#e73029','#f28e00','#fdd4a4','#e8c27a'];
+if(typeof buildGarland==='function'){ buildGarland=function(){ const g=$('#garland'); if(!g) return; const cols=['#fc6f16','#8a3d93','#fec6a2','#b52670','#fc6f16','#e8364f'];
   const koyu=h=>{ const n=parseInt(h.slice(1),16), r=(n>>16)&255, gg=(n>>8)&255, b=n&255, f=v=>Math.round(v*.5).toString(16).padStart(2,'0'); return '#'+f(r)+f(gg)+f(b); };
   let defs='<linearGradient id="gc64" x1="0" x2="1"><stop offset="0" stop-color="#2e2716"/><stop offset=".5" stop-color="#9a8452"/><stop offset="1" stop-color="#2e2716"/></linearGradient>';
   cols.forEach((c,i)=>{ defs+=`<radialGradient id="gh64-${i}"><stop offset="0" stop-color="${c}" stop-opacity=".6"/><stop offset=".42" stop-color="${c}" stop-opacity=".2"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient>`
