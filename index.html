@@ -2253,39 +2253,53 @@ html:not(:has(body.tel17)):not(:has(body.adm46)),body:not(.tel17):not(.adm46){ba
 @keyframes tw64{0%,100%{opacity:1}50%{opacity:.3}}
 body.ortu52 #garland .b64 .gh{animation-play-state:paused!important}
 
-/* ===================== v66 · telefonda 4 dönen kutu ===================== */
+/* ===================== v67 · telefonda kutular tek tek: gelir, döner, kayarak çıkar ===================== */
 #dg-box .dgrow,#dg-box .dgme,#dg-box .dgst{display:none!important}
-/* jackpot sırasında kutular ekranın görünür kısmında kalsın: büyük ürün görseli yerine kutular */
+/* kutular ekranın görünür kısmında kalsın: büyük ürün görseli yerine kutu sahnesi */
 #tp-draw.jp66 #pg-draw,body.jp66 #hero25{display:none!important}
-#tp-draw.jp66 #dg-box{margin-top:14px}
-.jpt{margin:6px auto 0;max-width:360px;font-family:Montserrat,"Segoe UI",Arial,sans-serif}
-.jpt-g{display:grid;grid-template-columns:1fr 1fr;gap:10px;perspective:900px}
-.jtk{height:106px;position:relative;animation:jtGel .5s ease-out both}
-.jtk:nth-child(2){animation-delay:.06s}.jtk:nth-child(3){animation-delay:.12s}.jtk:nth-child(4){animation-delay:.18s}
-@keyframes jtGel{from{opacity:0}to{opacity:1}}
-.jtk .in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.45,.05,.25,1)}
+#tp-draw.jp66 #dg-box{margin-top:10px}
+.jpt{margin:0 auto;max-width:360px;font-family:Montserrat,"Segoe UI",Arial,sans-serif;overflow:hidden;padding:4px 0 6px}
+.jpt-ad{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:12px}
+.jpt-ad i{width:22px;height:5px;border-radius:99px;background:#e4e2e8;transition:background .4s,width .4s}
+.jpt-ad i.ok{background:#b52670}.jpt-ad i.su{background:#fc6f16;width:34px}
+.jpt-ad span{margin-left:8px;font:800 11px/1 Montserrat,sans-serif;letter-spacing:.14em;color:#8a8590}
+.jpt-sh{position:relative;height:250px;perspective:1100px}
+.jtk{position:absolute;left:50%;top:6px;width:236px;height:236px;margin-left:-118px;transition:transform .55s cubic-bezier(.55,0,.75,.2),opacity .5s ease}
+.jtk.gir{transform:translateY(26px) scale(.82);opacity:0;transition:transform .5s cubic-bezier(.2,.8,.25,1),opacity .4s ease}
+.jtk.cik.sag{transform:translateX(150%) rotate(10deg);opacity:0}
+.jtk.cik.sol{transform:translateX(-150%) rotate(-10deg);opacity:0}
+.jtk.cik.asagi{transform:translateY(130%) rotate(4deg);opacity:0}
+.jtk .in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.45,.05,.25,1)}
 .jtk.open .in{transform:rotateY(180deg)}
-.jtk .fr,.jtk .bk{position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
-.jtk .fr{background:radial-gradient(120% 90% at 30% 15%,#8a3a96 0%,#62226c 50%,#45164d 100%);box-shadow:0 12px 26px -14px rgba(69,22,77,.7),inset 0 0 0 1px rgba(255,255,255,.12)}
+.jtk .fr,.jtk .bk{position:absolute;inset:0;border-radius:24px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.jtk .fr{background:radial-gradient(120% 90% at 30% 15%,#8a3a96 0%,#62226c 50%,#45164d 100%);box-shadow:0 22px 40px -18px rgba(69,22,77,.75),inset 0 0 0 1px rgba(255,255,255,.12),inset 0 2px 0 rgba(255,255,255,.18)}
+.jtk .fr::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1.3px,transparent 1.7px);background-size:20px 20px}
 .jtk.fin .fr{background:radial-gradient(120% 90% at 30% 15%,#c43a86 0%,#8e2471 45%,#5a1a5f 100%)}
-.jtk .rv,.jtk .rh{position:absolute;background:linear-gradient(90deg,#e8661a,#fec6a2 48%,#fd8d45)}
-.jtk .rv{left:50%;top:0;bottom:0;width:16px;margin-left:-8px}
-.jtk .rh{top:50%;left:0;right:0;height:16px;margin-top:-8px;background:linear-gradient(180deg,#e8661a,#fec6a2 48%,#fd8d45)}
-.jtk .bw{position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:6px;background:radial-gradient(circle at 35% 30%,#ffe1cc,#fc6f16 70%);box-shadow:0 2px 6px rgba(0,0,0,.35)}
-.jtk .no{position:absolute;left:9px;top:9px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.16);color:#fff;font:800 11px/1 Montserrat,sans-serif}
-.jtk .lb{position:absolute;right:9px;bottom:9px;padding:4px 7px;border-radius:99px;background:rgba(31,29,33,.45);color:#ffe1cc;font:800 9px/1 Montserrat,sans-serif;letter-spacing:.12em}
-.jtk .bk{transform:rotateY(180deg);background:#fff;border:2px solid #b52670;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 8px 8px;box-sizing:border-box;text-align:center}
-.jtk.fin .bk{border-color:#fc6f16}
-.jtk .ak{position:absolute;top:9px;left:0;right:0;font:800 9px/1 Montserrat,sans-serif;letter-spacing:.16em;color:#8a8590}
-.jtk .vl{font:900 17px/1.15 Montserrat,sans-serif;color:#1f1d21;word-break:break-word}
-.jtk .vl.sh{font-size:21px}.jtk .vl.sh.y{color:#fc6f16}.jtk .vl.sh.n{color:#b52670}
-.jtk .vl.bh{font-size:30px;color:#62226c;letter-spacing:.03em}
-.jtk .vl.kz{font-size:19px}
-.jpt-s{margin-top:12px;text-align:center;font:600 14px/1.35 Montserrat,sans-serif;color:#5d5862}
+.jtk .rv,.jtk .rh{position:absolute;background:linear-gradient(90deg,#e8661a,#fec6a2 46%,#ffe1cc 52%,#fd8d45)}
+.jtk .rv{left:50%;top:0;bottom:0;width:26px;margin-left:-13px}
+.jtk .rh{top:50%;left:0;right:0;height:26px;margin-top:-13px;background:linear-gradient(180deg,#e8661a,#fec6a2 46%,#ffe1cc 52%,#fd8d45)}
+.jtk .bw{position:absolute;left:50%;top:50%;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:9px;background:radial-gradient(circle at 35% 30%,#ffe1cc,#fc6f16 70%);box-shadow:0 3px 10px rgba(0,0,0,.35)}
+.jtk .no{position:absolute;left:14px;top:14px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);color:#fff;font:800 13px/1 Montserrat,sans-serif}
+.jtk .lb{position:absolute;right:14px;top:16px;padding:6px 10px;border-radius:99px;background:rgba(31,29,33,.45);color:#ffe1cc;font:800 10px/1 Montserrat,sans-serif;letter-spacing:.15em}
+.jtk .ft{position:absolute;right:16px;bottom:14px;color:rgba(255,225,204,.85);font:800 10px/1 Montserrat,sans-serif;letter-spacing:.18em}
+.jtk .bk{transform:rotateY(180deg);background:#fff;border:3px solid #b52670;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:26px 14px 14px;box-sizing:border-box;text-align:center;box-shadow:0 22px 44px -20px rgba(181,38,112,.55)}
+.jtk.fin .bk{border-color:#fc6f16;box-shadow:0 0 0 6px rgba(252,111,22,.14),0 24px 50px -18px rgba(252,111,22,.6)}
+.jtk .ak{position:absolute;top:16px;left:0;right:0;font:800 10px/1 Montserrat,sans-serif;letter-spacing:.18em;color:#8a8590}
+.jtk .vl{font:900 26px/1.12 Montserrat,sans-serif;color:#1f1d21;word-break:break-word}
+.jtk .vl.sh{font-size:34px}.jtk .vl.sh.y{color:#fc6f16}.jtk .vl.sh.n{color:#b52670}
+.jtk .vl.bh{font-size:56px;color:#62226c;letter-spacing:.03em}
+.jtk .vl.kz{font-size:30px}
+.jtk.kazandi .bk{animation:jtParla 1.6s ease-in-out infinite alternate}
+@keyframes jtParla{from{box-shadow:0 0 0 6px rgba(252,111,22,.14),0 24px 50px -18px rgba(252,111,22,.6)}to{box-shadow:0 0 0 12px rgba(252,111,22,.22),0 24px 60px -14px rgba(252,111,22,.8)}}
+.jpt-s{margin-top:10px;min-height:38px;text-align:center;font:600 14px/1.35 Montserrat,sans-serif;color:#5d5862;padding:0 10px}
 .jpt-s b{color:#1f1d21}
 .jpt-s.on b{color:#c9480a}
 .jpt-s.off{color:#8a8590}
-@media (prefers-reduced-motion:reduce){.jtk .in{transition:none}}
+/* kutu akışı sürerken kazananın üst şeridi (hediyen …) görünmesin: sürpriz 4. kutuda */
+body.jp67k #chip22{display:none!important}
+/* telefon tur ekranı başlığı: soluk geçiş yerine doygun turuncu */
+#pc28 .an{background:linear-gradient(180deg,#fd7a26 0%,#e8590c 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent}
+@media (prefers-reduced-motion:reduce){.jtk,.jtk .in{transition:none}.jtk.kazandi .bk{animation:none}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script><link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet"></head>
 <body>
@@ -6624,21 +6638,43 @@ if(!IS_TEL&&!IS_PANEL&&!IS_DESK){
   const __st66=stateX; stateX=function(){ const st=__st66(); try{ if(JP64.key&&JP64.jpPi!=null&&st.ph==='draw'&&st.pi===JP64.jpPi) st.jp={k:JP64.key,pi:JP64.jpPi,v:JP64.vals.slice(0,JP64.acik+1)}; }catch(e){} return st; };
 }
 if(IS_TEL){
-  const JPT={ key:'', n:-1,
-    ad:{Y:'Yalova',N:'Nazilli'}, yon:{Y:'Yalova’ya',N:'Nazilli’ye'},
+  /* =====================================================================
+     v67 · telefonda kutular tek tek: gelir, döner, açılan bilgi okunur, kayarak çıkar
+     1. kutu sağa, 2. kutu sola, 3. kutu aşağı çıkar; 4. kutu döner ve kazanan ekranda kalır
+     · sahne kazananı açıklayınca sonuç ekranı, telefon 4. kutuyu gösterene kadar bekletilir
+     ===================================================================== */
+  /* telefon tur ekranı: ilk grup yalnız "Altın" */
+  try{ if(ACTS[0]&&/Altın/.test(ACTS[0].name)){ ACTS[0].name='Altın'; ACTS[0].desc='0,5 gram, gram, çeyrek, yarım ve Cumhuriyet altını: 104 talihli.'; } }catch(e){}
+  const JPT={ key:'', pi:null, v:[], adim:0, faz:'', mesgul:false, kilit:false, kilitT:0, bekleyen:false, kazanQ:null,
+    ad:{Y:'Yalova',N:'Nazilli'}, yon:{Y:'Yalova’ya',N:'Nazilli’ye'}, L:['ŞEHİR','DEPARTMAN','BAŞ HARFLER','KAZANAN'], CIK:['sag','sol','asagi'],
     bas(ad){ return String(ad||'').trim().split(/\s+/).filter(Boolean).map(x=>x[0].toLocaleUpperCase('tr')+'.').join(' '); },
-    kur(){ const box=$('#dg-box'); if(!box||$('#jpt')) return; box.insertAdjacentHTML('afterbegin','<div class="jpt" id="jpt"><div class="jpt-g" id="jpt-g"></div><div class="jpt-s" id="jpt-s"></div></div>'); },
-    ciz(st,p){ this.kur(); const g=$('#jpt-g'); if(!g) return; const jp=st.jp&&st.jp.pi===st.pi?st.jp:null, key=(jp?jp.k:'yok')+'|'+st.pi;
-      if(this.key!==key){ this.key=key; this.n=-1; const L=['ŞEHİR','DEPARTMAN','BAŞ HARFLER','KAZANAN'];
-        g.innerHTML=L.map((l,i)=>`<div class="jtk${i===3?' fin':''}" data-i="${i}"><div class="in"><div class="fr"><i class="rv"></i><i class="rh"></i><b class="bw"></b><span class="no">${i+1}</span><span class="lb">${l}</span></div><div class="bk"><span class="ak">${l}</span><div class="vl"></div></div></div></div>`).join(''); }
-      const v=jp?jp.v:[]; for(let i=0;i<4;i++){ const c=g.querySelector(`.jtk[data-i="${i}"]`); if(!c) continue; if(v[i]!=null&&!c.classList.contains('open')){
-          const vl=c.querySelector('.vl'); if(i===0){ vl.className='vl sh '+(v[0]==='N'?'n':'y'); vl.textContent=(this.ad[v[0]]||'').toLocaleUpperCase('tr'); } else { vl.className='vl'+(i===2?' bh':i===3?' kz':''); vl.textContent=String(v[i]); }
-          c.classList.add('open'); } }
-      if(v.length-1>this.n||this.n<0){ const yeni=v.length-1>this.n&&v.length>0; this.n=v.length-1; this.durum(v,p); if(yeni) PH.vib(v.length>=4?[80,40,160]:[40]); } },
-    durum(v,p){ const s=$('#jpt-s'); if(!s) return; const me=PH.me||{}, myP=me.g!=null?PRIZES[me.g]:null;
-      if(myP){ s.innerHTML=`Senin hediyen hazır (${esc(myP.name)}). Bu turu keyifle izle.`; s.className='jpt-s'; return; }
+    kur(){ const box=$('#dg-box'); if(!box||$('#jpt')) return; box.insertAdjacentHTML('afterbegin','<div class="jpt" id="jpt"><div class="jpt-ad" id="jpt-ad"></div><div class="jpt-sh" id="jpt-sh"></div><div class="jpt-s" id="jpt-s"></div></div>'); },
+    sifirla(key,pi){ this.key=key; this.pi=pi; this.v=[]; this.adim=0; this.faz=''; this.mesgul=false; this.kilitAc(true); const sh=$('#jpt-sh'); if(sh) sh.innerHTML=''; this.noktalar(); this.durum([]); },
+    noktalar(){ const a=$('#jpt-ad'); if(!a) return; a.innerHTML=this.L.map((l,i)=>`<i class="${i<this.adim?'ok':i===this.adim?'su':''}"></i>`).join('')+`<span>${Math.min(this.adim+1,4)} / 4 · ${this.L[Math.min(this.adim,3)]}</span>`; },
+    kart(i){ return `<div class="jtk${i===3?' fin':''} gir" data-i="${i}"><div class="in"><div class="fr"><i class="rv"></i><i class="rh"></i><b class="bw"></b><span class="no">${i+1}</span><span class="lb">${this.L[i]}</span><span class="ft">${i===3?'KAZANAN':'AKKİM 2027'}</span></div><div class="bk"><span class="ak">${i+1} · ${this.L[i]}</span><div class="vl"></div></div></div></div>`; },
+    yaz(c,i){ const vl=c.querySelector('.vl'), v=this.v[i]; if(i===0){ vl.className='vl sh '+(v==='N'?'n':'y'); vl.textContent=(this.ad[v]||'').toLocaleUpperCase('tr'); } else { vl.className='vl'+(i===2?' bh':i===3?' kz':''); vl.textContent=String(v); } },
+    bekle(ms){ return new Promise(r=>setTimeout(r,ms)); },
+    /* sahneden gelen durum: yeni değerleri kaydet, akışı ilerlet */
+    ciz(st){ this.kur(); const jp=st.jp&&st.jp.pi===st.pi?st.jp:null, key=(jp?jp.k:'yok')+'|'+st.pi; if(this.key!==key) this.sifirla(key,st.pi);
+      if(jp) this.v=jp.v.slice(0,4); this.ilerle(); },
+    async ilerle(){ if(this.mesgul) return; this.mesgul=true; const key=this.key;
+      try{ while(this.key===key&&this.adim<4){ const sh=$('#jpt-sh'); if(!sh) break; const i=this.adim; let c=sh.querySelector(`.jtk[data-i="${i}"]`);
+          if(!c){ this.kilitle(); sh.innerHTML=this.kart(i); c=sh.firstChild; this.noktalar(); requestAnimationFrame(()=>c.classList.remove('gir')); await this.bekle(520); continue; }
+          if(this.v[i]==null) break;                                      /* sahnede bu kutu henüz açılmadı */
+          if(!c.classList.contains('open')){ this.yaz(c,i); c.classList.add('open'); PH.vib(i===3?[80,40,160]:[40]); await this.bekle(820); this.durum(this.v.slice(0,i+1)); }
+          if(i===3){ this.adim=4; this.noktalar(); c.classList.add('kazandi'); try{ PFX.burst(70,.5,.45,.7,true); }catch(e){} await this.bekle(2600); this.kilitAc(); break; }
+          await this.bekle(this.v.length>i+1?900:1300);                    /* açılan bilgi okunsun */
+          if(this.key!==key) break; c.classList.add('cik',this.CIK[i]); await this.bekle(520); c.remove(); this.adim=i+1; this.noktalar(); }
+      }catch(e){} this.mesgul=false; if(this.key===key&&this.adim<4&&this.v[this.adim]!=null) this.ilerle(); },
+    /* akış sürerken sonuç ekranı ve kazandın penceresi bekler */
+    kilitle(){ if(this.kilit) return; this.kilit=true; document.body.classList.add('jp67k'); clearTimeout(this.kilitT); this.kilitT=setTimeout(()=>this.kilitAc(),16000); },
+    kilitAc(sessiz){ const vardi=this.kilit; this.kilit=false; clearTimeout(this.kilitT); document.body.classList.remove('jp67k'); if(sessiz||!vardi) return;
+      if(this.bekleyen){ this.bekleyen=false; try{ PH.render(); }catch(e){} }
+      if(this.kazanQ){ const a=this.kazanQ; this.kazanQ=null; try{ PH.showWin.apply(PH,a); }catch(e){} } },
+    durum(v){ const s=$('#jpt-s'); if(!s) return; const me=PH.me||{}, myP=me.g!=null&&!(this.kazanQ)?PRIZES[me.g]:null;
+      if(myP&&!v.length){ s.innerHTML=`Senin hediyen hazır (${esc(myP.name)}). Bu turu keyifle izle.`; s.className='jpt-s'; return; }
       if(!v.length){ s.innerHTML='Kutular sahneyle birlikte açılıyor…'; s.className='jpt-s'; return; }
-      const sehir=v[0]===me.city; if(!sehir){ s.innerHTML=`Bu hediye ${this.yon[v[0]]||''} gidiyor · bu sefer olmadı`; s.className='jpt-s off'; return; }
+      const sehir=v[0]===me.city; if(!sehir){ s.innerHTML=v.length>=4?`Kazanan: <b>${esc(String(v[3]))}</b>`:`Bu hediye ${this.yon[v[0]]||''} gidiyor · bu sefer olmadı`; s.className='jpt-s'+(v.length>=4?'':' off'); return; }
       if(v.length===1){ s.innerHTML='<b>Hediye senin şehrine gidiyor!</b> Yarış sürüyor…'; s.className='jpt-s on'; return; }
       if(v.length===2){ s.innerHTML='<b>Şehrin tuttu.</b> Departman açıldı, kazanan daralıyor…'; s.className='jpt-s on'; return; }
       const bh=this.bas(me.name)===v[2];
@@ -6646,7 +6682,12 @@ if(IS_TEL){
       s.innerHTML=`Kazanan: <b>${esc(String(v[3]))}</b>`; s.className='jpt-s'; } };
   /* hane şeritleri, hane titreşimi ve hane konfetisi kapalı */
   PH.dgRender=function(){};
-  const __rn66=PH.render.bind(PH); PH.render=function(){ const r=__rn66(); try{ const st=this.st||{}, p=PRIZES[st.pi], tek=this.cur==='tp-draw'&&st.ph==='draw'&&p&&p.mode!=='batch'; const td=$('#tp-draw'); if(td) td.classList.toggle('jp66',!!tek); document.body.classList.toggle('jp66',!!tek); if(tek) JPT.ciz(st,p); }catch(e){} return r; };
+  const __rn67=PH.render.bind(PH); PH.render=function(){ const st=this.st||{};
+    /* kutu akışı bitmeden aynı hediyenin sonuç ekranına geçme */
+    if(JPT.kilit&&st.pi===JPT.pi&&st.ph!=='draw'){ JPT.bekleyen=true; return; }
+    if(JPT.kilit&&st.pi!==JPT.pi) JPT.kilitAc(true);
+    const r=__rn67(); try{ const p=PRIZES[st.pi], tek=this.cur==='tp-draw'&&st.ph==='draw'&&p&&p.mode!=='batch'; const td=$('#tp-draw'); if(td) td.classList.toggle('jp66',!!tek); document.body.classList.toggle('jp66',!!tek); if(tek) JPT.ciz(st); }catch(e){} return r; };
+  const __sw67=PH.showWin; PH.showWin=function(){ if(JPT.kilit){ JPT.kazanQ=[...arguments]; return; } return __sw67.apply(this,arguments); };
 }
 
 init();
