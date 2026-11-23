@@ -2182,6 +2182,78 @@ html:not(:has(body.tel17)):not(:has(body.adm46)),body:not(.tel17):not(.adm46){ba
 #g50{background:radial-gradient(circle at 50% 45%,#ffffff,#eef0f2 72%)!important;color:#1f1d21!important}
 #g50 .g-c{background:#fff!important}
 #g50 .g-c span:not(.cb){color:#5f5b63!important}
+
+/* ===================== v64 · jackpot: 4 adımda kazanan ===================== */
+#digits.jp .dg-k,#digits.jp .dg-sub,#digits.jp #drums,#digits.jp #dgm,#digits.jp .dgm,#digits.jp #dg-name{display:none!important}
+#digits.jp{justify-content:center}
+.jp64{display:flex;flex-direction:column;align-items:center;width:100%;font-family:Montserrat,"Segoe UI",Arial,sans-serif}
+.jp-pill{display:inline-flex;align-items:center;gap:12px;padding:9px 20px;border-radius:99px;background:#fff4ec;border:1px solid rgba(252,111,22,.32);color:#c9480a;font:800 13px/1 Montserrat,sans-serif;letter-spacing:.24em}
+.jp-pill i{width:7px;height:7px;border-radius:50%;background:#fc6f16;box-shadow:0 0 10px rgba(252,111,22,.8)}
+.jp-t{margin:14px 0 0;font:800 34px/1.1 Montserrat,sans-serif;color:#1f1d21;letter-spacing:-.01em}
+.jp-t em{font-style:normal;color:#fc6f16}
+.jp-row{display:flex;gap:30px;margin-top:28px;perspective:1600px}
+.jc{width:290px;height:290px;position:relative;opacity:0;transform:translateY(26px) scale(.94);animation:jcGel .7s cubic-bezier(.2,1.2,.35,1) forwards}
+.jc:nth-child(2){animation-delay:.08s}.jc:nth-child(3){animation-delay:.16s}.jc:nth-child(4){animation-delay:.24s}
+@keyframes jcGel{to{opacity:1;transform:none}}
+.jc .in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.3,1.35,.45,1)}
+.jc.open .in{transform:rotateY(180deg)}
+.jc .fr,.jc .bk{position:absolute;inset:0;border-radius:24px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+/* kapalı kutu: mor, şeftali-turuncu kurdele */
+.jc .fr{background:radial-gradient(120% 90% at 30% 15%,#8a3a96 0%,#62226c 48%,#45164d 100%);box-shadow:0 26px 50px -18px rgba(69,22,77,.7),inset 0 0 0 1px rgba(255,255,255,.12),inset 0 2px 0 rgba(255,255,255,.18)}
+.jc .fr::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1.4px,transparent 1.8px);background-size:22px 22px}
+.jc .rb{position:absolute;background:linear-gradient(90deg,#e8661a,#fec6a2 45%,#ffe1cc 52%,#fd8d45 100%);box-shadow:0 0 0 1px rgba(120,40,10,.25),0 4px 14px rgba(0,0,0,.25)}
+.jc .rb.v{left:50%;top:0;bottom:0;width:30px;margin-left:-15px}
+.jc .rb.h{top:50%;left:0;right:0;height:30px;margin-top:-15px;background:linear-gradient(180deg,#e8661a,#fec6a2 45%,#ffe1cc 52%,#fd8d45 100%)}
+.jc .bow{position:absolute;left:50%;top:50%;width:0;height:0}
+.jc .bow i{position:absolute;top:-30px;width:44px;height:34px;border:9px solid #fdb07e;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;box-shadow:0 4px 10px rgba(0,0,0,.3)}
+.jc .bow i:first-child{left:-50px;transform:rotate(-18deg)}.jc .bow i:last-child{left:6px;transform:rotate(18deg)}
+.jc .bow b{position:absolute;left:-14px;top:-14px;width:28px;height:28px;border-radius:9px;background:radial-gradient(circle at 35% 30%,#ffe1cc,#fc6f16 70%);box-shadow:0 3px 10px rgba(0,0,0,.35)}
+.jc .no{position:absolute;left:16px;top:16px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;font:800 14px/1 Montserrat,sans-serif}
+.jc .lb{position:absolute;right:16px;top:18px;padding:7px 11px;border-radius:99px;background:rgba(31,29,33,.45);color:#ffe1cc;font:800 11px/1 Montserrat,sans-serif;letter-spacing:.16em}
+.jc .ft{position:absolute;right:18px;bottom:16px;color:rgba(255,225,204,.85);font:800 11px/1 Montserrat,sans-serif;letter-spacing:.2em}
+.jc.fin .fr{background:radial-gradient(120% 90% at 30% 15%,#c43a86 0%,#8e2471 45%,#5a1a5f 100%);box-shadow:0 0 0 2px rgba(254,198,162,.55),0 30px 70px -20px rgba(181,38,112,.75),inset 0 2px 0 rgba(255,255,255,.2)}
+.jc.shake .in{animation:jcSalla .9s ease-in-out infinite}
+@keyframes jcSalla{0%,100%{transform:rotate(0)}15%{transform:rotate(-2.2deg) scale(1.02)}30%{transform:rotate(2.2deg) scale(1.02)}45%{transform:rotate(-1.2deg)}60%{transform:rotate(0)}}
+/* açık yüz */
+.jc .bk{transform:rotateY(180deg);background:#fff;border:3px solid #b52670;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:22px;box-sizing:border-box;text-align:center;
+  box-shadow:0 26px 60px -20px rgba(181,38,112,.55)}
+.jc .ak{position:absolute;top:18px;left:0;right:0;font:800 11px/1 Montserrat,sans-serif;letter-spacing:.2em;color:#8a8590}
+.jc .al{font:600 13px/1.3 Montserrat,sans-serif;color:#8a8590}
+.jc .sh{display:flex;flex-direction:column;align-items:center;gap:12px;font:900 44px/1 Montserrat,sans-serif;letter-spacing:.01em}
+.jc .sh i{width:18px;height:18px;border-radius:50%;box-shadow:0 0 0 8px currentColor;opacity:.9;background:#fff;border:5px solid currentColor;box-sizing:border-box}
+.jc .sh.y{color:#fc6f16}.jc .sh.n{color:#b52670}
+.jc .dp{font:900 30px/1.1 Montserrat,sans-serif;color:#1f1d21;letter-spacing:-.01em;word-break:break-word}
+.jc .bh{font:900 74px/1 Montserrat,sans-serif;color:#62226c;letter-spacing:.04em}
+.jc .tb{padding:6px 12px;border-radius:99px;background:#fff0e6;color:#c9480a;font:800 11px/1 Montserrat,sans-serif;letter-spacing:.18em}
+.jc .kz{font:900 34px/1.05 Montserrat,sans-serif;color:#1f1d21;letter-spacing:-.01em}
+.jc .kc{padding:7px 14px;border-radius:99px;font:700 13px/1.2 Montserrat,sans-serif;color:#fff;background:#fc6f16;max-width:100%}
+.jc .kc.n{background:#b52670}
+.jc .kid{font:700 13px/1 "JetBrains Mono",ui-monospace,monospace;color:#8a8590;letter-spacing:.06em}
+.jc .bk .hb{margin:0}
+.jc.fin.open .bk{border-color:#fc6f16;box-shadow:0 0 0 6px rgba(252,111,22,.15),0 30px 80px -20px rgba(252,111,22,.6)}
+.jp-msg{margin-top:26px;min-height:22px;padding:10px 20px;border-radius:99px;background:#fff;border:1px solid rgba(31,29,33,.1);font:600 16px/1.2 Montserrat,sans-serif;color:#47424a;opacity:0;transform:translateY(8px);transition:all .45s ease;box-shadow:0 10px 26px -14px rgba(31,29,33,.3)}
+.jp-msg.on{opacity:1;transform:none}
+.jp-msg b{color:#1f1d21}
+/* şehir payı */
+.jp-tah{position:absolute;right:34px;top:26px;width:330px;padding:16px 18px;border-radius:18px;background:#fff;border:1px solid rgba(31,29,33,.08);box-shadow:0 18px 40px -20px rgba(31,29,33,.35);font-family:Montserrat,sans-serif;opacity:0;transform:translateY(-8px);transition:all .5s ease}
+.jp-tah.on{opacity:1;transform:none}
+.jp-tah .k{font:800 11px/1 Montserrat,sans-serif;letter-spacing:.2em;color:#8a8590;text-align:center}
+.jp-tah .l{display:flex;justify-content:space-between;margin-top:12px;font:800 15px/1 Montserrat,sans-serif}
+.jp-tah .l .y{color:#fc6f16}.jp-tah .l .n{color:#b52670}
+.jp-tah .bar{height:10px;border-radius:99px;margin-top:9px;background:#b52670;overflow:hidden}
+.jp-tah .bar i{display:block;height:100%;width:50%;background:#fc6f16;transition:width .8s ease;border-right:2px solid #fff}
+.jp-tah .f{margin-top:10px;text-align:center;font:600 12px/1.2 Montserrat,sans-serif;color:#8a8590}
+.jp-tah.y .l .n,.jp-tah.n .l .y{opacity:.35}
+.jp-tah.y .f{color:#c9480a;font-weight:800}.jp-tah.n .f{color:#b52670;font-weight:800}
+#draw.dark .jp-pill,#draw.dark .jp-t{position:relative;z-index:6}
+@media (prefers-reduced-motion:reduce){.jc,.jc .in,.jc.shake .in{animation:none!important;transition:none!important;opacity:1;transform:none}.jc.open .in{transform:rotateY(180deg)}}
+/* büyük finalde ekran kararırken açık perde kartların arkasında kalsın */
+#draw.dark:has(#digits.jp.on)::after{background:radial-gradient(ellipse at 50% 50%,transparent 38%,rgba(243,244,246,.55) 82%)}
+/* üst ampul dizisi: yanıp sönen ışık, ampul değil */
+#garland .b64{animation:none}
+#garland .b64 .gh{animation:tw64 2.6s ease-in-out infinite}
+@keyframes tw64{0%,100%{opacity:1}50%{opacity:.3}}
+body.ortu52 #garland .b64 .gh{animation-play-state:paused!important}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script><link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet"></head>
 <body>
@@ -2502,7 +2574,7 @@ function giftSVG(){ const u='gc'+(UID++);
   <rect x="4" y="4" width="252" height="162" rx="18" fill="url(#${u}g)" stroke="#fc9a5c" stroke-opacity=".6"/><rect x="4" y="150" width="252" height="10" fill="url(#${u}s)"/>
   <text x="22" y="38" font-family="Manrope" font-weight="800" font-size="12" letter-spacing="3" fill="#fc9a5c">HEDİYE ÇEKİ</text><text x="22" y="108" font-family="Montserrat" font-weight="900" font-size="44" fill="#fedec9">${CONFIG.giftCardValue}</text><rect x="200" y="24" width="36" height="26" rx="5" fill="#fc9a5c" opacity=".8"/></svg>`; }
 const BOX=['linear-gradient(160deg,#fd8d45,#c9480a)','linear-gradient(160deg,#fc6f16,#a8390a)','linear-gradient(160deg,#fdb07e,#d9580c)','linear-gradient(160deg,#f6b68f,#b9571a)'];
-function buildGarland(){ const g=$('#garland'); const cols=['#fc6f16','#fd8d45','#fec6a2','#ffe1cc','#fc9a5c','#e8661a']; let path='M0 6', bulbs=''; const seg=240; let k=0;
+function buildGarland(){ const g=$('#garland'); const cols=['#885987','#ce3087','#e73029','#f28e00','#fdd4a4','#e8c27a']; let path='M0 6', bulbs=''; const seg=240; let k=0;
   for(let x=0;x<1920;x+=seg){ path+=` Q${x+seg/2} 44 ${x+seg} 6`; for(let j=1;j<6;j++){ const t=j/6, bx=x+seg*t, by=(1-t)*(1-t)*6+2*(1-t)*t*44+t*t*6, c=cols[k++%cols.length];
     bulbs+=`<g class="bulb" style="animation-delay:${(-Math.random()*2.4).toFixed(2)}s"><ellipse cx="${bx}" cy="${by+12}" rx="14" ry="16" fill="${c}" opacity=".2"/><rect x="${bx-3}" y="${by-1}" width="6" height="6" rx="1.5" fill="#8d4214"/><ellipse cx="${bx}" cy="${by+12}" rx="5.5" ry="8" fill="${c}"/><ellipse cx="${bx-1.6}" cy="${by+9}" rx="1.6" ry="2.6" fill="#fff" opacity=".7"/></g>`; } }
   g.innerHTML=`<path d="${path}" stroke="rgba(24,12,4,.9)" stroke-width="2" fill="none"/>`+bulbs; }
@@ -3315,7 +3387,7 @@ const PH={ s:null,k:null,cid:Math.random().toString(36).slice(2,10),me:null,st:n
     const b=$('#pg-tap .pg'); if(b){ b.classList.remove('idle','shake'); void b.offsetWidth; b.classList.add('shake'); } this.vib(14); if(this.myT%3===0) PFX.burst(8,.5,.5,.5,true);
     this.q=(this.q||0)+1; if(!this.qt) this.qt=setTimeout(()=>{ this.qt=null; sendX({t:'tap',s:this.s,n:this.q}); this.q=0; NET.pres({taps:this.taps}); },150); } };
 function initPhone(){ document.body.classList.add('tel17'); $$('#tel17 .logo-slot').forEach(e=>e.innerHTML=logoSVG(+e.dataset.h||26)); $$('.yr').forEach(e=>e.textContent=CONFIG.year);
-  const cols=['#fc6f16','#fd8d45','#fec6a2','#ffe1cc','#fc9a5c','#e8661a','#fd8d45']; let g='<svg viewBox="0 0 400 34" preserveAspectRatio="none"><path d="M0 6 Q200 34 400 6" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.2"/>'; for(let i=0;i<18;i++){ const t=(i+.5)/18, x=t*400, y=6+28*t*(1-t)*2; g+=`<circle cx="${x.toFixed(1)}" cy="${(y+4).toFixed(1)}" r="4.2" fill="${cols[i%7]}" style="animation-delay:${(i*.37%2.6).toFixed(2)}s"/>`; } $('#tp-gar').innerHTML=g+'</svg>';
+  const cols=['#885987','#ce3087','#e73029','#f28e00','#fdd4a4','#e8c27a','#3faa90']; let g='<svg viewBox="0 0 400 34" preserveAspectRatio="none"><path d="M0 6 Q200 34 400 6" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.2"/>'; for(let i=0;i<18;i++){ const t=(i+.5)/18, x=t*400, y=6+28*t*(1-t)*2; g+=`<circle cx="${x.toFixed(1)}" cy="${(y+4).toFixed(1)}" r="4.2" fill="${cols[i%7]}" style="animation-delay:${(i*.37%2.6).toFixed(2)}s"/>`; } $('#tp-gar').innerHTML=g+'</svg>';
   $('#pg-join').innerHTML=boxHTML({cls:'idle',box:BOX[1]});
   PFX.init($('#tpfx')); $('#tp-go').onclick=()=>PH.join(); $('#tp-k').addEventListener('keydown',e=>{ if(e.key==='Enter') PH.join(); });
   $$('#tp-demo a').forEach(a=>a.onclick=()=>{ $('#tp-s').value=a.dataset.s; $('#tp-k').value=joinCode(a.dataset.s); });
@@ -3531,7 +3603,7 @@ const DESK={ q:0, s:'', c:'', cur:null,
 
 const __init19=init;
 init=function(){ if(IS_DESK){ initPhoneShell19(); DESK.init(); return; } __init19(); if(IS_TEL) initPhone19(); else if(!IS_PANEL) stageInit19(); };
-function initPhoneShell19(){ document.body.classList.add('tel17'); PFX.init($('#tpfx')); const cols=['#fc6f16','#fd8d45','#fec6a2','#ffe1cc','#fc9a5c','#e8661a','#fd8d45']; let g='<svg viewBox="0 0 400 34" preserveAspectRatio="none">'; for(let i=0;i<18;i++){ const t=(i+.5)/18; g+=`<circle cx="${(t*400).toFixed(1)}" cy="${(10+28*t*(1-t)*2).toFixed(1)}" r="4.2" fill="${cols[i%7]}"/>`; } $('#tp-gar').innerHTML=g+'</svg>'; }
+function initPhoneShell19(){ document.body.classList.add('tel17'); PFX.init($('#tpfx')); const cols=['#885987','#ce3087','#e73029','#f28e00','#fdd4a4','#e8c27a','#3faa90']; let g='<svg viewBox="0 0 400 34" preserveAspectRatio="none">'; for(let i=0;i<18;i++){ const t=(i+.5)/18; g+=`<circle cx="${(t*400).toFixed(1)}" cy="${(10+28*t*(1-t)*2).toFixed(1)}" r="4.2" fill="${cols[i%7]}"/>`; } $('#tp-gar').innerHTML=g+'</svg>'; }
 
 /* =====================================================================
    v20 · SALON IŞIK ŞOVU · TAHMİN OYUNU · KİŞİSEL DAVET LİNKİ
@@ -4101,7 +4173,7 @@ const __ls29=lightShow; lightShow=function(){ if(!IS_TEL) LS29.start(); return _
 /* ---------------- telefon ---------------- */
 /* gerçekçi ampul dizisi */
 function shade29(h,k){ const n=parseInt(h.slice(1),16); const f=c=>Math.max(0,Math.round(c*k)); return '#'+[(n>>16)&255,(n>>8)&255,n&255].map(f).map(x=>x.toString(16).padStart(2,'0')).join(''); }
-function garland29(){ const el=$('#tp-gar'); if(!el) return; const cols=['#fc6f16','#fd8d45','#fec6a2','#ffe1cc','#fc9a5c','#e8661a'];
+function garland29(){ const el=$('#tp-gar'); if(!el) return; const cols=['#ff5848','#ffb43c','#fff0c4','#38d6a5','#ff4fa8','#b48cff'];
   let defs='<linearGradient id="g29s" x1="0" x2="1"><stop offset="0" stop-color="#0d1410"/><stop offset=".5" stop-color="#3a4a3e"/><stop offset="1" stop-color="#0d1410"/></linearGradient>';
   cols.forEach((c,i)=>{ defs+=`<radialGradient id="g29b${i}" cx=".4" cy=".34" r=".78"><stop offset="0" stop-color="#fffef6"/><stop offset=".22" stop-color="${c}"/><stop offset=".78" stop-color="${shade29(c,.62)}"/><stop offset="1" stop-color="${shade29(c,.38)}"/></radialGradient><radialGradient id="g29h${i}"><stop offset="0" stop-color="${c}" stop-opacity=".7"/><stop offset=".4" stop-color="${c}" stop-opacity=".22"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient>`; });
   const W=400, segs=2, sw=W/segs, sag=30; let wire='M-6 3', bulbs='', k=0;
@@ -4451,7 +4523,7 @@ CONFIG.storageKey='akkim-cekilis-v35';
 const WW=1800, WH=660;
 WC.cam={x:WW/2,y:WH/2,s:1,tx:WW/2,ty:WH/2,ts:1};
 /* altın sadece kazanana ait → normal ampullerde sarı/turuncu yok */
-const BCOL=['#fc6f16','#fd8d45','#fec6a2','#ffe1cc','#f7f2f8','#e8661a'];
+const BCOL=['#e0408f','#9b6bd6','#e73029','#3faa90','#4f8ff0','#f4f1ff'];
 const hex2=h=>{ const n=parseInt(h.slice(1),16); return [(n>>16)&255,(n>>8)&255,n&255]; };
 const mix=(a,b,k)=>a.map((v,i)=>Math.round(v+(b[i]-v)*k));
 const rgba=(c,a)=>`rgba(${c[0]},${c[1]},${c[2]},${a})`;
@@ -4489,15 +4561,15 @@ layoutWall=function(){ const n=S.list.length, X0=40, Y0=122, AW=WW-80, AH=468, t
 function bulb35(kind,ci){ const d=WC.grid, k=kind+'|'+ci+'|'+Math.round(d.tw*10)+'|'+WC.Q; WC.spr=WC.spr||{}; if(WC.spr[k]) return WC.spr[k];
   const Q=WC.Q, bw=d.tw*Q, bh=d.th*Q, sk=d.sk*Q, W_=Math.ceil(bw*(kind==='dim'?1.4:(kind==='hi'||kind==='goldhi'?6:4))), H_=Math.ceil(bh*(kind==='dim'?2.2:(kind==='hi'||kind==='goldhi'?4.4:3.6)));
   const c=document.createElement('canvas'); c.width=W_; c.height=H_; const g=c.getContext('2d'), mx=W_/2, my=H_/2;
-  let col=kind==='gold'||kind==='goldhi'?[222,70,150]:hex2(BCOL[ci]);
+  let col=kind==='gold'||kind==='goldhi'?[255,196,64]:hex2(BCOL[ci]);
   const glow=(cc,R,a)=>{ const gr=g.createRadialGradient(mx,my,0,mx,my,R); gr.addColorStop(0,rgba(cc,a)); gr.addColorStop(.4,rgba(cc,a*.35)); gr.addColorStop(1,rgba(cc,0)); g.fillStyle=gr; g.fillRect(0,0,W_,H_); };
   if(kind==='on') glow(col,bw*1.5,.5);
   if(kind==='gold') glow(col,bw*1.8,.75);
   if(kind==='hi') glow(mix(col,[255,255,255],.3),bw*2.7,1);
-  if(kind==='goldhi') glow([240,150,195],bw*2.8,1);
+  if(kind==='goldhi') glow([255,214,120],bw*2.8,1);
   if(kind==='hi'||kind==='goldhi'){ /* parlaklık katmanı: sadece ışık */ const gr=g.createRadialGradient(mx,my,0,mx,my,bw*.7); gr.addColorStop(0,'rgba(255,255,255,1)'); gr.addColorStop(1,'rgba(255,255,255,0)'); g.fillStyle=gr; g.beginPath(); g.ellipse(mx,my,bw*.62,bh*.6,0,0,7); g.fill(); return WC.spr[k]=c; }
   /* duy */
-  const sg=g.createLinearGradient(mx-bw*.26,0,mx+bw*.26,0); sg.addColorStop(0,'#3c1c08'); sg.addColorStop(.5,'#a34d17'); sg.addColorStop(1,'#3c1c08');
+  const sg=g.createLinearGradient(mx-bw*.26,0,mx+bw*.26,0); sg.addColorStop(0,'#2e2716'); sg.addColorStop(.5,'#7a6740'); sg.addColorStop(1,'#2e2716');
   g.fillStyle=sg; g.fillRect(mx-bw*.24,my-bh/2-sk,bw*.48,sk+bh*.08);
   /* cam */
   const dim=kind==='dim', c0=dim?mix(col,[20,24,30],.55):mix(col,[255,255,255],.55), c1=dim?mix(col,[10,14,20],.62):col, c2=dim?mix(col,[0,0,0],.78):mix(col,[0,0,0],.35);
@@ -4760,7 +4832,7 @@ const __b39=bulb35;
 bulb35=function(kind,ci){ if(kind!=='on') return __b39(kind,ci); const d=WC.grid, k='on39|'+ci+'|'+Math.round(d.tw*10)+'|'+WC.Q; WC.spr=WC.spr||{}; if(WC.spr[k]) return WC.spr[k];
   const Q=WC.Q, bw=d.tw*Q, bh=d.th*Q, sk=d.sk*Q, W_=Math.ceil(bw*3), H_=Math.ceil(bh*2.8), c=document.createElement('canvas'); c.width=W_; c.height=H_; const g=c.getContext('2d'), mx=W_/2, my=H_/2, col=hex2(BCOL[ci]);
   const gr0=g.createRadialGradient(mx,my,0,mx,my,bw*1.15); gr0.addColorStop(0,rgba(col,.26)); gr0.addColorStop(1,rgba(col,0)); g.fillStyle=gr0; g.fillRect(0,0,W_,H_);
-  const sg=g.createLinearGradient(mx-bw*.26,0,mx+bw*.26,0); sg.addColorStop(0,'#3c1c08'); sg.addColorStop(.5,'#a34d17'); sg.addColorStop(1,'#3c1c08'); g.fillStyle=sg; g.fillRect(mx-bw*.24,my-bh/2-sk,bw*.48,sk+bh*.08);
+  const sg=g.createLinearGradient(mx-bw*.26,0,mx+bw*.26,0); sg.addColorStop(0,'#2e2716'); sg.addColorStop(.5,'#7a6740'); sg.addColorStop(1,'#2e2716'); g.fillStyle=sg; g.fillRect(mx-bw*.24,my-bh/2-sk,bw*.48,sk+bh*.08);
   const c0=mix(col,[255,255,255],.32), c1=mix(col,[0,0,0],.08), c2=mix(col,[0,0,0],.5);
   const gr=g.createRadialGradient(mx-bw*.16,my-bh*.2,bw*.05,mx,my,bh*.58); gr.addColorStop(0,rgba(c0,1)); gr.addColorStop(.55,rgba(c1,1)); gr.addColorStop(1,rgba(c2,1)); g.fillStyle=gr; g.beginPath(); g.ellipse(mx,my,bw/2,bh/2,0,0,7); g.fill();
   g.fillStyle='rgba(255,255,255,.55)'; g.beginPath(); g.ellipse(mx-bw*.16,my-bh*.16,bw*.09,bh*.14,0,0,7); g.fill();
@@ -4871,7 +4943,7 @@ wires35=function(){};
 bulb35=function(kind,ci){ if(kind!=='on') return __b39(kind,ci); const d=WC.grid, k='on40|'+ci+'|'+Math.round(d.tw*10)+'|'+WC.Q; WC.spr=WC.spr||{}; if(WC.spr[k]) return WC.spr[k];
   const Q=WC.Q, bw=d.tw*Q, bh=d.th*Q, sk=d.sk*Q, W_=Math.ceil(bw*2.4), H_=Math.ceil(bh*2.4), cv=document.createElement('canvas'); cv.width=W_; cv.height=H_; const g=cv.getContext('2d'), mx=W_/2, my=H_/2, col=hex2(BCOL[ci]);
   const gr0=g.createRadialGradient(mx,my,0,mx,my,bw*.95); gr0.addColorStop(0,rgba(col,.12)); gr0.addColorStop(1,rgba(col,0)); g.fillStyle=gr0; g.fillRect(0,0,W_,H_);
-  const sg=g.createLinearGradient(mx-bw*.26,0,mx+bw*.26,0); sg.addColorStop(0,'#361a08'); sg.addColorStop(.5,'#8d4214'); sg.addColorStop(1,'#361a08'); g.fillStyle=sg; g.fillRect(mx-bw*.24,my-bh/2-sk,bw*.48,sk+bh*.08);
+  const sg=g.createLinearGradient(mx-bw*.26,0,mx+bw*.26,0); sg.addColorStop(0,'#2a2314'); sg.addColorStop(.5,'#6b5a36'); sg.addColorStop(1,'#2a2314'); g.fillStyle=sg; g.fillRect(mx-bw*.24,my-bh/2-sk,bw*.48,sk+bh*.08);
   const c0=mix(col,[255,255,255],.12), c1=mix(col,[0,0,0],.3), c2=mix(col,[0,0,0],.66);
   const gr=g.createRadialGradient(mx-bw*.16,my-bh*.2,bw*.05,mx,my,bh*.58); gr.addColorStop(0,rgba(c0,1)); gr.addColorStop(.55,rgba(c1,1)); gr.addColorStop(1,rgba(c2,1)); g.fillStyle=gr; g.beginPath(); g.ellipse(mx,my,bw/2,bh/2,0,0,7); g.fill();
   g.fillStyle='rgba(255,255,255,.32)'; g.beginPath(); g.ellipse(mx-bw*.15,my-bh*.15,bw*.08,bh*.12,0,0,7); g.fill();
@@ -4914,7 +4986,7 @@ const __init40=init; init=function(){ __init40(); if(!IS_TEL&&!IS_PANEL&&!IS_DES
 const __b40=bulb35;
 bulb35=function(kind,ci){ if(kind!=='hi'&&kind!=='goldhi') return __b40(kind,ci); const d=WC.grid, k='hi40|'+kind+'|'+ci+'|'+Math.round(d.tw*10)+'|'+WC.Q; WC.spr=WC.spr||{}; if(WC.spr[k]) return WC.spr[k];
   const Q=WC.Q, bw=d.tw*Q, bh=d.th*Q, S_=Math.ceil(bw*11), c=document.createElement('canvas'); c.width=c.height=S_; const g=c.getContext('2d'), m=S_/2;
-  const col=kind==='goldhi'?[236,130,185]:mix(hex2(BCOL[ci]),[255,255,255],.28);
+  const col=kind==='goldhi'?[255,206,110]:mix(hex2(BCOL[ci]),[255,255,255],.28);
   const gr=g.createRadialGradient(m,m,0,m,m,bw*5); gr.addColorStop(0,rgba(col,1)); gr.addColorStop(.22,rgba(col,.55)); gr.addColorStop(.55,rgba(col,.16)); gr.addColorStop(1,rgba(col,0)); g.fillStyle=gr; g.fillRect(0,0,S_,S_);
   const cr=g.createRadialGradient(m,m,0,m,m,bw*.85); cr.addColorStop(0,'rgba(255,255,255,1)'); cr.addColorStop(1,'rgba(255,255,255,0)'); g.fillStyle=cr; g.beginPath(); g.ellipse(m,m,bw*.85,bh*.75,0,0,7); g.fill();
   return WC.spr[k]=c; };
@@ -6383,6 +6455,95 @@ const __st61=stateX; stateX=function(){ const st=__st61(); try{ if(S.started&&S.
 setInterval(()=>{ try{ const el=document.getElementById('k-sure'); if(!el||typeof KUM==='undefined') return; const st=KUM.st;
   if(!st||!st.sb){ if(!el.hidden) el.hidden=true; return; }
   const t='SÜRE '+SURE61.bicim((st.sbt||Date.now())-st.sb); if(el.textContent!==t) el.textContent=t; el.hidden=false; el.classList.toggle('bitti',!!st.sbt); }catch(e){} },500);
+
+/* =====================================================================
+   v64 · JACKPOT: 4 adımda kazanan (Şehir → Departman → Baş harfler → Kazanan)
+   · tek tek çekilen hediyelerde (hane hane ve büyük final) sahnede sicil çarklarının yerine 4 kart açılır
+   · kura, zamanlama, telefonlara giden hane yayını, geri yükleme ve "erken sonuç" akışı aynen korunur:
+     çarklar arka planda dönmeye devam eder, kartlar çarkların durduğu anlara bağlanır
+   · sağ üstte "Bu hediye hangi şehre?" — dokunma turunda telefonlardan gelen şehir payı
+   ===================================================================== */
+const JP64={ cur:null, dep:new Map(), depAt:0, tah:{pi:-1,Y:0,N:0},
+  esc(t){ return String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); },
+  sehir(c){ return c==='N'?'Nazilli':'Yalova'; },
+  yon(c){ return c==='N'?'Nazilli’ye':'Yalova’ya'; },
+  bas(ad){ return String(ad||'').trim().split(/\s+/).filter(Boolean).map(x=>x[0].toLocaleUpperCase('tr')+'.').join(' '); },
+  depAd(id){ const d=this.dep.get(String(id)); return d?String(d):''; },
+  /* departmanlar: sahne oturumuyla bir kez okunur (gizli bilgi içermez) */
+  async depYukle(){ if(this.dep.size||Date.now()-this.depAt<15000) return; this.depAt=Date.now();
+    try{ const sb=await sb43('sahne'); if(!sb) return; const { data:{ session } }=await sb.auth.getSession(); if(!session) return;
+      const m=new Map(); for(let f=0;f<10000;f+=1000){ const { data,error }=await sb.from('calisanlar').select('sicil,departman').order('sicil').range(f,f+999); if(error) return; (data||[]).forEach(r=>m.set(String(r.sicil),r.departman||'')); if(!data||data.length<1000) break; }
+      this.dep=m; }catch(e){} },
+  kur(){ const d=$('#digits'); if(!d||$('#jp64')) return; d.classList.add('jp');
+    d.insertAdjacentHTML('beforeend',`<div class="jp64" id="jp64"><div class="jp-pill"><i></i><span id="jp-k">YENİ YIL HEDİYESİ YOLDA</span><i></i></div><h2 class="jp-t" id="jp-t"></h2>
+      <div class="jp-row" id="jp-row"></div><div class="jp-msg" id="jp-msg"></div></div>
+      <div class="jp-tah" id="jp-tah"><div class="k">BU HEDİYE HANGİ ŞEHRE?</div><div class="l"><span class="y">Yalova <b id="jp-ty">%50</b></span><span class="n"><b id="jp-tn">%50</b> Nazilli</span></div>
+      <div class="bar"><i id="jp-tb"></i></div><div class="f" id="jp-tf"></div></div>`); },
+  ADIM:[['ŞEHİR','Kazananın lokasyonu'],['DEPARTMAN','Çalışma birimi'],['BAŞ HARFLER','Ad ve soyadın baş harfleri'],['KAZANAN','']],
+  kartlar(p,w,no,acik){ const row=$('#jp-row'); if(!row) return; const son=p.mode==='grand'||p.big;
+    row.innerHTML=this.ADIM.map((a,i)=>`<div class="jc${i===3?' fin':''}${acik?' open':''}" data-i="${i}"><div class="in">
+      <div class="fr"><div class="rb v"></div><div class="rb h"></div><div class="bow"><i></i><i></i><b></b></div>
+        <span class="no">${i+1}</span><span class="lb">${a[0]}${i===3?' ★':''}</span><span class="ft">${i===3?(son?'BÜYÜK FİNAL':'TEK TEK'):'AKKİM 2027'}</span></div>
+      <div class="bk">${this.yuz(i,w)}</div></div></div>`).join('');
+    $('#jp-t').innerHTML=`${this.esc(p.name)} <em>· ${no}/${p.qty}</em>`;
+    $('#jp-k').textContent=son?'BÜYÜK FİNAL · TEK KAZANAN':'YENİ YIL HEDİYESİ YOLDA'; },
+  yuz(i,w){ const e=this.esc.bind(this), c=w.city==='N'?'n':'y', dep=this.depAd(w.id);
+    if(i===0) return `<div class="ak">ADIM 1 · ŞEHİR</div><div class="sh ${c}"><i></i>${e(this.sehir(w.city).toLocaleUpperCase('tr'))}</div><div class="al">Kazananın lokasyonu</div>`;
+    if(i===1) return `<div class="ak">ADIM 2 · DEPARTMAN</div><div class="dp">${e((dep||'Akkim').toLocaleUpperCase('tr'))}</div><div class="al">Çalışma birimi</div>`;
+    if(i===2) return `<div class="ak">ADIM 3 · BAŞ HARFLER</div><div class="bh">${e(this.bas(w.name))}</div><div class="al">Ad ve soyadın baş harfleri</div>`;
+    return `<div class="ak">ADIM 4 · KAZANAN</div><div class="tb">★ TEBRİKLER</div><div class="kz">${e(shortName(w.name))}</div><div class="kc ${c}">${e(this.sehir(w.city))}${dep?' · '+e(dep):''}</div><div class="kid">#${e(w.id)}</div>`; },
+  ac(i){ const c=$(`#jp-row .jc[data-i="${i}"]`); if(!c||c.classList.contains('open')) return; c.classList.remove('shake'); c.classList.add('open');
+    const nx=$(`#jp-row .jc[data-i="${i+1}"]`); if(nx) setTimeout(()=>nx.classList.add('shake'),500);
+    try{ const r=c.getBoundingClientRect(); FX.burst(i===3?200:70,(r.left+r.width/2)/innerWidth,(r.top+r.height/2)/innerHeight,i===3?1.1:.55,i===3); }catch(e){}
+    const w=this.cur&&this.cur.w; const msg=$('#jp-msg');
+    if(msg&&w){ msg.innerHTML=i===0?`Hediye <b>${this.esc(this.yon(w.city))}</b> gidiyor…`:i===1?'Departman belli oldu, kazanan daralıyor…':i===2?'Baş harfler açıldı, kazanan açıklanıyor…'
+      :`Tebrikler <b>${this.esc(shortName(w.name))}</b> (${this.esc(this.sehir(w.city))}${this.depAd(w.id)?' · '+this.esc(this.depAd(w.id)):''}) · <b>${this.esc(this.cur.p.name)}</b> kazandı!`; msg.classList.add('on'); }
+    if(i===0) this.tahSonuc(w); if(i===3) this.burada(); },
+  burada(){ const w=this.cur&&this.cur.w; if(!w) return; const c=$('#jp-row .jc[data-i="3"] .bk'); if(c&&!c.querySelector('.hb')&&typeof L!=='undefined'&&L.here&&L.here.has(String(w.id))) c.insertAdjacentHTML('beforeend','<span class="hb">✓ BURADA</span>'); },
+  /* dokunma turunda şehir payı */
+  tahGoster(pi){ const el=$('#jp-tah'); if(!el) return; const t=this.tah; let Y=t.pi===pi?t.Y:0, N=t.pi===pi?t.N:0, f='';
+    if(Y+N>0) f=`${Math.round(Y+N).toLocaleString('tr-TR')} dokunuş · telefonlardan`;
+    else { try{ L.lit.forEach(ix=>{ const w=S.list[ix]; if(w) w.city==='N'?N++:Y++; }); }catch(e){} if(Y+N>0) f=`${(Y+N).toLocaleString('tr-TR')} telefon salonda`; }
+    if(Y+N<=0){ el.classList.remove('on'); return; }
+    const y=Math.round(Y/(Y+N)*100); $('#jp-ty').textContent='%'+y; $('#jp-tn').textContent='%'+(100-y); $('#jp-tb').style.width=y+'%'; $('#jp-tf').textContent=f;
+    el.classList.remove('y','n'); el.classList.add('on'); },
+  tahSonuc(w){ const el=$('#jp-tah'); if(!el||!el.classList.contains('on')||!w) return; el.classList.add(w.city==='N'?'n':'y'); $('#jp-tf').innerHTML=`✓ Hediye ${this.esc(this.yon(w.city))} gidiyor!`; } };
+
+if(!IS_TEL&&!IS_PANEL&&!IS_DESK){
+  /* dokunuşları şehre göre say (yalnızca sayaç; mevcut enerji hesabına dokunmaz) */
+  const __msg64=onMsg; onMsg=function(m){ try{ if(m&&m.t==='tap'&&phaseX()==='tap'&&(typeof tapOK!=='function'||tapOK())){ const pi=curPi(), s=String(m.s||''), w=S.list.find(x=>String(x.id)===s);
+      if(w){ if(JP64.tah.pi!==pi) JP64.tah={pi,Y:0,N:0}; const n=Math.max(0,Math.min(60,+m.n||0)); w.city==='N'?JP64.tah.N+=n:JP64.tah.Y+=n; } } }catch(e){} return __msg64(m); };
+  /* çekiliş: kartlar kapalı kurulur, çarklar her zamanki gibi döner */
+  const __dd64=drawDigits; drawDigits=function(p,r,grand){ try{ JP64.kur(); const w=S.list[r.ix]; JP64.cur={p,w,no:r.no}; JP64.kartlar(p,w,r.no,false);
+      const m=$('#jp-msg'); if(m){ m.classList.remove('on'); m.textContent=''; } setTimeout(()=>{ const m2=$('#jp-msg'); if(m2&&!m2.classList.contains('on')){ m2.textContent='2027 taranıyor…'; m2.classList.add('on'); } },300);
+      const c0=$('#jp-row .jc[data-i="0"]'); if(c0) c0.classList.add('shake'); JP64.tahGoster(PRIZES.indexOf(p)); }catch(e){}
+    return __dd64(p,r,grand); };
+  /* çark durunca sıradaki kart açılır: son üç haneden önceki üç durak → Şehir, Departman, Baş harfler */
+  const __sd64=stopDrum; stopDrum=function(d,slow){ const r=__sd64(d,slow); try{ if(JP64.cur&&d&&d.ix!=null){ const n=DG.n||5, adim=d.ix-(n-4); if(adim>=0&&adim<3) setTimeout(()=>JP64.ac(adim),Math.round(380*K())); } }catch(e){} return r; };
+  /* kazanan adı açıldığında 4. kart; sayfa yenilenip sonuç geri yüklendiğinde tüm kartlar açık gelir */
+  const jpGozle=()=>{ const dn=$('#dg-name'); if(!dn||dn.dataset.o64) return; dn.dataset.o64='1';
+    new MutationObserver(()=>{ if(!dn.classList.contains('on')) return; try{ JP64.kur();
+      if(JP64.cur&&String($('#dg-n').dataset.id||JP64.cur.w.id)===String(JP64.cur.w.id)){ [0,1,2].forEach(i=>JP64.ac(i)); JP64.ac(3); }
+      else { const id=String($('#dg-n').dataset.id||''), w=S.list.find(x=>String(x.id)===id); const pi=(L.lastPi!=null?L.lastPi:curPi()), p=PRIZES[pi];
+        const R=S.results.filter(x=>x.ix===S.list.indexOf(w)); if(w&&p){ JP64.cur={p,w,no:(R[R.length-1]||{}).no||1}; JP64.kartlar(p,w,JP64.cur.no,true); JP64.ac(3); } } }catch(e){} }).observe(dn,{attributes:true,attributeFilter:['class']}); };
+  setInterval(()=>{ try{ jpGozle(); JP64.kur(); if(typeof NET!=='undefined'&&NET.role==='stage') JP64.depYukle(); }catch(e){} },1500);
+}
+
+/* =====================================================================
+   v64 · sahnenin üst ampul dizisi: v58 renkleri, gerçek ışık gibi
+   · ışık halesi yumuşak (düz disk değil), cam parlak, duy pirinç; yanıp sönen yalnızca ışık, ampul hep görünür
+   ===================================================================== */
+if(typeof buildGarland==='function'){ buildGarland=function(){ const g=$('#garland'); if(!g) return; const cols=['#885987','#ce3087','#e73029','#f28e00','#fdd4a4','#e8c27a'];
+  const koyu=h=>{ const n=parseInt(h.slice(1),16), r=(n>>16)&255, gg=(n>>8)&255, b=n&255, f=v=>Math.round(v*.5).toString(16).padStart(2,'0'); return '#'+f(r)+f(gg)+f(b); };
+  let defs='<linearGradient id="gc64" x1="0" x2="1"><stop offset="0" stop-color="#2e2716"/><stop offset=".5" stop-color="#9a8452"/><stop offset="1" stop-color="#2e2716"/></linearGradient>';
+  cols.forEach((c,i)=>{ defs+=`<radialGradient id="gh64-${i}"><stop offset="0" stop-color="${c}" stop-opacity=".6"/><stop offset=".42" stop-color="${c}" stop-opacity=".2"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient>`
+    +`<radialGradient id="gg64-${i}" cx=".36" cy=".34" r=".78"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".28" stop-color="${c}"/><stop offset="1" stop-color="${koyu(c)}"/></radialGradient>`; });
+  let path='M0 6', bulbs=''; const seg=240; let k=0;
+  for(let x=0;x<1920;x+=seg){ path+=` Q${x+seg/2} 44 ${x+seg} 6`; for(let j=1;j<6;j++){ const t=j/6, bx=x+seg*t, by=(1-t)*(1-t)*6+2*(1-t)*t*44+t*t*6, i=k++%cols.length;
+    bulbs+=`<g class="b64"><ellipse class="gh" style="animation-delay:${(-Math.random()*2.6).toFixed(2)}s" cx="${bx}" cy="${by+13}" rx="21" ry="23" fill="url(#gh64-${i})"/>`
+      +`<rect x="${bx-3.6}" y="${by-2}" width="7.2" height="7.5" rx="1.6" fill="url(#gc64)"/><path d="M${bx-3.2} ${by+5} C${bx-8.5} ${by+9} ${bx-7.5} ${by+20} ${bx} ${by+22} C${bx+7.5} ${by+20} ${bx+8.5} ${by+9} ${bx+3.2} ${by+5} Z" fill="url(#gg64-${i})"/>`
+      +`<ellipse cx="${bx-2.2}" cy="${by+10.5}" rx="1.5" ry="3" fill="#fff" opacity=".75" transform="rotate(-14 ${bx-2.2} ${by+10.5})"/></g>`; } }
+  g.innerHTML=`<defs>${defs}</defs><path d="${path}" stroke="rgba(24,12,4,.9)" stroke-width="2" fill="none"/>`+bulbs; }; }
 
 init();
 sahneAdres();
